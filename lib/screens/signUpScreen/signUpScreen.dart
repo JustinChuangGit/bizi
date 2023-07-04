@@ -1,6 +1,5 @@
 import 'package:bizi/screens/signUpScreen/components/signUpFormWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class signUpScreen extends StatelessWidget {
   const signUpScreen({Key? key}) : super(key: key);
@@ -12,8 +11,8 @@ class signUpScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(10),
-          child: Column(
-            children: const [
+          child: const Column(
+            children: [
               // FormHeaderWidget(
               //   image: ,
               //   title: ,
@@ -21,7 +20,7 @@ class signUpScreen extends StatelessWidget {
               //   imageHeight: ,
               // ),
               signUpFormWidget(),
-              signUpFooterWidget(),
+              //signUpFooterWidget(),
             ],
           ),
         ),

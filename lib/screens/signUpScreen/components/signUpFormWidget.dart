@@ -1,4 +1,4 @@
-import 'package:bizi/screens/signInScreen/components/signUpController.dart';
+import 'package:bizi/screens/signUpScreen/components/signUpController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

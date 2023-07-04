@@ -1,4 +1,5 @@
 import 'package:bizi/screens/signInScreen/signInScreen.dart';
+import 'package:bizi/screens/signUpScreen/signUpScreen.dart';
 import 'package:bizi/utilities/authentication/authenticationRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';

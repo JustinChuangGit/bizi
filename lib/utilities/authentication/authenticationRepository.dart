@@ -1,5 +1,6 @@
 import 'package:bizi/screens/customerHomeScreen/customerHomeScreen.dart';
 import 'package:bizi/screens/signInScreen/signInScreen.dart';
+import 'package:bizi/screens/signUpScreen/signUpScreen.dart';
 import 'package:bizi/utilities/authentication/exceptions/signUpEmailPasswordFailure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
