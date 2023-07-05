@@ -20,10 +20,16 @@ class loginForm extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            inputTextBox(controllerLogin: controllerLogin, label: 'Email'),
-            const SizedBox(height: 30),
-            inputTextBoxPassword(
-                controllerLogin: controllerLogin, label: 'Password'),
+            SizedBox(
+                height: height * 0.1,
+                child: inputTextBox(
+                    controllerLogin: controllerLogin, label: 'Email')),
+            SizedBox(height: height * 0.01),
+            SizedBox(
+              height: height * 0.1,
+              child: inputTextBoxPassword(
+                  controllerLogin: controllerLogin, label: 'Password'),
+            ),
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(

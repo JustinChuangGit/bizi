@@ -32,6 +32,12 @@ class _inputTextBoxPasswordState extends State<inputTextBoxPassword> {
       cursorColor: colorConstants.biziDark,
       controller: widget.controllerLogin.password,
       obscureText: !_obscureText,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter some text';
+        }
+        return null;
+      },
       decoration: InputDecoration(
           labelText: widget.label,
           floatingLabelStyle: TextStyle(

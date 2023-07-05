@@ -33,8 +33,16 @@ class authenticationRepository extends GetxController {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
+        Get.defaultDialog(
+          title: 'Error:',
+          middleText: 'The password provided is too weak.',
+        );
       } else if (e.code == 'email-already-in-use') {
         print('The account already exists for that email.');
+        Get.defaultDialog(
+          title: 'Error:',
+          middleText: 'The account already exists for that email.',
+        );
       }
     } catch (e) {
       print(e);
@@ -51,7 +59,15 @@ class authenticationRepository extends GetxController {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
+        Get.defaultDialog(
+          title: 'Error:',
+          middleText: 'No user found for that email.',
+        );
       } else if (e.code == 'wrong-password') {
+        Get.defaultDialog(
+          title: 'Error:',
+          middleText: 'Incorrect Password',
+        );
         print('Wrong password provided for that user.');
       }
     } catch (_) {}
