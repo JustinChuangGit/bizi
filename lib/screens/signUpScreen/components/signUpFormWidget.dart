@@ -8,7 +8,6 @@ class signUpFormWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(signUpController());
-
     final _formKey = GlobalKey<FormState>();
 
     return Container(
