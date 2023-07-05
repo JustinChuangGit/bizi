@@ -1,7 +1,9 @@
+import 'package:bizi/screens/signInScreen/signInScreen.dart';
 import 'package:bizi/screens/signUpScreen/components/signUpController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:bizi/screens/signUpScreen/components/inputTextBoxSignUp.dart';
 
 class signUpFormWidget extends StatelessWidget {
   const signUpFormWidget({Key? key}) : super(key: key);
@@ -18,68 +20,12 @@ class signUpFormWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //inputTextBox(controllerLogin: controller, label: 'Full Name'),
-              // TextFormField(
-              //     controller: controller.fullName,
-              //     decoration: const InputDecoration(
-              //       label: Text('tFullName'),
-              //     ),
-              //     validator: (value) {
-              //       if (value == null || value.isEmpty) {
-              //         return 'Please enter some text';
-              //       }
-              //       return null;
-              //     }),
-              // const SizedBox(
-              //   height: 10,
-              // ),
-              // TextFormField(
-              //   controller: controller.email,
-              //   decoration: const InputDecoration(
-              //     label: Text('Email'),
-              //   ),
-              //   validator: (value) {
-              //     if (value == null || value.isEmpty) {
-              //       return 'Please enter some text';
-              //     } else if (value != null) {
-              //       final bool isValid = EmailValidator.validate(value);
-              //       if (isValid == true) {
-              //         return null;
-              //       } else {
-              //         return 'Please enter a valid email';
-              //       }
-              //     }
-              //     return null;
-              //   },
-              // ),
-              // const SizedBox(
-              //   height: 10,
-              // ),
-              // TextFormField(
-              //     controller: controller.phoneNo,
-              //     decoration: const InputDecoration(
-              //       label: Text('Phone'),
-              //     ),
-              //     validator: (value) {
-              //       if (value == null || value.isEmpty) {
-              //         return 'Please enter some text';
-              //       }
-              //       return null;
-              //     }),
-              // const SizedBox(
-              //   height: 10,
-              // ),
-              // TextFormField(
-              //     controller: controller.password,
-              //     decoration: const InputDecoration(
-              //       label: Text('Password'),
-              //     ),
-              //     validator: (value) {
-              //       if (value == null || value.isEmpty) {
-              //         return 'Please enter some text';
-              //       }
-              //       return null;
-              //     }),
+              inputTextBox(controllerSignUp: controller, label: 'Full Name'),
+              inputTextBox(controllerSignUp: controller, label: 'Email'),
+              inputTextBox(controllerSignUp: controller, label: 'Password'),
+              inputTextBox(controllerSignUp: controller, label: 'Gender'),
+              inputTextBox(controllerSignUp: controller, label: 'Age'),
+              inputTextBox(controllerSignUp: controller, label: 'Phone Number'),
               const SizedBox(
                 height: 10,
               ),
@@ -94,6 +40,14 @@ class signUpFormWidget extends StatelessWidget {
                       }
                     },
                     child: Text('Sign Up')),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Get.to(const signInScreen());
+                    },
+                    child: const Text('Sign In')),
               )
             ],
           )),

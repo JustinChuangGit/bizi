@@ -1,24 +1,24 @@
 import 'package:bizi/configuration/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:bizi/screens/signInScreen/components/loginController.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:bizi/screens/signUpScreen/components/signUpController.dart';
 //Might Have to add controllers into this if there are more
 
 class inputTextBox extends StatelessWidget {
   const inputTextBox({
     super.key,
-    required this.controllerLogin,
+    required this.controllerSignUp,
     required this.label,
   });
 
-  final signInController controllerLogin;
+  final signUpController controllerSignUp;
   final String label;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       cursorColor: colorConstants.biziDark,
-      controller: controllerLogin.email,
+      controller: controllerSignUp.email,
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please enter some text';
