@@ -1,16 +1,15 @@
 import 'package:bizi/utilities/authentication/authenticationRepository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:bizi/screens/signInScreen/components/loginController.dart';
 
 class loginForm extends StatelessWidget {
-  const loginForm({
-    super.key,
-  });
+  const loginForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(signInController());
+    final controllerLogin = Get.put(signInController());
     final _formKeyLogin = GlobalKey<FormState>();
 
     return Form(
@@ -21,6 +20,7 @@ class loginForm extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
+              controller: controllerLogin.email,
               decoration: const InputDecoration(
                 labelText: 'email',
                 hintText: 'email',
@@ -31,6 +31,7 @@ class loginForm extends StatelessWidget {
               height: 30,
             ),
             TextFormField(
+              controller: controllerLogin.password,
               decoration: const InputDecoration(
                 labelText: 'password',
                 hintText: 'Password',
@@ -50,17 +51,17 @@ class loginForm extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   if (_formKeyLogin.currentState!.validate()) {
-                    //   signInController.instance.signInUser(
-                    //       controller.email.text.trim(),
-                    //       controller.password.text.trim());
-                    authenticationRepository.instance
-                        .loginUserWithEmailAndPassword(
-                            'jchuang6@uwo.ca', 'Justin9294');
+                    signInController.instance.signInUser(
+                        controllerLogin.email.text.trim(),
+                        controllerLogin.password.text.trim());
+                    print(controllerLogin.email.text.trim());
+                    print(controllerLogin.password.text.trim());
                   }
                 },
                 child: const Text("LOGIN"),
               ),
             ),
+            // Text(getInfo()),
           ],
         ),
       ),

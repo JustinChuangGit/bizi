@@ -21,7 +21,7 @@ class signInScreen extends StatelessWidget {
                 height: 100,
               ),
               const Text('Login Page'),
-              const loginForm(),
+              loginForm(),
               const Text('OR'),
               ElevatedButton(
                 onPressed: () {

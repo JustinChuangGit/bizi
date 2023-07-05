@@ -1,3 +1,4 @@
+import 'package:bizi/utilities/authentication/authenticationRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -28,7 +29,7 @@ class customerHomeScreen extends StatelessWidget {
           width: double.infinity,
           child: ElevatedButton(
             onPressed: () {
-              FirebaseAuth.instance.signOut();
+              authenticationRepository.instance.logout();
             },
             child: const Text("Sign Out"),
           ),
