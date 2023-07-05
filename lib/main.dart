@@ -1,3 +1,4 @@
+import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/screens/signInScreen/signInScreen.dart';
 import 'package:bizi/screens/signUpScreen/signUpScreen.dart';
 import 'package:bizi/utilities/authentication/authenticationRepository.dart';
@@ -10,6 +11,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
       .then((value) => Get.put(authenticationRepository()));
+
   runApp(const MyApp());
 }
 
