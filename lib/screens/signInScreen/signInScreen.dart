@@ -15,22 +15,28 @@ class signInScreen extends StatelessWidget {
     width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: biziDark,
+      backgroundColor: colorConstants.biziDark,
       body: SafeArea(
         child: Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: height * 0.15,
-                child: const Center(
-                  child: Image(
-                      image:
-                          AssetImage('assets/images/logos/biziMockLogo.png')),
+              Container(
+                padding: EdgeInsets.only(top: height * 0.05),
+                child: SizedBox(
+                  height: height * 0.15,
+                  child: const Center(
+                    child: Image(
+                        image:
+                            AssetImage('assets/images/logos/biziMockLogo.png')),
+                  ),
                 ),
               ),
               Container(
-                  padding: const EdgeInsets.all(defaultPadding),
+                  padding: const EdgeInsets.only(
+                    top: 10,
+                    bottom: 10,
+                  ),
                   child: const Center(
                       child: Text(
                     style: TextStyle(
@@ -40,10 +46,13 @@ class signInScreen extends StatelessWidget {
                     'Welcome!',
                   ))),
               Container(
-                  padding: const EdgeInsets.all(defaultPadding),
+                  padding: const EdgeInsets.only(bottom: 30),
                   child: const Center(
                       child: Text(
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
                     'Login With Your Email!',
                   ))),
               Expanded(
