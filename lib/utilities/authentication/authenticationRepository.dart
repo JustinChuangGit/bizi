@@ -25,7 +25,7 @@ class authenticationRepository extends GetxController {
   _setInitialScreen(User? user) {
     user == null
         ? Get.offAll(() => const signInScreen())
-        : Get.offAll(() => const customerHomeScreen());
+        : Get.offAll(() => customerHomeScreen());
   } //Checks to see if user is already signed in
 
   Future<void> createUserWithEmailAndPassword(
@@ -34,8 +34,8 @@ class authenticationRepository extends GetxController {
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       firebaseUser.value != null
-          ? Get.offAll(() => const signInScreen())
-          : Get.to(() => const customerHomeScreen());
+          ? Get.offAll(() => customerHomeScreen())
+          : Get.to(() => const signInScreen());
     } on FirebaseAuthException catch (e) {
       final ex = signUpWithEmailAndPasswordFailure.code(e.code);
       print('FIREBASE AUTH EXCEPTION - ${ex.message}');
@@ -51,7 +51,15 @@ class authenticationRepository extends GetxController {
       String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
+      firebaseUser.value != null
+          ? Get.offAll(() => customerHomeScreen())
+          : Get.to(() => const signInScreen());
     } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
     } catch (_) {}
   }
 

@@ -1,4 +1,7 @@
+import 'package:bizi/utilities/authentication/authenticationRepository.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:bizi/screens/signInScreen/components/loginController.dart';
 
 class loginForm extends StatelessWidget {
   const loginForm({
@@ -7,7 +10,11 @@ class loginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(signInController());
+    final _formKeyLogin = GlobalKey<FormState>();
+
     return Form(
+      key: _formKeyLogin,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 20), //CHANGE THIS
         child: Column(
@@ -41,7 +48,16 @@ class loginForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (_formKeyLogin.currentState!.validate()) {
+                    //   signInController.instance.signInUser(
+                    //       controller.email.text.trim(),
+                    //       controller.password.text.trim());
+                    authenticationRepository.instance
+                        .loginUserWithEmailAndPassword(
+                            'jchuang6@uwo.ca', 'Justin9294');
+                  }
+                },
                 child: const Text("LOGIN"),
               ),
             ),
