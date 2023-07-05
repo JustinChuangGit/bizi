@@ -16,77 +16,84 @@ class signInScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: colorConstants.biziDark,
-      body: SafeArea(
-        child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.only(top: height * 0.05),
-                child: SizedBox(
-                  height: height * 0.15,
-                  child: const Center(
-                    child: Image(
-                        image:
-                            AssetImage('assets/images/logos/biziMockLogo.png')),
-                  ),
-                ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: EdgeInsets.only(top: height * 0.1),
+            child: SizedBox(
+              height: height * 0.15,
+              child: const Center(
+                child: Image(
+                    image: AssetImage('assets/images/logos/biziMockLogo.png')),
               ),
-              Container(
-                  padding: const EdgeInsets.only(
-                    top: 10,
-                    bottom: 10,
-                  ),
-                  child: const Center(
-                      child: Text(
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
-                    'Welcome!',
-                  ))),
-              Container(
-                  padding: const EdgeInsets.only(bottom: 30),
-                  child: const Center(
-                      child: Text(
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
-                    'Login With Your Email!',
-                  ))),
-              Expanded(
-                child: Container(
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(cornerRadius),
-                        topRight: Radius.circular(cornerRadius)),
-                    color: Colors.white,
-                  ),
-                  padding: EdgeInsets.only(
-                    top: height * 0.02,
-                    left: width * 0.05,
-                    right: height * 0.05,
-                  ),
-                  child: Column(
+            ),
+          ),
+          Container(
+              padding: const EdgeInsets.only(
+                top: 10,
+                bottom: 10,
+              ),
+              child: const Center(
+                  child: Text(
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                ),
+                'Welcome!',
+              ))),
+          Container(
+              padding: const EdgeInsets.only(bottom: 30),
+              child: const Center(
+                  child: Text(
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+                'Login With Your Email',
+              ))),
+          Expanded(
+            child: Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(cornerRadius),
+                    topRight: Radius.circular(cornerRadius)),
+                color: Colors.white,
+              ),
+              padding: EdgeInsets.only(
+                top: height * 0.02,
+                left: width * 0.05,
+                right: height * 0.05,
+              ),
+              child: Column(
+                children: [
+                  const loginForm(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const loginForm(),
-                      const Text('OR'),
-                      ElevatedButton(
+                      const Text("Don't have an account?"),
+                      TextButton(
                         onPressed: () {
                           Get.to(
                             const signUpScreen(),
                           );
                         },
-                        child: const Text('Sign Up'),
-                      )
+                        child: Text(
+                          style: TextStyle(
+                            color: colorConstants.biziGreen,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          'Sign Up',
+                        ),
+                      ),
                     ],
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

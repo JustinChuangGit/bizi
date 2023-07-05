@@ -1,4 +1,5 @@
 import 'package:bizi/configuration/constants.dart';
+import 'package:bizi/widgets/inputTextBoxPassword.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:bizi/screens/signInScreen/components/loginController.dart';
@@ -21,8 +22,8 @@ class loginForm extends StatelessWidget {
           children: [
             inputTextBox(controllerLogin: controllerLogin, label: 'Email'),
             const SizedBox(height: 30),
-            inputTextBox(controllerLogin: controllerLogin, label: 'Password'),
-            const SizedBox(height: 5),
+            inputTextBoxPassword(
+                controllerLogin: controllerLogin, label: 'Password'),
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
@@ -30,7 +31,7 @@ class loginForm extends StatelessWidget {
                   child: Text(
                     'Forgot Password?',
                     style: TextStyle(
-                      color: colorConstants.biziDark,
+                      color: colorConstants.biziDark.withOpacity(0.8),
                     ),
                   )),
             ),
@@ -40,15 +41,13 @@ class loginForm extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     backgroundColor: colorConstants.biziGreen,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(cornerRadius),
+                      borderRadius: BorderRadius.circular(15),
                     )),
                 onPressed: () {
                   if (_formKeyLogin.currentState!.validate()) {
                     signInController.instance.signInUser(
                         controllerLogin.email.text.trim(),
                         controllerLogin.password.text.trim());
-                    print(controllerLogin.email.text.trim());
-                    print(controllerLogin.password.text.trim());
                   }
                 },
                 child: Container(
