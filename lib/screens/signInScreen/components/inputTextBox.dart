@@ -1,7 +1,6 @@
 import 'package:bizi/configuration/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bizi/screens/signInScreen/components/loginController.dart';
-import 'package:get/get.dart';
 import 'package:email_validator/email_validator.dart';
 //Might Have to add controllers into this if there are more
 

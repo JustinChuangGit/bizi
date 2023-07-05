@@ -1,9 +1,9 @@
 import 'package:bizi/configuration/constants.dart';
-import 'package:bizi/widgets/inputTextBoxPassword.dart';
+import 'package:bizi/screens/signInScreen/components/inputTextBoxPassword.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:bizi/screens/signInScreen/components/loginController.dart';
-import 'package:bizi/widgets/inputTextBox.dart';
+import 'package:bizi/screens/signInScreen/components/inputTextBox.dart';
 
 class loginForm extends StatelessWidget {
   const loginForm({Key? key}) : super(key: key);

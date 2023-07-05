@@ -18,67 +18,68 @@ class signUpFormWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextFormField(
-                  controller: controller.fullName,
-                  decoration: const InputDecoration(
-                    label: Text('tFullName'),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  }),
-              const SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                controller: controller.email,
-                decoration: const InputDecoration(
-                  label: Text('Email'),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
-                  } else if (value != null) {
-                    final bool isValid = EmailValidator.validate(value);
-                    if (isValid == true) {
-                      return null;
-                    } else {
-                      return 'Please enter a valid email';
-                    }
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                  controller: controller.phoneNo,
-                  decoration: const InputDecoration(
-                    label: Text('Phone'),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  }),
-              const SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                  controller: controller.password,
-                  decoration: const InputDecoration(
-                    label: Text('Password'),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  }),
+              //inputTextBox(controllerLogin: controller, label: 'Full Name'),
+              // TextFormField(
+              //     controller: controller.fullName,
+              //     decoration: const InputDecoration(
+              //       label: Text('tFullName'),
+              //     ),
+              //     validator: (value) {
+              //       if (value == null || value.isEmpty) {
+              //         return 'Please enter some text';
+              //       }
+              //       return null;
+              //     }),
+              // const SizedBox(
+              //   height: 10,
+              // ),
+              // TextFormField(
+              //   controller: controller.email,
+              //   decoration: const InputDecoration(
+              //     label: Text('Email'),
+              //   ),
+              //   validator: (value) {
+              //     if (value == null || value.isEmpty) {
+              //       return 'Please enter some text';
+              //     } else if (value != null) {
+              //       final bool isValid = EmailValidator.validate(value);
+              //       if (isValid == true) {
+              //         return null;
+              //       } else {
+              //         return 'Please enter a valid email';
+              //       }
+              //     }
+              //     return null;
+              //   },
+              // ),
+              // const SizedBox(
+              //   height: 10,
+              // ),
+              // TextFormField(
+              //     controller: controller.phoneNo,
+              //     decoration: const InputDecoration(
+              //       label: Text('Phone'),
+              //     ),
+              //     validator: (value) {
+              //       if (value == null || value.isEmpty) {
+              //         return 'Please enter some text';
+              //       }
+              //       return null;
+              //     }),
+              // const SizedBox(
+              //   height: 10,
+              // ),
+              // TextFormField(
+              //     controller: controller.password,
+              //     decoration: const InputDecoration(
+              //       label: Text('Password'),
+              //     ),
+              //     validator: (value) {
+              //       if (value == null || value.isEmpty) {
+              //         return 'Please enter some text';
+              //       }
+              //       return null;
+              //     }),
               const SizedBox(
                 height: 10,
               ),
