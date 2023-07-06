@@ -5,7 +5,7 @@ class Auth {
 
   Future<void> registerWithEmailAndPassword(
       String email, String password) async {
-    final user = await _auth.createUserWithEmailAndPassword(
+    await _auth.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );

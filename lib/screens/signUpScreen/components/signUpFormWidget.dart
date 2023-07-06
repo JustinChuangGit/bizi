@@ -2,7 +2,6 @@ import 'package:bizi/screens/signInScreen/signInScreen.dart';
 import 'package:bizi/screens/signUpScreen/components/signUpController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:bizi/screens/signUpScreen/components/inputTextBoxSignUp.dart';
 
 class signUpFormWidget extends StatelessWidget {
