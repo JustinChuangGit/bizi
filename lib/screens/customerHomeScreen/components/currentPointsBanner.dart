@@ -12,7 +12,7 @@ class currentPointsBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned.fill(
       //Green Card
-      top: height * 0.30,
+      top: -400,
       child: Align(
         alignment: Alignment.center,
         child: Card(
