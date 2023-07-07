@@ -11,9 +11,9 @@ class mainCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.9),
-        borderRadius: const BorderRadius.only(
+      decoration: const BoxDecoration(
+        color: Color.fromARGB(255, 235, 235, 235),
+        borderRadius: BorderRadius.only(
           topLeft: Radius.circular(cornerRadius),
           topRight: Radius.circular(cornerRadius),
         ),

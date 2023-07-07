@@ -2,6 +2,7 @@ import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/screens/customerHomeScreen/components/currentPointsBanner.dart';
 import 'package:bizi/screens/customerHomeScreen/components/mainCard.dart';
 import 'package:bizi/widgets/bottomBar.dart';
+import 'package:bizi/widgets/bottomIcon.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -28,18 +29,24 @@ class customerHomeScreen extends StatelessWidget {
     width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: colorConstants.biziDark,
-      bottomNavigationBar: bottomBar(),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(
+              SizedBox(
                 height: 80,
+                child: Container(
+                    height: double.infinity,
+                    width: double.infinity,
+                    color: colorConstants.biziDark),
               ),
               Stack(
                 children: [
+                  Container(
+                      width: double.infinity,
+                      height: 500,
+                      color: colorConstants.biziDark),
                   Stack(
                     children: [
                       Center(
@@ -96,23 +103,58 @@ class customerHomeScreen extends StatelessWidget {
           ),
         ),
       ),
+
+      bottomNavigationBar: bottomBar(),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: colorConstants.biziGreen,
+        onPressed: () {},
+        child: Icon(Icons.qr_code_scanner),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // bottomNavigationBar: BottomAppBar(
+      //   color: Colors.blueGrey,
+      //   shape: CircularNotchedRectangle(),
+      //   child: Container(
+      //     height: 70,
+      //     child: Padding(
+      //       padding: const EdgeInsets.only(top: 10),
+      //       child: Row(
+      //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //         children: <Widget>[
+      //           BottomIcon(
+      //             iconText: 'Home',
+      //             icon: Icons.home_outlined,
+      //             padding: EdgeInsets.only(right: 30),
+      //           ),
+      //           BottomIcon(
+      //             iconText: 'Home',
+      //             icon: Icons.storefront,
+      //             padding: EdgeInsets.only(right: 30),
+      //           ),
+      //           BottomIcon(
+      //             iconText: 'Home',
+      //             icon: Icons.favorite_border,
+      //             padding: EdgeInsets.only(right: 30),
+      //           ),
+      //           BottomIcon(
+      //             iconText: 'Home',
+      //             icon: Icons.person_outline,
+      //             padding: EdgeInsets.only(right: 30),
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //   ),
+      // ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: Colors.blueGrey,
+      //   onPressed: () {},
+      //   child: Icon(
+      //     Icons.account_circle,
+      //     size: 35,
+      //   ),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
-    // return Column(
-    //   children: [
-    //     const SizedBox(
-    //       height: 100,
-    //     ),
-    //     SizedBox(
-    //       width: double.infinity,
-    //       child: ElevatedButton(
-    //         onPressed: () {
-    //           authenticationRepository.instance.logout();
-    //         },
-    //         child: const Text("Sign Out"),
-    //       ),
-    //     ),
-    //     Text(getInfo())
-    //   ],
-    // );
   }
 }

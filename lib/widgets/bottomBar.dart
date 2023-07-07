@@ -16,27 +16,31 @@ class _bottomBarState extends State<bottomBar> {
         height: height * 0.1,
         color: colorConstants.biziDark,
         shape: const CircularNotchedRectangle(),
-        child: Row(children: [
-          BottomIcon(
-            iconText: 'Home',
-            icon: Icons.home_outlined,
-            padding: EdgeInsets.only(right: 30),
-          ),
-          BottomIcon(
-            iconText: 'Home',
-            icon: Icons.storefront,
-            padding: EdgeInsets.only(right: 30),
-          ),
-          BottomIcon(
-            iconText: 'Home',
-            icon: Icons.favorite_border,
-            padding: EdgeInsets.only(right: 30),
-          ),
-          BottomIcon(
-            iconText: 'Home',
-            icon: Icons.person_outline,
-            padding: EdgeInsets.only(right: 30),
-          ),
-        ]));
+        notchMargin: 5,
+        child: Container(
+          height: height * 0.13,
+          child: Row(children: [
+            BottomIcon(
+              iconText: 'Home',
+              icon: Icons.home_outlined,
+              padding: EdgeInsets.only(right: 30),
+            ),
+            BottomIcon(
+              iconText: 'Home',
+              icon: Icons.storefront,
+              padding: EdgeInsets.only(right: 30),
+            ),
+            BottomIcon(
+              iconText: 'Home',
+              icon: Icons.favorite_border,
+              padding: EdgeInsets.only(right: 30),
+            ),
+            BottomIcon(
+              iconText: 'Home',
+              icon: Icons.person_outline,
+              padding: EdgeInsets.only(right: 30),
+            ),
+          ]),
+        ));
   }
 }
