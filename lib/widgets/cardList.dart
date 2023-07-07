@@ -1,48 +1,36 @@
 import 'package:bizi/configuration/constants.dart';
+import 'package:bizi/widgets/individualCard.dart';
 import 'package:flutter/material.dart';
 
 class cardList extends StatelessWidget {
-  const cardList({super.key});
+  const cardList({
+    super.key,
+    required this.heading,
+  });
+
+  final String heading;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: height * 0.2,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[
-          Card(
-            elevation: 10,
-            child: SizedBox(
-              width: width * 0.3,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(heading),
+        SizedBox(
+          height: height * 0.32,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: <Widget>[
+              individualCard(),
+              individualCard(),
+              individualCard(),
+              individualCard(),
+              individualCard(),
+              individualCard(),
+            ],
           ),
-          Card(
-            elevation: 10,
-            child: SizedBox(
-              width: width * 0.3,
-            ),
-          ),
-          Card(
-            elevation: 10,
-            child: SizedBox(
-              width: width * 0.3,
-            ),
-          ),
-          Card(
-            elevation: 10,
-            child: SizedBox(
-              width: width * 0.3,
-            ),
-          ),
-          Card(
-            elevation: 10,
-            child: SizedBox(
-              width: width * 0.3,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

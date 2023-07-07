@@ -22,10 +22,11 @@ class mainCard extends StatelessWidget {
         children: [
           SizedBox(height: 50),
           Text('You have  '),
-          cardList(),
-          cardList(),
-          cardList(),
-          cardList(),
+          cardList(heading: 'Test 1'),
+          cardList(heading: 'Test 2'),
+          cardList(heading: 'Test 3'),
+          cardList(heading: 'Test 4'),
+          cardList(heading: 'Test 5'),
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/screens/customerHomeScreen/components/currentPointsBanner.dart';
 import 'package:bizi/screens/customerHomeScreen/components/mainCard.dart';
+import 'package:bizi/widgets/bottomBar.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -28,6 +29,7 @@ class customerHomeScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: colorConstants.biziDark,
+      bottomNavigationBar: bottomBar(),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
