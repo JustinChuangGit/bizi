@@ -14,6 +14,7 @@ late double width;
 
 //Bottom App Bar
 const double iconSize = 30;
+const double buttonDissapearLocation = 180;
 
 // class screenUtil {
 //   void setScreen(double width, double height) {

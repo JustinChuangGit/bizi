@@ -6,6 +6,7 @@ import 'package:bizi/widgets/bottomIcon.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:bizi/widgets/bottomBarActionButton.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class customerHomeScreen extends StatelessWidget {
   customerHomeScreen({Key? key}) : super(key: key);
@@ -92,25 +93,12 @@ class customerHomeScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: bottomBar(),
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: colorConstants.biziGreen,
-      //   onPressed: () {
-      //     print(scrollController.offset);
-      //   },
-      //   child: Icon(Icons.qr_code_scanner),
-      // ),
+      // floatingActionButtonLocation:
+      //     scrollController.offset < buttonDissapearLocation
+      //         ? FloatingActionButtonLocation.centerDocked
+      //         : null,
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      // floatingActionButtonLocation: scrollController.offset < 180
-      //     ? FloatingActionButtonLocation.centerDocked
-      //     : null,
-      // floatingActionButton: scrollController.offset < 180
-      //     ? FloatingActionButton(
-      //         backgroundColor: colorConstants.biziGreen,
-      //         onPressed: () {},
-      //         child: Icon(Icons.qr_code_scanner),
-      //       )
-      //     : null,
-
       floatingActionButton: actionButton(
         scrollController: scrollController,
       ),

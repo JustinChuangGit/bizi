@@ -16,8 +16,12 @@ class actionButton extends StatefulWidget {
 class _actionButtonState extends State<actionButton> {
   @override
   late double currentPossition;
+  bool _visible = true;
   void initState() {
     widget.scrollController.addListener(() {
+      currentPossition > buttonDissapearLocation
+          ? _visible = false
+          : _visible = true;
       //listener
 
       setState(() {
@@ -31,13 +35,20 @@ class _actionButtonState extends State<actionButton> {
     currentPossition = widget.scrollController.offset;
 
     return Container(
-      child: widget.scrollController.offset < 180
-          ? FloatingActionButton(
-              backgroundColor: colorConstants.biziGreen,
-              onPressed: () {},
-              child: Icon(Icons.qr_code_scanner),
+      child: widget.scrollController.offset < buttonDissapearLocation
+          ? AnimatedOpacity(
+              opacity: _visible ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 1000),
+              child: FloatingActionButton(
+                backgroundColor: colorConstants.biziGreen,
+                onPressed: () {},
+                child: Icon(Icons.qr_code_scanner),
+              ),
             )
-          : SizedBox.shrink(),
+          : AnimatedOpacity(
+              opacity: !_visible ? 0 : 1.0,
+              duration: const Duration(milliseconds: 1000),
+              child: SizedBox()),
     );
   }
 }
