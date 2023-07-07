@@ -2,15 +2,12 @@ import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/screens/customerHomeScreen/components/currentPointsBanner.dart';
 import 'package:bizi/screens/customerHomeScreen/components/mainCard.dart';
 import 'package:bizi/widgets/bottomBar.dart';
-import 'package:bizi/widgets/bottomIcon.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:bizi/widgets/bottomBarActionButton.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class customerHomeScreen extends StatelessWidget {
   customerHomeScreen({Key? key}) : super(key: key);
-  ScrollController scrollController = ScrollController();
+  final ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;

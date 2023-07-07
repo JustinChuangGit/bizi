@@ -13,7 +13,7 @@ class BottomIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: _padding ?? EdgeInsets.all(0),
+      padding: _padding,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[

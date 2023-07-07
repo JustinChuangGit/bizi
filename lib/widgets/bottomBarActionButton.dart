@@ -1,5 +1,4 @@
 import 'package:bizi/configuration/constants.dart';
-import 'package:bizi/widgets/bottomIcon.dart';
 import 'package:flutter/material.dart';
 
 class actionButton extends StatefulWidget {
@@ -7,19 +6,19 @@ class actionButton extends StatefulWidget {
     Key? key,
     required this.scrollController,
   }) : super(key: key);
-  late ScrollController scrollController;
+  late final ScrollController scrollController;
 
   @override
   State<actionButton> createState() => _actionButtonState();
 }
 
 class _actionButtonState extends State<actionButton> {
-  @override
-  late double currentPossition;
+  late double _currentPossition;
   bool _visible = true;
+  @override
   void initState() {
     widget.scrollController.addListener(() {
-      currentPossition > buttonDissapearLocation
+      _currentPossition > buttonDissapearLocation
           ? _visible = false
           : _visible = true;
       //listener
@@ -32,7 +31,7 @@ class _actionButtonState extends State<actionButton> {
   }
 
   Widget build(BuildContext context) {
-    currentPossition = widget.scrollController.offset;
+    _currentPossition = widget.scrollController.offset;
 
     return Container(
       child: widget.scrollController.offset < buttonDissapearLocation
