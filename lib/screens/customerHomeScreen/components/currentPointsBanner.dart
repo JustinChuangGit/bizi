@@ -1,7 +1,5 @@
 import 'package:bizi/configuration/constants.dart';
-import 'package:bizi/utilities/authentication/authenticationRepository.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class currentPointsBanner extends StatelessWidget {
   const currentPointsBanner({

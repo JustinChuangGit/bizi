@@ -12,6 +12,9 @@ const cornerRadius = 30.0;
 late double height;
 late double width;
 
+//Bottom App Bar
+const double iconSize = 30;
+
 // class screenUtil {
 //   void setScreen(double width, double height) {
 //     width = this.width;

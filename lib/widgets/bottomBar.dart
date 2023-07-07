@@ -1,4 +1,5 @@
 import 'package:bizi/configuration/constants.dart';
+import 'package:bizi/widgets/bottomIcon.dart';
 import 'package:flutter/material.dart';
 
 class bottomBar extends StatefulWidget {
@@ -14,79 +15,27 @@ class _bottomBarState extends State<bottomBar> {
     return BottomAppBar(
         height: height * 0.1,
         color: colorConstants.biziDark,
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         child: Row(children: [
-          IconButton(
-            icon: Column(
-              children: [
-                Icon(
-                  Icons.home_outlined,
-                  color: Colors.white,
-                  size: 50,
-                ),
-                Text(
-                  'data',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-            onPressed: () {},
+          BottomIcon(
+            iconText: 'Home',
+            icon: Icons.home_outlined,
+            padding: EdgeInsets.only(right: 30),
           ),
-          IconButton(
-            icon: Column(
-              children: [
-                Icon(
-                  Icons.storefront,
-                  color: Colors.white,
-                  size: 50,
-                ),
-                Text(
-                  'data',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-            onPressed: () {},
+          BottomIcon(
+            iconText: 'Home',
+            icon: Icons.storefront,
+            padding: EdgeInsets.only(right: 30),
           ),
-          IconButton(
-            icon: Column(
-              children: [
-                Icon(
-                  Icons.favorite_border,
-                  color: Colors.white,
-                  size: 50,
-                ),
-                Text(
-                  'data',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-            onPressed: () {},
+          BottomIcon(
+            iconText: 'Home',
+            icon: Icons.favorite_border,
+            padding: EdgeInsets.only(right: 30),
           ),
-          IconButton(
-            icon: Column(
-              children: [
-                Icon(
-                  Icons.person_outline,
-                  color: Colors.white,
-                  size: 50,
-                ),
-                Text(
-                  'data',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-            onPressed: () {},
+          BottomIcon(
+            iconText: 'Home',
+            icon: Icons.person_outline,
+            padding: EdgeInsets.only(right: 30),
           ),
         ]));
   }
