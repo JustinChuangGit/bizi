@@ -13,12 +13,13 @@ class UserModel {
     required this.password,
   });
 
-  toJson(){
-    return{
-      'FullName':fullName,
-      'Email':email,
-      'PhoneNo':phoneNo,
-      'Password':password,
-    }
+  toJson() {
+    //Firestore stores data like this
+    return {
+      'FullName': fullName,
+      'Email': email,
+      'PhoneNo': phoneNo,
+      'Password': password,
+    };
   }
 }
