@@ -8,21 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class customerHomeScreen extends StatelessWidget {
   customerHomeScreen({Key? key}) : super(key: key);
-////////////////////////////////////////////////////////////////////////////////////////////////Delete this after
-  final _auth = FirebaseAuth.instance;
-
-  String getInfo() {
-    String? temp = _auth.currentUser!.email;
-
-    if (temp != null) {
-      return temp;
-    } else {
-      return "No One Signed in";
-    }
-  }
-
-////////////////////////////////////////////////////////////////4
-
+  ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
@@ -30,6 +16,7 @@ class customerHomeScreen extends StatelessWidget {
 
     return Scaffold(
       body: SingleChildScrollView(
+        controller: scrollController,
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -103,58 +90,25 @@ class customerHomeScreen extends StatelessWidget {
           ),
         ),
       ),
-
       bottomNavigationBar: bottomBar(),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: colorConstants.biziGreen,
-        onPressed: () {},
-        child: Icon(Icons.qr_code_scanner),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      // bottomNavigationBar: BottomAppBar(
-      //   color: Colors.blueGrey,
-      //   shape: CircularNotchedRectangle(),
-      //   child: Container(
-      //     height: 70,
-      //     child: Padding(
-      //       padding: const EdgeInsets.only(top: 10),
-      //       child: Row(
-      //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //         children: <Widget>[
-      //           BottomIcon(
-      //             iconText: 'Home',
-      //             icon: Icons.home_outlined,
-      //             padding: EdgeInsets.only(right: 30),
-      //           ),
-      //           BottomIcon(
-      //             iconText: 'Home',
-      //             icon: Icons.storefront,
-      //             padding: EdgeInsets.only(right: 30),
-      //           ),
-      //           BottomIcon(
-      //             iconText: 'Home',
-      //             icon: Icons.favorite_border,
-      //             padding: EdgeInsets.only(right: 30),
-      //           ),
-      //           BottomIcon(
-      //             iconText: 'Home',
-      //             icon: Icons.person_outline,
-      //             padding: EdgeInsets.only(right: 30),
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //   ),
-      // ),
       // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Colors.blueGrey,
-      //   onPressed: () {},
-      //   child: Icon(
-      //     Icons.account_circle,
-      //     size: 35,
-      //   ),
+      //   backgroundColor: colorConstants.biziGreen,
+      //   onPressed: () {
+      //     print(scrollController.offset);
+      //   },
+      //   child: Icon(Icons.qr_code_scanner),
       // ),
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: scrollController.offset < 180
+          ? FloatingActionButton(
+              backgroundColor: colorConstants.biziGreen,
+              onPressed: () {},
+              child: Icon(Icons.qr_code_scanner),
+            )
+          : null,
+      floatingActionButtonLocation: scrollController.offset < 180
+          ? FloatingActionButtonLocation.centerDocked
+          : null,
     );
   }
 }
