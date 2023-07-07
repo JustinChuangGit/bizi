@@ -37,7 +37,7 @@ class _actionButtonState extends State<actionButton> {
               onPressed: () {},
               child: Icon(Icons.qr_code_scanner),
             )
-          : null,
+          : SizedBox.shrink(),
     );
   }
 }
