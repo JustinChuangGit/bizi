@@ -38,11 +38,12 @@ class signUpFormWidget extends StatelessWidget {
                             controller.email.text.trim(),
                             controller.password.text.trim());
                         final user = UserModel(
-                          email:controller.email.text.trim(),
-                          password:controller.password.text.trim(),
+                          email: controller.email.text.trim(),
+                          password: controller.password.text.trim(),
                           fullName: controller.fullName.text.trim(),
                           phoneNo: controller.phoneNo.text.trim(),
-                        )
+                        );
+                        signUpController.instance.createUser(user);
                       }
                     },
                     child: Text('Sign Up')),
