@@ -1,5 +1,6 @@
 import 'package:bizi/screens/signInScreen/signInScreen.dart';
 import 'package:bizi/screens/signUpScreen/components/signUpController.dart';
+import 'package:bizi/utilities/authentication/models/userModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:bizi/screens/signUpScreen/components/inputTextBoxSignUp.dart';
@@ -36,6 +37,12 @@ class signUpFormWidget extends StatelessWidget {
                         signUpController.instance.registerUser(
                             controller.email.text.trim(),
                             controller.password.text.trim());
+                        final user = UserModel(
+                          email:controller.email.text.trim(),
+                          password:controller.password.text.trim(),
+                          fullName: controller.fullName.text.trim(),
+                          phoneNo: controller.phoneNo.text.trim(),
+                        )
                       }
                     },
                     child: Text('Sign Up')),
