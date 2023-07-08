@@ -7,8 +7,9 @@ class UserModel {
   final String? password;
   final String? gender;
   final int? age;
+  int? points;
 
-  const UserModel({
+  UserModel({
     this.id,
     required this.firstName,
     required this.lastName,
@@ -17,6 +18,7 @@ class UserModel {
     required this.password,
     this.gender,
     this.age,
+    this.points,
   });
 
   toJson() {

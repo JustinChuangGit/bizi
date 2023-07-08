@@ -1,6 +1,7 @@
 import 'package:bizi/screens/customerHomeScreen/customerHomeScreen.dart';
 import 'package:bizi/screens/signInScreen/signInScreen.dart';
 import 'package:bizi/screens/signUpScreen/components/signUpController.dart';
+import 'package:bizi/utilities/methods/errorSnackBar.dart';
 import 'package:bizi/utilities/models/userModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -37,16 +38,11 @@ class authenticationRepository extends GetxController {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
-        Get.defaultDialog(
-          title: 'Error:',
-          middleText: 'The password provided is too weak.',
-        );
+        errorSnackBar(errorMessage: 'The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
         print('The account already exists for that email.');
-        Get.defaultDialog(
-          title: 'Error:',
-          middleText: 'The account already exists for that email.',
-        );
+        errorSnackBar(
+            errorMessage: 'The account already exists for that email.');
       }
     } catch (e) {
       print(e);
@@ -66,16 +62,12 @@ class authenticationRepository extends GetxController {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
-        Get.defaultDialog(
-          title: 'Error:',
-          middleText: 'No user found for that email.',
-        );
+
+        errorSnackBar(errorMessage: 'No user found for that email');
       } else if (e.code == 'wrong-password') {
-        Get.defaultDialog(
-          title: 'Error:',
-          middleText: 'Incorrect Password',
-        );
         print('Wrong password provided for that user.');
+        errorSnackBar(
+            errorMessage: 'Incorrect password provided for that user');
       }
     } catch (_) {}
   }

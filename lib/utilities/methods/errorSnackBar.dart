@@ -7,7 +7,7 @@ void errorSnackBar(
     'Error',
     errorMessage,
     snackPosition: SnackPosition.BOTTOM,
-    backgroundColor: Colors.redAccent.withOpacity(0.1),
-    colorText: Colors.red,
+    backgroundColor: Colors.redAccent.withOpacity(0.9),
+    colorText: Colors.white,
   );
 }

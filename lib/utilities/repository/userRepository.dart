@@ -1,5 +1,6 @@
 //This file contains all code for user queries
 
+import 'package:bizi/utilities/methods/errorSnackBar.dart';
 import 'package:bizi/utilities/models/userModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -24,16 +25,5 @@ class UserRepository extends GetxController {
       errorSnackBar();
       print(error.toString());
     });
-  }
-
-  void errorSnackBar(
-      {String errorMessage = "Something went wrong! Please try again"}) {
-    Get.snackbar(
-      'Error',
-      errorMessage,
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: Colors.redAccent.withOpacity(0.1),
-      colorText: Colors.red,
-    );
   }
 }
