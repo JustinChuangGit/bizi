@@ -46,13 +46,15 @@ class BottomIcon extends StatelessWidget {
               ),
               onPressed: () {
                 if (_iconText == 'Account') {
-                  Get.to(const accountSettingsScreen());
+                  Get.to(const accountSettingsScreen(),
+                      transition: Transition.fadeIn);
                 } else if (_iconText == 'Home') {
-                  Get.to(customerHomeScreen());
+                  Get.to(customerHomeScreen(), transition: Transition.fadeIn);
                 } else if (_iconText == 'Stores') {
-                  Get.to(const storesScreen());
+                  Get.to(const storesScreen(), transition: Transition.fadeIn);
                 } else if (_iconText == 'Favorites') {
-                  Get.to(const favoritesScreen());
+                  Get.to(const favoritesScreen(),
+                      transition: Transition.fadeIn);
                 }
               },
             ),
