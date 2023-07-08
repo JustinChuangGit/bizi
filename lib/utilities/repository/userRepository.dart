@@ -16,9 +16,7 @@ class UserRepository extends GetxController {
     await _db
         .collection("users")
         .add(user.toJson())
-        .whenComplete(
-          () => successSnackBar();
-        )
+        .whenComplete(() => successSnackBar())
         .catchError((error, stackTrace) {
       errorSnackBar();
       print(error.toString());
