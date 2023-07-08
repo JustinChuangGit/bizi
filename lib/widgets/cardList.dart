@@ -15,7 +15,25 @@ class cardList extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(heading),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                heading,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'View All',
+                    style: TextStyle(color: colorConstants.biziGreen),
+                  ))
+            ],
+          ),
+        ),
         SizedBox(
           height: height * 0.32,
           child: ListView(

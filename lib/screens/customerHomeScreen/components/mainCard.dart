@@ -18,15 +18,14 @@ class mainCard extends StatelessWidget {
           topRight: Radius.circular(cornerRadius),
         ),
       ),
-      child: const Column(
+      child: Column(
         children: [
-          SizedBox(height: 50),
-          Text('You have  '),
-          cardList(heading: 'Test 1'),
-          cardList(heading: 'Test 2'),
-          cardList(heading: 'Test 3'),
-          cardList(heading: 'Test 4'),
-          cardList(heading: 'Test 5'),
+          SizedBox(height: height * 0.05),
+          const cardList(heading: 'Featured Offerings'),
+          const cardList(heading: 'Based On Your Location'),
+          const cardList(heading: 'Coffee'),
+          const cardList(heading: 'ABC Pizza'),
+          const cardList(heading: 'Try Something New'),
         ],
       ),
     );
