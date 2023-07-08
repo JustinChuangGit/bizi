@@ -23,22 +23,22 @@ class _bottomBarState extends State<bottomBar> {
             BottomIcon(
               iconText: 'Home',
               icon: Icons.home_outlined,
-              padding: EdgeInsets.only(right: 30),
+              padding: EdgeInsets.only(left: width * 0.08, right: width * 0.08),
             ),
             BottomIcon(
               iconText: 'Stores',
               icon: Icons.storefront,
-              padding: EdgeInsets.only(right: 30),
+              padding: EdgeInsets.only(right: width * 0.08),
             ),
             BottomIcon(
               iconText: 'Favorites',
               icon: Icons.favorite_border,
-              padding: EdgeInsets.only(right: 30),
+              padding: EdgeInsets.only(left: width * 0.11),
             ),
             BottomIcon(
               iconText: 'Account',
               icon: Icons.person_outline,
-              padding: EdgeInsets.only(right: 30),
+              padding: EdgeInsets.only(left: width * 0.08),
             ),
           ]),
         ));
