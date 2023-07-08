@@ -8,9 +8,11 @@ class currentPointsBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned.fill(
+    return Positioned.directional(
+      textDirection: Directionality.of(context),
       //Green Card
-      top: -400,
+      top: 290,
+      start: width * 0.25,
       child: Align(
         alignment: Alignment.center,
         child: Card(
