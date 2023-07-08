@@ -5,6 +5,7 @@ import 'package:bizi/utilities/models/userModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:bizi/utilities/methods/successSnakBar.dart';
 
 class UserRepository extends GetxController {
   static UserRepository get instance => Get.find();
@@ -16,10 +17,7 @@ class UserRepository extends GetxController {
         .collection("users")
         .add(user.toJson())
         .whenComplete(
-          () => Get.snackbar('Success', 'Your account has been created',
-              snackPosition: SnackPosition.BOTTOM,
-              backgroundColor: Colors.green.withOpacity(0.1),
-              colorText: Colors.green),
+          () => successSnackBar();
         )
         .catchError((error, stackTrace) {
       errorSnackBar();
