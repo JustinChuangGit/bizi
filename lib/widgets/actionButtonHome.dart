@@ -2,18 +2,18 @@ import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/utilities/authentication/authenticationRepository.dart';
 import 'package:flutter/material.dart';
 
-class actionButton extends StatefulWidget {
-  actionButton({
+class actionButtonHome extends StatefulWidget {
+  actionButtonHome({
     Key? key,
     required this.scrollController,
   }) : super(key: key);
   late final ScrollController scrollController;
 
   @override
-  State<actionButton> createState() => _actionButtonState();
+  State<actionButtonHome> createState() => _actionButtonHomeState();
 }
 
-class _actionButtonState extends State<actionButton> {
+class _actionButtonHomeState extends State<actionButtonHome> {
   late double _currentPossition;
   bool _visible = true;
   @override
@@ -34,16 +34,23 @@ class _actionButtonState extends State<actionButton> {
   Widget build(BuildContext context) {
     _currentPossition = widget.scrollController.offset;
 
+    void _scrollUp() {
+      widget.scrollController.animateTo(
+        0,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.fastOutSlowIn,
+      );
+    }
+
     return Container(
       child: widget.scrollController.offset > buttonDissapearLocation
           ? AnimatedOpacity(
-              opacity: _visible ? 0 : 1.0,
+              opacity: _visible ? 1.0 : 0.0,
               duration: const Duration(milliseconds: 1000),
               child: FloatingActionButton(
                 backgroundColor: colorConstants.biziGreen,
                 onPressed: () {
-                  //Temp
-                  authenticationRepository.instance.logout();
+                  _scrollUp();
                 },
                 child: Icon(Icons.qr_code_scanner),
               ),

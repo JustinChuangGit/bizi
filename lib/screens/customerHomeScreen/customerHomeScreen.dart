@@ -3,18 +3,20 @@ import 'package:bizi/screens/customerHomeScreen/components/currentPointsBanner.d
 import 'package:bizi/screens/customerHomeScreen/components/mainCard.dart';
 import 'package:bizi/widgets/bottomBar.dart';
 import 'package:flutter/material.dart';
-import 'package:bizi/widgets/bottomBarActionButton.dart';
+import 'package:bizi/widgets/actionButtonHome.dart';
 
 class customerHomeScreen extends StatelessWidget {
   customerHomeScreen({Key? key}) : super(key: key);
+
+  //Scroll Controller must be added to all pages
   final ScrollController scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      endDrawer: Drawer(),
       body: SingleChildScrollView(
         controller: scrollController,
         child: Center(
@@ -97,7 +99,7 @@ class customerHomeScreen extends StatelessWidget {
       //         : null,
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: actionButton(
+      floatingActionButton: actionButtonHome(
         scrollController: scrollController,
       ),
     );
