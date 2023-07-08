@@ -1,4 +1,6 @@
+import 'package:bizi/screens/accountSettingsScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BottomIcon extends StatelessWidget {
   final String _iconText;
@@ -18,11 +20,13 @@ class BottomIcon extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           InkWell(
-            borderRadius: BorderRadius.all(Radius.circular(20)),
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
             onTap: () {
               if (_iconText == 'Account') {
-                Scaffold.of(context).openEndDrawer();
+                Get.to(const accountSettingsScreen());
               }
+
+              print('object');
             },
             child: IconButton(
               padding: EdgeInsets.all(0),
@@ -31,7 +35,11 @@ class BottomIcon extends StatelessWidget {
                 size: 40,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                if (_iconText == 'Account') {
+                  Get.to(const accountSettingsScreen());
+                }
+              },
             ),
           ),
           Text(
