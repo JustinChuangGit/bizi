@@ -19,7 +19,7 @@ class _actionButtonState extends State<actionButton> {
   @override
   void initState() {
     widget.scrollController.addListener(() {
-      _currentPossition > buttonDissapearLocation
+      _currentPossition < buttonDissapearLocation
           ? _visible = false
           : _visible = true;
       //listener
@@ -35,9 +35,9 @@ class _actionButtonState extends State<actionButton> {
     _currentPossition = widget.scrollController.offset;
 
     return Container(
-      child: widget.scrollController.offset < buttonDissapearLocation
+      child: widget.scrollController.offset > buttonDissapearLocation
           ? AnimatedOpacity(
-              opacity: _visible ? 1.0 : 0.0,
+              opacity: _visible ? 0 : 1.0,
               duration: const Duration(milliseconds: 1000),
               child: FloatingActionButton(
                 backgroundColor: colorConstants.biziGreen,
