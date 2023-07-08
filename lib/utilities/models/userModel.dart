@@ -8,6 +8,7 @@ class UserModel {
   final String? gender;
   final int? age;
   int? points;
+  //List Fav store, List Favourited coupons, List of visited stores
 
   UserModel({
     this.id,
@@ -31,6 +32,7 @@ class UserModel {
       'Password': password,
       'Gender': gender,
       'Age': age,
+      'Points': points,
     };
   }
 }
