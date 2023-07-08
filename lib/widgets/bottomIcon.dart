@@ -1,4 +1,7 @@
-import 'package:bizi/screens/accountSettingsScreen.dart';
+import 'package:bizi/screens/accountSettingsScreen/accountSettingsScreen.dart';
+import 'package:bizi/screens/customerHomeScreen/customerHomeScreen.dart';
+import 'package:bizi/screens/favouritesScreen/favouriesScreen.dart';
+import 'package:bizi/screens/storesScreen/storesScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,6 +27,12 @@ class BottomIcon extends StatelessWidget {
             onTap: () {
               if (_iconText == 'Account') {
                 Get.to(const accountSettingsScreen());
+              } else if (_iconText == 'Home') {
+                Get.to(customerHomeScreen());
+              } else if (_iconText == 'Stores') {
+                Get.to(const storesScreen());
+              } else if (_iconText == 'Favorites') {
+                Get.to(const favoritesScreen());
               }
 
               print('object');
@@ -38,6 +47,12 @@ class BottomIcon extends StatelessWidget {
               onPressed: () {
                 if (_iconText == 'Account') {
                   Get.to(const accountSettingsScreen());
+                } else if (_iconText == 'Home') {
+                  Get.to(customerHomeScreen());
+                } else if (_iconText == 'Stores') {
+                  Get.to(const storesScreen());
+                } else if (_iconText == 'Favorites') {
+                  Get.to(const favoritesScreen());
                 }
               },
             ),

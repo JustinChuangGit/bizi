@@ -26,12 +26,12 @@ class _bottomBarState extends State<bottomBar> {
               padding: EdgeInsets.only(right: 30),
             ),
             BottomIcon(
-              iconText: 'Home',
+              iconText: 'Stores',
               icon: Icons.storefront,
               padding: EdgeInsets.only(right: 30),
             ),
             BottomIcon(
-              iconText: 'Home',
+              iconText: 'Favorites',
               icon: Icons.favorite_border,
               padding: EdgeInsets.only(right: 30),
             ),
