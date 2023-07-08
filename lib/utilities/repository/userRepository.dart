@@ -21,14 +21,19 @@ class UserRepository extends GetxController {
               colorText: Colors.green),
         )
         .catchError((error, stackTrace) {
-      Get.snackbar(
-        'Error',
-        'Something went wrong. Please try again',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.redAccent.withOpacity(0.1),
-        colorText: Colors.red,
-      );
+      errorSnackBar();
       print(error.toString());
     });
+  }
+
+  void errorSnackBar(
+      {String errorMessage = "Something went wrong! Please try again"}) {
+    Get.snackbar(
+      'Error',
+      errorMessage,
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.redAccent.withOpacity(0.1),
+      colorText: Colors.red,
+    );
   }
 }
