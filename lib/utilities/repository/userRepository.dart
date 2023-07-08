@@ -1,6 +1,6 @@
 //This file contains all code for user queries
 
-import 'package:bizi/utilities/authentication/models/userModel.dart';
+import 'package:bizi/utilities/models/userModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

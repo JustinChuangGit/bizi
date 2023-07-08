@@ -1,7 +1,6 @@
 import 'package:bizi/utilities/authentication/authenticationRepository.dart';
-import 'package:bizi/utilities/authentication/models/userModel.dart';
+import 'package:bizi/utilities/models/userModel.dart';
 import 'package:bizi/utilities/repository/userRepository.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,8 +10,11 @@ class signUpController extends GetxController {
 
   final email = TextEditingController();
   final password = TextEditingController();
-  final fullName = TextEditingController();
+  final firstName = TextEditingController();
+  final lastName = TextEditingController();
   final phoneNo = TextEditingController();
+  final gender = TextEditingController();
+  final age = TextEditingController();
 
   void registerUser(String email, String password, UserModel user) {
     authenticationRepository.instance.createUserWithEmailAndPassword(

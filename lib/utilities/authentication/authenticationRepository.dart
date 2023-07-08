@@ -1,7 +1,7 @@
 import 'package:bizi/screens/customerHomeScreen/customerHomeScreen.dart';
 import 'package:bizi/screens/signInScreen/signInScreen.dart';
 import 'package:bizi/screens/signUpScreen/components/signUpController.dart';
-import 'package:bizi/utilities/authentication/models/userModel.dart';
+import 'package:bizi/utilities/models/userModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
