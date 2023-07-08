@@ -1,4 +1,5 @@
 import 'package:bizi/configuration/constants.dart';
+import 'package:bizi/utilities/authentication/authenticationRepository.dart';
 import 'package:flutter/material.dart';
 
 class actionButton extends StatefulWidget {
@@ -40,7 +41,10 @@ class _actionButtonState extends State<actionButton> {
               duration: const Duration(milliseconds: 1000),
               child: FloatingActionButton(
                 backgroundColor: colorConstants.biziGreen,
-                onPressed: () {},
+                onPressed: () {
+                  //Temp
+                  authenticationRepository.instance.logout();
+                },
                 child: Icon(Icons.qr_code_scanner),
               ),
             )

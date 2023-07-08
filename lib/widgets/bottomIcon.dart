@@ -19,7 +19,11 @@ class BottomIcon extends StatelessWidget {
         children: <Widget>[
           InkWell(
             borderRadius: BorderRadius.all(Radius.circular(20)),
-            onTap: () {},
+            onTap: () {
+              if (_iconText == 'Account') {
+                Scaffold.of(context).openEndDrawer();
+              }
+            },
             child: IconButton(
               padding: EdgeInsets.all(0),
               icon: Icon(

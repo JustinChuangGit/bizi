@@ -36,7 +36,7 @@ class _bottomBarState extends State<bottomBar> {
               padding: EdgeInsets.only(right: 30),
             ),
             BottomIcon(
-              iconText: 'Home',
+              iconText: 'Account',
               icon: Icons.person_outline,
               padding: EdgeInsets.only(right: 30),
             ),

@@ -1,5 +1,7 @@
 import 'package:bizi/screens/customerHomeScreen/customerHomeScreen.dart';
 import 'package:bizi/screens/signInScreen/signInScreen.dart';
+import 'package:bizi/screens/signUpScreen/components/signUpController.dart';
+import 'package:bizi/utilities/authentication/models/userModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
@@ -26,10 +28,12 @@ class authenticationRepository extends GetxController {
   } //Checks to see if user is already signed in
 
   Future<void> createUserWithEmailAndPassword(
-      String email, String password) async {
+      String email, String password, UserModel user) async {
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
+      signUpController.instance
+          .createUser(user); //Populate database with user Information
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
@@ -50,9 +54,12 @@ class authenticationRepository extends GetxController {
   }
 
   Future<void> loginUserWithEmailAndPassword(
-      String email, String password) async {
+    String email,
+    String password,
+  ) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
+
       firebaseUser.value != null
           ? Get.offAll(() => customerHomeScreen())
           : Get.to(() => const signInScreen());

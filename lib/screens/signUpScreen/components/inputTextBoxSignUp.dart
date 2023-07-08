@@ -1,8 +1,6 @@
 import 'package:bizi/configuration/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:bizi/screens/signUpScreen/components/signUpController.dart';
-//Might Have to add controllers into this if there are more
 
 class inputTextBox extends StatelessWidget {
   const inputTextBox({
@@ -11,18 +9,18 @@ class inputTextBox extends StatelessWidget {
     required this.label,
   });
 
-  final signUpController controllerSignUp;
+  final TextEditingController controllerSignUp;
   final String label;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       cursorColor: colorConstants.biziDark,
-      controller: controllerSignUp.email,
+      controller: controllerSignUp,
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please enter some text';
-        } else if (value != null) {
+        } else if (label == 'Email') {
           final bool isValid = EmailValidator.validate(value);
           if (isValid == true) {
             return null;

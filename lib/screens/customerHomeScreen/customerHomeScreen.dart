@@ -14,6 +14,7 @@ class customerHomeScreen extends StatelessWidget {
     width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      endDrawer: Drawer(),
       body: SingleChildScrollView(
         controller: scrollController,
         child: Center(

@@ -20,12 +20,16 @@ class signUpFormWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              inputTextBox(controllerSignUp: controller, label: 'Full Name'),
-              inputTextBox(controllerSignUp: controller, label: 'Email'),
-              inputTextBox(controllerSignUp: controller, label: 'Password'),
-              inputTextBox(controllerSignUp: controller, label: 'Gender'),
-              inputTextBox(controllerSignUp: controller, label: 'Age'),
-              inputTextBox(controllerSignUp: controller, label: 'Phone Number'),
+              inputTextBox(
+                  controllerSignUp: controller.fullName, label: 'Full Name'),
+              inputTextBox(controllerSignUp: controller.email, label: 'Email'),
+              inputTextBox(
+                  controllerSignUp: controller.password, label: 'Password'),
+              inputTextBox(
+                  controllerSignUp: controller.fullName, label: 'Gender'),
+              inputTextBox(controllerSignUp: controller.fullName, label: 'Age'),
+              inputTextBox(
+                  controllerSignUp: controller.phoneNo, label: 'Phone Number'),
               const SizedBox(
                 height: 10,
               ),
@@ -34,16 +38,17 @@ class signUpFormWidget extends StatelessWidget {
                 child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        signUpController.instance.registerUser(
-                            controller.email.text.trim(),
-                            controller.password.text.trim());
                         final user = UserModel(
                           email: controller.email.text.trim(),
                           password: controller.password.text.trim(),
                           fullName: controller.fullName.text.trim(),
                           phoneNo: controller.phoneNo.text.trim(),
                         );
-                        signUpController.instance.createUser(user);
+                        signUpController.instance.registerUser(
+                          controller.email.text.trim(),
+                          controller.password.text.trim(),
+                          user,
+                        );
                       }
                     },
                     child: Text('Sign Up')),
