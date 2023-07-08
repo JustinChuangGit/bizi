@@ -9,6 +9,7 @@ class currentPointsBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned.directional(
+      //This is good for MVP however must be changed to adapt to different screen sizes
       textDirection: Directionality.of(context),
       //Green Card
       top: 290,
