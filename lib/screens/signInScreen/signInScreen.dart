@@ -75,6 +75,7 @@ class signInScreen extends StatelessWidget {
                         onPressed: () {
                           Get.to(
                             const signUpScreen(),
+                            transition: Transition.downToUp,
                           );
                         },
                         child: Text(

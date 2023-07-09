@@ -14,35 +14,38 @@ class inputTextBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      cursorColor: colorConstants.biziDark,
-      controller: controllerSignUp,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Please enter some text';
-        } else if (label == 'Email') {
-          final bool isValid = EmailValidator.validate(value);
-          if (isValid == true) {
-            return null;
-          } else {
-            return 'Please enter a valid email';
+    return SizedBox(
+      height: height * 0.1,
+      child: TextFormField(
+        cursorColor: colorConstants.biziDark,
+        controller: controllerSignUp,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please enter some text';
+          } else if (label == 'Email') {
+            final bool isValid = EmailValidator.validate(value);
+            if (isValid == true) {
+              return null;
+            } else {
+              return 'Please enter a valid email';
+            }
           }
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-          labelText: label,
-          floatingLabelStyle: TextStyle(
-            color: colorConstants.biziDark,
-          ),
-          border: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: colorConstants.biziDark,
-          )),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: colorConstants.biziDark,
-          ))),
+          return null;
+        },
+        decoration: InputDecoration(
+            //labelText: label,
+            floatingLabelStyle: TextStyle(
+              color: colorConstants.biziDark,
+            ),
+            border: OutlineInputBorder(
+                borderSide: BorderSide(
+              color: colorConstants.biziDark,
+            )),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+              color: colorConstants.biziDark,
+            ))),
+      ),
     );
   }
 }

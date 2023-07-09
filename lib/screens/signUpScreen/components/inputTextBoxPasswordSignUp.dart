@@ -1,23 +1,25 @@
 import 'package:bizi/configuration/constants.dart';
+import 'package:bizi/screens/signUpScreen/components/signUpController.dart';
 import 'package:flutter/material.dart';
 import 'package:bizi/screens/signInScreen/components/loginController.dart';
 //Might Have to add controllers into this if there are more
 
-class inputTextBoxPassword extends StatefulWidget {
-  const inputTextBoxPassword({
+class inputTextBoxPasswordSignUp extends StatefulWidget {
+  const inputTextBoxPasswordSignUp({
     super.key,
     required this.controllerLogin,
     required this.label,
   });
 
-  final signInController controllerLogin;
+  final signUpController controllerLogin;
   final String label;
 
   @override
-  State<inputTextBoxPassword> createState() => _inputTextBoxPasswordState();
+  State<inputTextBoxPasswordSignUp> createState() =>
+      _inputTextBoxPasswordState();
 }
 
-class _inputTextBoxPasswordState extends State<inputTextBoxPassword> {
+class _inputTextBoxPasswordState extends State<inputTextBoxPasswordSignUp> {
   bool _obscureText = false;
 
   void _toggle() {
@@ -39,7 +41,7 @@ class _inputTextBoxPasswordState extends State<inputTextBoxPassword> {
         return null;
       },
       decoration: InputDecoration(
-          labelText: widget.label,
+          //labelText: widget.label,
           floatingLabelStyle: TextStyle(
             color: colorConstants.biziDark,
           ),

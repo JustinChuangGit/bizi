@@ -8,7 +8,7 @@ class UserModel {
   final String? phoneNo;
   final String? password;
   final String? gender;
-  final int? age;
+  final String? age;
   int? points;
   //List Fav store, List Favourited coupons, List of visited stores
 
