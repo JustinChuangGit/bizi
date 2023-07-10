@@ -21,11 +21,11 @@ class signUpFormWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10),
 
       child: SizedBox(
-        height: height * 0.6,
+        height: height * 0.65,
         child: ListView(
           controller: _scrollController,
           scrollDirection: Axis.horizontal,
-          // physics:,
+          physics: const NeverScrollableScrollPhysics(),
           children: [
             firstCard(
               controller: controller,
@@ -39,6 +39,7 @@ class signUpFormWidget extends StatelessWidget {
               cardFontSize: cardFontSize,
               cardWidth: cardWidth,
               cardPadding: cardPadding,
+              controllerScroll: _scrollController,
             ),
           ],
         ),

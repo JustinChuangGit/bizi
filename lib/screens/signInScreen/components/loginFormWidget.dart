@@ -58,7 +58,10 @@ class loginForm extends StatelessWidget {
                 },
                 child: Container(
                     padding: EdgeInsets.symmetric(vertical: height * 0.02),
-                    child: const Text("LOGIN")),
+                    child: const Text(
+                      "LOGIN",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
               ),
             ),
             // Text(getInfo()),
