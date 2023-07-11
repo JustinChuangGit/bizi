@@ -8,30 +8,30 @@ class currentPointsBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned.directional(
-      //This is good for MVP however must be changed to adapt to different screen sizes
-      textDirection: Directionality.of(context),
-      //Green Card
-      top: 290,
-      start: width * 0.25,
-      child: Align(
-        alignment: Alignment.center,
-        child: Card(
-            color: colorConstants.biziGreen,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-            ),
-            elevation: 100,
-            child: SizedBox(
-              height: height * 0.065,
-              width: height * 0.22,
-              child: const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('600 Pts '),
-                ],
-              ),
-            )),
+    return Align(
+      alignment: Alignment.center,
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: height * 0.34),
+            child: Card(
+                color: colorConstants.biziGreen,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                ),
+                elevation: 100,
+                child: SizedBox(
+                  height: height * 0.065,
+                  width: height * 0.22,
+                  child: const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('600 Pts '),
+                    ],
+                  ),
+                )),
+          ),
+        ],
       ),
     );
   }

@@ -26,6 +26,12 @@ class mainCard extends StatelessWidget {
           const cardList(heading: 'Coffee'),
           const cardList(heading: 'ABC Pizza'),
           const cardList(heading: 'Try Something New'),
+          const cardList(heading: 'Try Something New'),
+          const cardList(heading: 'Try Something New'),
+          const cardList(heading: 'Try Something New'),
+          const cardList(heading: 'Try Something New'),
+          const cardList(heading: 'Try Something New'),
+          const cardList(heading: 'Try Something New'),
         ],
       ),
     );
