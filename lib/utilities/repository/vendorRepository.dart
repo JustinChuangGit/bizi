@@ -1,5 +1,4 @@
 import 'package:bizi/utilities/models/vendorModel.dart';
-import 'package:bizi/utilities/repository/userRepository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:bizi/utilities/methods/successSnakBar.dart';

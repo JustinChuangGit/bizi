@@ -4,10 +4,16 @@ import 'package:bizi/screens/signUpScreen/components/lastCard.dart';
 import 'package:bizi/screens/signUpScreen/components/signUpController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 
-class signUpFormWidget extends StatelessWidget {
+class signUpFormWidget extends StatefulWidget {
   const signUpFormWidget({Key? key}) : super(key: key);
 
+  @override
+  State<signUpFormWidget> createState() => _signUpFormWidgetState();
+}
+
+class _signUpFormWidgetState extends State<signUpFormWidget> {
   @override
   Widget build(BuildContext context) {
     const double cardPadding = 20;

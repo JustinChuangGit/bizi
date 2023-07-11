@@ -16,9 +16,7 @@ late double width;
 const double iconSize = 30;
 const double buttonDissapearLocation = 180;
 
-// class screenUtil {
-//   void setScreen(double width, double height) {
-//     width = this.width;
-//     height = this.height;
-//   }
-// }
+//Sign Up Constants
+
+late String? dateOfBirth;
+late String? gender;

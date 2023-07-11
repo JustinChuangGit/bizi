@@ -128,8 +128,8 @@ class lastCard extends StatelessWidget {
                                 firstName: controller.firstName.text.trim(),
                                 lastName: controller.lastName.text.trim(),
                                 phoneNo: controller.phoneNo.text.trim(),
-                                gender: controller.gender.text.trim(),
-                                age: controller.age.text.trim(),
+                                gender: gender,
+                                age: dateOfBirth,
                               );
                               signUpController.instance.registerUser(
                                 controller.email.text.trim(),

@@ -1,7 +1,6 @@
 import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/screens/signUpScreen/components/signUpController.dart';
 import 'package:flutter/material.dart';
-import 'package:bizi/screens/signInScreen/components/loginController.dart';
 //Might Have to add controllers into this if there are more
 
 class inputTextBoxPasswordSignUp extends StatefulWidget {

@@ -1,17 +1,14 @@
 import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/screens/signInScreen/signInScreen.dart';
 
-import 'package:bizi/screens/signUpScreen/components/inputTextBoxPasswordSignUp.dart';
 import 'package:bizi/screens/signUpScreen/components/signUpController.dart';
-import 'package:bizi/utilities/models/userModel.dart';
 import 'package:flutter/material.dart';
-import 'package:bizi/screens/signUpScreen/components/inputTextBoxSignUp.dart';
 import 'package:bizi/screens/signUpScreen/components/inputTextBoxSignUp.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class firstCard extends StatefulWidget {
-  firstCard({
+  const firstCard({
     super.key,
     required this.controller,
     required this.cardFontSize,
@@ -21,9 +18,9 @@ class firstCard extends StatefulWidget {
   });
 
   final signUpController controller;
-  final cardFontSize;
-  final cardWidth;
-  final cardPadding;
+  final double cardFontSize;
+  final double cardWidth;
+  final double cardPadding;
   final ScrollController controllerScroll;
 
   @override
@@ -130,6 +127,7 @@ class _firstCardState extends State<firstCard> {
                               onChanged: (String? newValue) {
                                 setState(() {
                                   selectedValue = newValue!;
+                                  gender = selectedValue;
                                 });
                               },
                               items: dropdownItems),
@@ -204,6 +202,7 @@ class _firstCardState extends State<firstCard> {
                                 setState(() {
                                   dateInput.text =
                                       formattedDate; //set output date to TextField value.
+                                  dateOfBirth = formattedDate;
                                 });
                               } else {}
                             },
