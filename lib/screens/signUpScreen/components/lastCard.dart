@@ -5,7 +5,6 @@ import 'package:bizi/screens/signUpScreen/components/signUpController.dart';
 import 'package:bizi/utilities/models/userModel.dart';
 import 'package:flutter/material.dart';
 import 'package:bizi/screens/signUpScreen/components/inputTextBoxSignUp.dart';
-import 'package:bizi/screens/signUpScreen/components/inputTextBoxSignUp.dart';
 
 class lastCard extends StatelessWidget {
   lastCard({
@@ -130,6 +129,7 @@ class lastCard extends StatelessWidget {
                                 phoneNo: controller.phoneNo.text.trim(),
                                 gender: gender,
                                 age: dateOfBirth,
+                                points: 0,
                               );
                               signUpController.instance.registerUser(
                                 controller.email.text.trim(),

@@ -27,6 +27,7 @@ class UserRepository extends GetxController {
     final snapshot =
         await _db.collection('users').where('Email', isEqualTo: email).get();
     final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
+
     return userData;
   }
 
