@@ -73,12 +73,13 @@ class _currentPointsBannerState extends State<currentPointsBanner> {
                           }
 
                           var docs = snapshot.data!.docs;
-                          final user = docs[0].data();
+                          final user = docs[0].get('Points').toString();
+                          print(user);
 
                           //  UserModel userData = snapshot.data as UserModel;
 
                           return Row(children: [
-                            //  Text(userData.points.toString()),
+                            Text(user),
                             Text(' Points'),
                           ]);
 
