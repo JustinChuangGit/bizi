@@ -1,10 +1,7 @@
 import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/utilities/controllers/userProfileController.dart';
-import 'package:bizi/utilities/models/userModel.dart';
-import 'package:bizi/utilities/repository/userRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:jumping_dot/jumping_dot.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:bizi/utilities/authentication/authenticationRepository.dart';
@@ -24,13 +21,6 @@ class currentPointsBanner extends StatefulWidget {
 
 class _currentPointsBannerState extends State<currentPointsBanner> {
   final controller = Get.put(UserProfileController());
-
-  Stream collectionStream =
-      FirebaseFirestore.instance.collection('users').snapshots();
-  Stream documentStream = FirebaseFirestore.instance
-      .collection('users')
-      .where('Email', isEqualTo: email)
-      .snapshots();
 
   final Stream<QuerySnapshot> _userStream = FirebaseFirestore.instance
       .collection('users')
@@ -61,7 +51,7 @@ class _currentPointsBannerState extends State<currentPointsBanner> {
                         builder: (BuildContext context,
                             AsyncSnapshot<QuerySnapshot> snapshot) {
                           if (snapshot.hasError) {
-                            return Text('Error');
+                            return const Text('Error');
                           }
 
                           if (snapshot.connectionState ==
@@ -72,16 +62,27 @@ class _currentPointsBannerState extends State<currentPointsBanner> {
                             );
                           }
 
-                          var docs = snapshot.data!.docs;
-                          final user = docs[0].get('Points').toString();
-                          print(user);
+                          String currentPoints =
+                              snapshot.data!.docs[0].get('Points').toString();
 
-                          //  UserModel userData = snapshot.data as UserModel;
-
-                          return Row(children: [
-                            Text(user),
-                            Text(' Points'),
-                          ]);
+                          return Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  currentPoints,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const Text(
+                                  ' Points',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ]);
 
                           // if (snapshot.connectionState ==
                           //     ConnectionState.done) {

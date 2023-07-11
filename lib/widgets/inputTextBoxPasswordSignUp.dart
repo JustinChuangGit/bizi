@@ -1,5 +1,5 @@
 import 'package:bizi/configuration/constants.dart';
-import 'package:bizi/screens/signUpScreen/components/signUpController.dart';
+import 'package:bizi/utilities/controllers/signUpController.dart';
 import 'package:flutter/material.dart';
 //Might Have to add controllers into this if there are more
 
