@@ -27,8 +27,14 @@ class _currentPointsBannerState extends State<currentPointsBanner> {
       .where('Email', isEqualTo: email)
       .snapshots();
 
+  // final Stream<QuerySnapshot> _userStream = FirebaseFirestore.instance
+  //     .collection('users')
+  //     .doc(userUid)
+  //     .snapshots() as Stream<QuerySnapshot<Object?>>;
   @override
   Widget build(BuildContext context) {
+    // print(userUid);
+
     return Align(
       alignment: Alignment.center,
       child: Column(

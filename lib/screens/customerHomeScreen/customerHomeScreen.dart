@@ -2,8 +2,10 @@ import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/screens/customerHomeScreen/components/currentPointsBanner.dart';
 import 'package:bizi/screens/customerHomeScreen/components/mainCard.dart';
 import 'package:bizi/widgets/bottomBar.dart';
+import 'package:bizi/widgets/qrCode.dart';
 import 'package:flutter/material.dart';
 import 'package:bizi/widgets/actionButtonHome.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class customerHomeScreen extends StatelessWidget {
   customerHomeScreen({Key? key}) : super(key: key);
@@ -68,10 +70,18 @@ class customerHomeScreen extends StatelessWidget {
                               child: SizedBox(
                                 height: height * 0.25,
                                 width: height * 0.25,
-                                child: const Column(
+                                child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text('Add QR Widget Here '),
+                                    // SizedBox(
+                                    //     height: width * 0.05,
+                                    //     child: Text('Scan To Collect Rewards')),
+                                    QRCode(
+                                      qrSize: width * 0.4,
+                                    ),
+                                    // SizedBox(
+                                    //   height: width * 0.05,
+                                    // )
                                   ],
                                 ),
                               ),
