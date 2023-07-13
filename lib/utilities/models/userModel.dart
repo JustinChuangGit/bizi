@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
-  final String? id;
+  late final String? id;
   final String? firstName;
   final String? lastName;
   final String? email;
@@ -27,6 +27,7 @@ class UserModel {
   toJson() {
     //Firestore stores data like this
     return {
+      'id': id,
       'FirstName': firstName,
       'LastName': lastName,
       'Email': email,

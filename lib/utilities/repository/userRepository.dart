@@ -17,21 +17,21 @@ class UserRepository extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   createUser(UserModel user) async {
-    // await _db
-    //     .collection("users")
-    //     .doc(userUid)
-    //     .set(user.toJson())
-    //     .whenComplete(() => successSnackBar())
-    //     .catchError((error, stackTrace) {
-    //   errorSnackBar();
-
     await _db
         .collection("users")
-        .add(user.toJson())
+        .doc(_auth.currentUser?.uid)
+        .set(user.toJson())
         .whenComplete(() => successSnackBar())
         .catchError((error, stackTrace) {
       errorSnackBar();
-      print(error.toString());
+
+      // await _db
+      //     .collection("users")
+      //     .add(user.toJson())
+      //     .whenComplete(() => successSnackBar())
+      //     .catchError((error, stackTrace) {
+      //   errorSnackBar();
+      //   print(error.toString());
     });
   }
 

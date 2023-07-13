@@ -4,6 +4,7 @@ import 'package:bizi/screens/signInScreen/signInScreen.dart';
 import 'package:bizi/utilities/controllers/signUpController.dart';
 import 'package:bizi/utilities/methods/errorSnackBar.dart';
 import 'package:bizi/utilities/models/userModel.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
@@ -34,10 +35,14 @@ class authenticationRepository extends GetxController {
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-      // userUid = _auth.currentUser?.uid;
+      // user.id = FirebaseAuth.instance.currentUser?.uid;
 
       signUpController.instance
           .createUser(user); //Populate database with user Information
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser?.uid)
+          .update({'id': FirebaseAuth.instance.currentUser?.uid});
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');

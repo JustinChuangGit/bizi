@@ -1,5 +1,7 @@
 import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/utilities/controllers/userProfileController.dart';
+import 'package:bizi/utilities/models/userModel.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jumping_dot/jumping_dot.dart';
@@ -22,19 +24,23 @@ class currentPointsBanner extends StatefulWidget {
 class _currentPointsBannerState extends State<currentPointsBanner> {
   final controller = Get.put(UserProfileController());
 
-  final Stream<QuerySnapshot> _userStream = FirebaseFirestore.instance
-      .collection('users')
-      .where('Email', isEqualTo: email)
-      .snapshots();
-
   // final Stream<QuerySnapshot> _userStream = FirebaseFirestore.instance
   //     .collection('users')
-  //     .doc(userUid)
-  //     .snapshots() as Stream<QuerySnapshot<Object?>>;
+  //     .where('Email', isEqualTo: email)
+  //     .snapshots();
+
+  final String? _uid = FirebaseAuth.instance.currentUser?.uid;
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
-    // print(userUid);
-
+    // final UserModel test = controller.getUserData();
+    // print(test);
+    final Stream<DocumentSnapshot> _userStream = FirebaseFirestore.instance
+        .collection('users')
+        .doc(_auth.currentUser?.uid)
+        .snapshots();
     return Align(
       alignment: Alignment.center,
       child: Column(
@@ -52,13 +58,17 @@ class _currentPointsBannerState extends State<currentPointsBanner> {
                   width: height * 0.22,
                   child: Align(
                       alignment: Alignment.center,
-                      child: StreamBuilder<QuerySnapshot>(
+                      child: StreamBuilder<DocumentSnapshot>(
                         stream: _userStream,
                         builder: (BuildContext context,
-                            AsyncSnapshot<QuerySnapshot> snapshot) {
+                            AsyncSnapshot<DocumentSnapshot> snapshot) {
                           if (snapshot.hasError) {
                             return const Text('Error');
                           }
+
+                          var user =
+                              snapshot.data!.data() as Map<String, dynamic>;
+                          //Convert Snapshot data to a map
 
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
@@ -68,14 +78,11 @@ class _currentPointsBannerState extends State<currentPointsBanner> {
                             );
                           }
 
-                          String currentPoints =
-                              snapshot.data!.docs[0].get('Points').toString();
-
                           return Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  currentPoints,
+                                  user['Points'].toString(),
                                   style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -89,30 +96,6 @@ class _currentPointsBannerState extends State<currentPointsBanner> {
                                   ),
                                 ),
                               ]);
-
-                          // if (snapshot.connectionState ==
-                          //     ConnectionState.done) {
-                          //   if (snapshot.hasData) {
-                          //     UserModel userData = snapshot.data as UserModel;
-                          //     print(userData.points.toString());
-                          //     return Row(children: [
-                          //       Text(userData.points.toString()),
-                          //       Text(' Points'),
-                          //     ]);
-                          //   } else if (snapshot.hasError) {
-                          //     return Center(
-                          //       child: Text(snapshot.error.toString()),
-                          //     );
-                          //   } else {
-                          //     return Center(child: Text("Error"));
-                          //   }
-                          // } else {
-                          //   return Center(
-                          //       child: JumpingDots(
-                          //     color: Colors.white,
-                          //     radius: 8,
-                          //   ));
-                          // }
                         },
                       )),
                 )),
