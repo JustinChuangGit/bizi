@@ -1,6 +1,7 @@
 // Required for getting access to basic Flutter widgets
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jumping_dot/jumping_dot.dart';
 // QR Flutter package
@@ -54,43 +55,56 @@ class _QRCodeState extends State<QRCode> {
     // late Future<UserModel>? _userData = controller.getUserData();
     //print(_userData.toString());
 
-    CollectionReference _userData =
-        FirebaseFirestore.instance.collection('users');
+    // CollectionReference _userData =
+    //     FirebaseFirestore.instance.collection('users');
 
-    return FutureBuilder<DocumentSnapshot>(
-        future: _userData.doc('cesgGxsWwvUmBYdOhCk2').get(),
-        builder:
-            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return const Text('Error');
-          }
+    final String _uid = FirebaseAuth.instance.currentUser!.uid.toString();
 
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return JumpingDots(
-              color: Colors.white,
-              radius: 8,
-            );
-          }
-          //print(_userData.doc().get());
+    return ClipRRect(
+        borderRadius: BorderRadius.circular(widget.qrBorderRadius ?? 0),
+        child: QrImageView(
+          size: widget.qrSize,
+          data: _uid,
+          gapless: widget.gapLess ?? true,
+          version: widget.qrVersion ?? QrVersions.auto,
+          padding: EdgeInsets.all(widget.qrPadding ?? 10),
+          semanticsLabel: widget.semanticsLabel ?? '',
+          backgroundColor: widget.qrBackgroundColor ?? Colors.transparent,
+        ));
 
-          // UserModel userData = snapshot.data!.data() as UserModel;
-          // Map<String, dynamic> userData =
-          //     snapshot.data!.data() as Map<String, dynamic>;
-          //  print(userData);
+    // FutureBuilder<DocumentSnapshot>(
+    //     future: _userData.doc(FirebaseAuth.instance.currentUser?.uid).get(),
+    //     builder:
+    //         (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+    //       if (snapshot.hasError) {
+    //         return const Text('Error');
+    //       }
 
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(widget.qrBorderRadius ?? 0),
-            child: QrImageView(
-              size: widget.qrSize,
-              // data: _userData.,
-              data: 'asdfasdfasdf',
-              gapless: widget.gapLess ?? true,
-              version: widget.qrVersion ?? QrVersions.auto,
-              padding: EdgeInsets.all(widget.qrPadding ?? 10),
-              semanticsLabel: widget.semanticsLabel ?? '',
-              backgroundColor: widget.qrBackgroundColor ?? Colors.transparent,
-            ),
-          );
-        });
+    //       if (snapshot.connectionState == ConnectionState.waiting) {
+    //         return JumpingDots(
+    //           color: Colors.white,
+    //           radius: 8,
+    //         );
+    //       }
+    //       //print(_userData.doc().get());
+
+    //       // UserModel userData = snapshot.data!.data() as UserModel;
+    //       // Map<String, dynamic> userData =
+    //       //     snapshot.data!.data() as Map<String, dynamic>;
+    //       //  print(userData);
+
+    //       return ClipRRect(
+    //         borderRadius: BorderRadius.circular(widget.qrBorderRadius ?? 0),
+    //         child: QrImageView(
+    //           size: widget.qrSize,
+    //           data: FirebaseAuth.instance.currentUser!.uid.toString(),
+    //           gapless: widget.gapLess ?? true,
+    //           version: widget.qrVersion ?? QrVersions.auto,
+    //           padding: EdgeInsets.all(widget.qrPadding ?? 10),
+    //           semanticsLabel: widget.semanticsLabel ?? '',
+    //           backgroundColor: widget.qrBackgroundColor ?? Colors.transparent,
+    //         ),
+    //       );
+    //     });
   }
 }
