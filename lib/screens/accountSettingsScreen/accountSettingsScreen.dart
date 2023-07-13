@@ -26,7 +26,7 @@ class accountSettingsScreen extends StatelessWidget {
               onPressed: () {
                 Get.to(venderHomeScreen());
               },
-              child: Text('Add Reward Form'))
+              child: Text('Vendor Home Screen'))
         ],
       ),
     );

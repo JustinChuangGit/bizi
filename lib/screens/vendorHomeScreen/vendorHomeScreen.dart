@@ -1,7 +1,10 @@
 import 'package:bizi/configuration/constants.dart';
+import 'package:bizi/screens/vendorHomeScreen/components/vendorHomeHeader.dart';
+import 'package:bizi/widgets/actionButton.dart';
 import 'package:bizi/widgets/actionButtonHome.dart';
 import 'package:bizi/widgets/bottomBar.dart';
 import 'package:flutter/material.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 class venderHomeScreen extends StatelessWidget {
   venderHomeScreen({super.key});
@@ -25,12 +28,7 @@ class venderHomeScreen extends StatelessWidget {
                     SizedBox(
                       height: width * 0.2,
                     ),
-                    Placeholder(
-                      child: SizedBox(
-                        height: width * 0.9,
-                        width: width * 0.9,
-                      ),
-                    )
+                    vendorHomeHeader()
                   ],
                 ),
               ),
@@ -57,9 +55,7 @@ class venderHomeScreen extends StatelessWidget {
       bottomNavigationBar: bottomBar(),
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: actionButtonHome(
-        scrollController: scrollController,
-      ),
+      floatingActionButton: actionButton(),
     );
   }
 }
