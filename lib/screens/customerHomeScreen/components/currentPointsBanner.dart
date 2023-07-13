@@ -1,6 +1,5 @@
 import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/utilities/controllers/userProfileController.dart';
-import 'package:bizi/utilities/models/userModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,13 +22,6 @@ class currentPointsBanner extends StatefulWidget {
 
 class _currentPointsBannerState extends State<currentPointsBanner> {
   final controller = Get.put(UserProfileController());
-
-  // final Stream<QuerySnapshot> _userStream = FirebaseFirestore.instance
-  //     .collection('users')
-  //     .where('Email', isEqualTo: email)
-  //     .snapshots();
-
-  final String? _uid = FirebaseAuth.instance.currentUser?.uid;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 

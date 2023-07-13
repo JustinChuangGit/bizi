@@ -1,11 +1,8 @@
 //This file contains all code for user queries
 
-import 'package:bizi/configuration/constants.dart';
-import 'package:bizi/utilities/authentication/authenticationRepository.dart';
 import 'package:bizi/utilities/methods/errorSnackBar.dart';
 import 'package:bizi/utilities/models/userModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:bizi/utilities/methods/successSnakBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';

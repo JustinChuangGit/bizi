@@ -5,7 +5,6 @@ import 'package:bizi/widgets/bottomBar.dart';
 import 'package:bizi/widgets/qrCode.dart';
 import 'package:flutter/material.dart';
 import 'package:bizi/widgets/actionButtonHome.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
 class customerHomeScreen extends StatelessWidget {
   customerHomeScreen({Key? key}) : super(key: key);

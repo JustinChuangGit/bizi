@@ -1,11 +1,7 @@
 // Required for getting access to basic Flutter widgets
-import 'package:bizi/screens/customerHomeScreen/components/currentPointsBanner.dart';
-import 'package:bizi/utilities/controllers/userProfileController.dart';
-import 'package:bizi/utilities/models/userModel.dart';
-import 'package:bizi/utilities/repository/userRepository.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:jumping_dot/jumping_dot.dart';
 // QR Flutter package
 import 'package:qr_flutter/qr_flutter.dart';

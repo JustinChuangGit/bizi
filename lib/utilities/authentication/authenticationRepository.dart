@@ -1,4 +1,3 @@
-import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/screens/customerHomeScreen/customerHomeScreen.dart';
 import 'package:bizi/screens/signInScreen/signInScreen.dart';
 import 'package:bizi/utilities/controllers/signUpController.dart';
