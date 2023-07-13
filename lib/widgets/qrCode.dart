@@ -1,9 +1,7 @@
 // Required for getting access to basic Flutter widgets
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:jumping_dot/jumping_dot.dart';
 // QR Flutter package
 import 'package:qr_flutter/qr_flutter.dart';
 

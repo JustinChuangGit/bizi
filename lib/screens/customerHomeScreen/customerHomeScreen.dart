@@ -102,10 +102,6 @@ class customerHomeScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: bottomBar(),
-      // floatingActionButtonLocation:
-      //     scrollController.offset < buttonDissapearLocation
-      //         ? FloatingActionButtonLocation.centerDocked
-      //         : null,
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: actionButtonHome(
