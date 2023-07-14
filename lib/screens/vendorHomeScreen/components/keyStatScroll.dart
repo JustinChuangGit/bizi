@@ -15,7 +15,7 @@ class keyStatScroll extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: const [
           statCard(
-            statColor: Color.fromARGB(255, 253, 240, 118),
+            statColor: Color.fromARGB(255, 255, 217, 0),
             statValue: '65',
             statLabel: 'Coupons Used',
           ),

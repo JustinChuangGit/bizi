@@ -23,7 +23,7 @@ class statCard extends StatelessWidget {
         top: 20,
       ),
       child: Card(
-        color: statColor.withOpacity(0.5),
+        color: statColor.withOpacity(0.35),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: SizedBox(
             height: width * 0.3,
