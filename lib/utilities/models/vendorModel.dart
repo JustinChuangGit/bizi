@@ -1,3 +1,5 @@
+import 'package:bizi/utilities/models/offerModel.dart';
+
 class VendorModel {
   final String? id;
   final String? vendorName;
@@ -11,6 +13,7 @@ class VendorModel {
   final String? primaryContactLastName;
   final String? primaryContactEmail;
   final String? primaryContactPhoneNumber;
+  List<OfferModel>? currentOffers;
   //class with offerings
   //class redeem products
 
@@ -27,6 +30,7 @@ class VendorModel {
     required this.primaryContactLastName,
     required this.primaryContactEmail,
     required this.primaryContactPhoneNumber,
+    this.currentOffers,
   });
 
   toJson() {
@@ -42,6 +46,7 @@ class VendorModel {
       'primaryContactLastName': primaryContactLastName,
       'primaryContactEmail': primaryContactEmail,
       'primaryContactPhoneNumber': primaryContactPhoneNumber,
+      'currentOffers': currentOffers
     };
   }
 }

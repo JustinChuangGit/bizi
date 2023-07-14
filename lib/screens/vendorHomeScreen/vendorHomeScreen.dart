@@ -1,10 +1,12 @@
 import 'package:bizi/configuration/constants.dart';
+import 'package:bizi/screens/vendorAddOfferScreen/vendorAddOfferScreen.dart';
 import 'package:bizi/screens/vendorHomeScreen/components/keyStatScroll.dart';
 import 'package:bizi/screens/vendorHomeScreen/components/vendorHomeHeader.dart';
 import 'package:bizi/widgets/actionButton.dart';
 import 'package:bizi/widgets/bottomBar.dart';
 import 'package:bizi/widgets/cardList.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class venderHomeScreen extends StatelessWidget {
   venderHomeScreen({super.key});
@@ -56,7 +58,9 @@ class venderHomeScreen extends StatelessWidget {
                             ),
                             backgroundColor: colorConstants.biziGreen,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(vendorAddOfferScreen());
+                          },
                           child: SizedBox(
                               width: width * 0.7,
                               height: width * 0.15,

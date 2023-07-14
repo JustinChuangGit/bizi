@@ -1,3 +1,4 @@
+import 'package:bizi/utilities/models/offerModel.dart';
 import 'package:bizi/utilities/models/vendorModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
@@ -18,4 +19,6 @@ class VendorRepository extends GetxController {
       print(error.toString());
     });
   }
+
+  postOffer(OfferModel offer) async {}
 }
