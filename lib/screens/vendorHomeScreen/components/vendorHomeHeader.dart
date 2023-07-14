@@ -1,6 +1,5 @@
 import 'package:bizi/configuration/constants.dart';
-import 'package:bizi/widgets/actionButtonHome.dart';
-import 'package:bizi/widgets/bottomBar.dart';
+
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
