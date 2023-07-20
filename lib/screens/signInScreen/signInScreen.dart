@@ -1,6 +1,7 @@
 import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/screens/signInScreen/components/loginFormWidget.dart';
 import 'package:bizi/screens/signUpScreen/signUpScreen.dart';
+import 'package:bizi/screens/vendorSignUpScreen/vendorSignUpScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -87,7 +88,22 @@ class signInScreen extends StatelessWidget {
                         ),
                       ),
                     ],
-                  )
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Get.to(
+                        const vendorSignUpScreen(),
+                        transition: Transition.downToUp,
+                      );
+                    },
+                    child: Text(
+                      style: TextStyle(
+                        color: colorConstants.biziGreen,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      'Sign Up As a Store',
+                    ),
+                  ),
                 ],
               ),
             ),

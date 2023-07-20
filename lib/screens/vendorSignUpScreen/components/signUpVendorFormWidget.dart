@@ -5,14 +5,14 @@ import 'package:bizi/utilities/controllers/signUpController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class signUpFormWidget extends StatefulWidget {
-  const signUpFormWidget({Key? key}) : super(key: key);
+class signUpVendorFormWidget extends StatefulWidget {
+  const signUpVendorFormWidget({Key? key}) : super(key: key);
 
   @override
-  State<signUpFormWidget> createState() => _signUpFormWidgetState();
+  State<signUpVendorFormWidget> createState() => _signUpVendorFormWidgetState();
 }
 
-class _signUpFormWidgetState extends State<signUpFormWidget> {
+class _signUpVendorFormWidgetState extends State<signUpVendorFormWidget> {
   @override
   Widget build(BuildContext context) {
     const double cardPadding = 20;

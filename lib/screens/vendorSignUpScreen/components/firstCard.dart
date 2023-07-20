@@ -7,8 +7,8 @@ import 'package:bizi/widgets/inputTextBoxSignUp.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class firstCard extends StatefulWidget {
-  const firstCard({
+class firstCardVendor extends StatefulWidget {
+  const firstCardVendor({
     super.key,
     required this.controller,
     required this.cardFontSize,
@@ -24,10 +24,10 @@ class firstCard extends StatefulWidget {
   final ScrollController controllerScroll;
 
   @override
-  State<firstCard> createState() => _firstCardState();
+  State<firstCardVendor> createState() => _firstCardVendorState();
 }
 
-class _firstCardState extends State<firstCard> {
+class _firstCardVendorState extends State<firstCardVendor> {
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
       const DropdownMenuItem(value: "Male", child: Text("Male")),

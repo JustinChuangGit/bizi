@@ -6,8 +6,8 @@ import 'package:bizi/utilities/models/userModel.dart';
 import 'package:flutter/material.dart';
 import 'package:bizi/widgets/inputTextBoxSignUp.dart';
 
-class lastCard extends StatelessWidget {
-  lastCard({
+class lastCardVendor extends StatelessWidget {
+  lastCardVendor({
     super.key,
     required this.controller,
     required this.cardFontSize,

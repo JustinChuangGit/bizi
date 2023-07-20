@@ -1,9 +1,8 @@
-import 'package:bizi/screens/signUpScreen/components/signUpFormWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:bizi/configuration/constants.dart';
 
-class signUpScreen extends StatelessWidget {
-  const signUpScreen({Key? key}) : super(key: key);
+class vendorSignUpScreen extends StatelessWidget {
+  const vendorSignUpScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +34,7 @@ class signUpScreen extends StatelessWidget {
             ),
           ),
         ),
-        signUpFormWidget()
+
         // Expanded(
         //   child: Container(
         //     decoration: BoxDecoration(
