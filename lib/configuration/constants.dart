@@ -20,6 +20,7 @@ const double buttonDissapearLocation = 180;
 
 late String? dateOfBirth;
 late String? gender;
+late String? vendorCategory;
 
 //
 // late final String? userUid;

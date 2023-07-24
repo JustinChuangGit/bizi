@@ -1,3 +1,4 @@
+import 'package:bizi/screens/vendorSignUpScreen/components/signUpVendorFormWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:bizi/configuration/constants.dart';
 
@@ -10,9 +11,9 @@ class vendorSignUpScreen extends StatelessWidget {
       backgroundColor: colorConstants.biziDark,
       body: Column(children: [
         Container(
-          padding: EdgeInsets.only(top: height * 0.1),
+          padding: EdgeInsets.only(top: height * 0.09),
           child: SizedBox(
-            height: height * 0.15,
+            height: height * 0.14,
             child: const Center(
               child: Image(
                   image: AssetImage('assets/images/logos/biziMockLogo.png')),
@@ -34,6 +35,8 @@ class vendorSignUpScreen extends StatelessWidget {
             ),
           ),
         ),
+
+        const signUpVendorFormWidget(),
 
         // Expanded(
         //   child: Container(

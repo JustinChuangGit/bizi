@@ -1,6 +1,7 @@
 import 'package:bizi/configuration/constants.dart';
-import 'package:bizi/screens/signUpScreen/components/firstCard.dart';
-import 'package:bizi/screens/signUpScreen/components/lastCard.dart';
+import 'package:bizi/screens/vendorSignUpScreen/components/firstCardVendor.dart';
+import 'package:bizi/screens/vendorSignUpScreen/components/lastCardVendor..dart';
+import 'package:bizi/screens/vendorSignUpScreen/components/middleCardVendor.dart';
 import 'package:bizi/utilities/controllers/signUpController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,20 +27,26 @@ class _signUpVendorFormWidgetState extends State<signUpVendorFormWidget> {
       padding: const EdgeInsets.symmetric(vertical: 10),
 
       child: SizedBox(
-        height: height * 0.65,
+        height: height * 0.661,
         child: ListView(
           controller: _scrollController,
           scrollDirection: Axis.horizontal,
-          physics: const NeverScrollableScrollPhysics(),
+          //physics: const NeverScrollableScrollPhysics(),
           children: [
-            firstCard(
+            firstCardVendor(
               controller: controller,
               cardFontSize: cardFontSize,
               cardWidth: cardWidth,
               cardPadding: cardPadding,
               controllerScroll: _scrollController,
             ),
-            lastCard(
+            middleCardVendor(
+                controller: controller,
+                cardFontSize: cardFontSize,
+                cardWidth: cardWidth,
+                cardPadding: cardPadding,
+                controllerScroll: _scrollController),
+            lastCardVendor(
               controller: controller,
               cardFontSize: cardFontSize,
               cardWidth: cardWidth,

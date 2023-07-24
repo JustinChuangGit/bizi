@@ -5,7 +5,6 @@ import 'package:bizi/utilities/controllers/signUpController.dart';
 import 'package:flutter/material.dart';
 import 'package:bizi/widgets/inputTextBoxSignUp.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class firstCardVendor extends StatefulWidget {
   const firstCardVendor({
@@ -24,17 +23,16 @@ class firstCardVendor extends StatefulWidget {
   final ScrollController controllerScroll;
 
   @override
-  State<firstCardVendor> createState() => _firstCardVendorState();
+  State<firstCardVendor> createState() => _firstCardState();
 }
 
-class _firstCardVendorState extends State<firstCardVendor> {
+class _firstCardState extends State<firstCardVendor> {
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
-      const DropdownMenuItem(value: "Male", child: Text("Male")),
-      const DropdownMenuItem(value: "Female", child: Text("Female")),
-      const DropdownMenuItem(value: "Other", child: Text("Other")),
-      const DropdownMenuItem(
-          value: "Prefer Not To Say", child: Text("Prefer Not To Say")),
+      const DropdownMenuItem(value: "coffee", child: Text("Coffee Shop")),
+      const DropdownMenuItem(value: "foodTruck", child: Text("Food Truck")),
+      const DropdownMenuItem(value: "resturant", child: Text("Resturant")),
+      const DropdownMenuItem(value: "other", child: Text("Other")),
     ];
     return menuItems;
   }
@@ -72,140 +70,81 @@ class _firstCardVendorState extends State<firstCardVendor> {
                             padding: const EdgeInsets.only(bottom: 5),
                             width: double.infinity,
                             child: Text(
-                              'First Name:',
+                              'Business Name:',
                               style: TextStyle(
                                   fontSize: widget.cardFontSize,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
                           inputTextBox(
-                              controllerSignUp: widget.controller.firstName,
-                              label: 'First Name'),
+                              controllerSignUp: widget.controller.vendorName,
+                              label: 'Business Name'),
                           Container(
                             padding: const EdgeInsets.only(bottom: 5),
                             width: double.infinity,
                             child: Text(
-                              'Last Name:',
+                              'Business Number',
                               style: TextStyle(
                                   fontSize: widget.cardFontSize,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
                           inputTextBox(
-                              controllerSignUp: widget.controller.lastName,
-                              label: 'Last Name'),
+                              controllerSignUp:
+                                  widget.controller.businessNumber,
+                              label: 'Business Number'),
                           Container(
                             padding: const EdgeInsets.only(bottom: 5),
                             width: double.infinity,
                             child: Text(
-                              'Gender:',
+                              'Business Address',
                               style: TextStyle(
                                   fontSize: widget.cardFontSize,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
-                          DropdownButtonFormField(
-                              decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: colorConstants.biziDark),
-                                  borderRadius:
-                                      BorderRadius.circular(cornerRadius),
-                                ),
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: colorConstants.biziDark),
-                                  borderRadius:
-                                      BorderRadius.circular(cornerRadius),
-                                ),
-                                //filled: true,
-                              ),
-                              validator: (value) => value == null
-                                  ? "Please choose an option"
-                                  : null,
-                              value: selectedValue,
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  selectedValue = newValue!;
-                                  gender = selectedValue;
-                                });
-                              },
-                              items: dropdownItems),
+                          inputTextBox(
+                              controllerSignUp: widget.controller.address,
+                              label: 'Business Address'),
                           Container(
-                            padding: const EdgeInsets.only(bottom: 5, top: 10),
+                            padding: const EdgeInsets.only(bottom: 5),
                             width: double.infinity,
                             child: Text(
-                              'Date of Birth:',
+                              'Business Type:',
                               style: TextStyle(
                                   fontSize: widget.cardFontSize,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
-                          TextField(
-                            controller: widget.controller.age,
-                            //editing controller of this TextField
-                            decoration: InputDecoration(
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: colorConstants.biziDark),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                color: colorConstants.biziDark,
-                              )),
-                              iconColor: colorConstants.biziDark,
-                              fillColor: colorConstants.biziGreen,
-                              icon: const Icon(
-                                  Icons.calendar_today), //icon of text field
-                              hintText: dateInput.text != ''
-                                  ? dateInput.text
-                                  : "Enter Date", //label text of field
-                            ),
-                            readOnly: true,
-                            //set it true, so that user will not able to edit text
-                            onTap: () async {
-                              DateTime? pickedDate = await showDatePicker(
-                                  context: context,
-                                  builder: (context, child) {
-                                    return Theme(
-                                      data: Theme.of(context).copyWith(
-                                        colorScheme: ColorScheme.light(
-                                          primary: colorConstants
-                                              .biziGreen, // <-- SEE HERE
-                                          onPrimary:
-                                              Colors.white, // <-- SEE HERE
-                                          onSurface: colorConstants
-                                              .biziDark, // <-- SEE HERE
-                                        ),
-                                        textButtonTheme: TextButtonThemeData(
-                                          style: TextButton.styleFrom(
-                                            backgroundColor: Colors
-                                                .white, // button text color
-                                          ),
-                                        ),
-                                      ),
-                                      child: child!,
-                                    );
-                                  },
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime(1950),
-                                  //DateTime.now() - not to allow to choose before today.
-                                  lastDate: DateTime(2100));
-
-                              if (pickedDate != null) {
-                                print(
-                                    pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                                String formattedDate =
-                                    DateFormat('yyyy-MM-dd').format(pickedDate);
-                                print(
-                                    formattedDate); //formatted date output using intl package =>  2021-03-16
-                                setState(() {
-                                  dateInput.text =
-                                      formattedDate; //set output date to TextField value.
-                                  dateOfBirth = formattedDate;
-                                });
-                              } else {}
-                            },
+                          SizedBox(
+                            height: height * 0.1,
+                            child: DropdownButtonFormField(
+                                decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: colorConstants.biziDark),
+                                    borderRadius:
+                                        BorderRadius.circular(cornerRadius),
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: colorConstants.biziDark),
+                                    borderRadius:
+                                        BorderRadius.circular(cornerRadius),
+                                  ),
+                                  //filled: true,
+                                ),
+                                validator: (value) => value == null
+                                    ? "Please choose an option"
+                                    : null,
+                                value: selectedValue,
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    selectedValue = newValue!;
+                                    vendorCategory = selectedValue;
+                                  });
+                                },
+                                items: dropdownItems),
                           ),
                         ],
                       ),

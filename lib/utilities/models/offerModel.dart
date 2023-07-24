@@ -1,5 +1,3 @@
-import 'dart:io';
-
 class OfferModel {
   final String offerName;
   final String offerType;

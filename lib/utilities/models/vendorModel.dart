@@ -2,13 +2,13 @@ import 'package:bizi/utilities/models/offerModel.dart';
 
 class VendorModel {
   final String? id;
-  final String? vendorName;
-  final String? businessNumber;
+  final String? vendorName; //
+  final String? businessNumber; //
   final String? email;
   final String? phoneNo;
   final String? password;
-  final String? address;
-  final String? vendorCategory;
+  final String? address; //
+  final String? vendorCategory; //
   final String? primaryContactFirstName;
   final String? primaryContactLastName;
   final String? primaryContactEmail;

@@ -1,5 +1,4 @@
 import 'package:bizi/configuration/constants.dart';
-import 'package:bizi/screens/signInScreen/components/inputTextBox.dart';
 import 'package:bizi/widgets/actionButton.dart';
 import 'package:bizi/widgets/bottomBar.dart';
 import 'package:flutter/material.dart';

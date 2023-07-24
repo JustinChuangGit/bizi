@@ -3,6 +3,7 @@ import 'package:bizi/screens/signInScreen/signInScreen.dart';
 import 'package:bizi/utilities/controllers/signUpController.dart';
 import 'package:bizi/utilities/methods/errorSnackBar.dart';
 import 'package:bizi/utilities/models/userModel.dart';
+import 'package:bizi/utilities/models/vendorModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -40,6 +41,33 @@ class authenticationRepository extends GetxController {
           .createUser(user); //Populate database with user Information
       FirebaseFirestore.instance
           .collection('users')
+          .doc(FirebaseAuth.instance.currentUser?.uid)
+          .update({'id': FirebaseAuth.instance.currentUser?.uid});
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+        errorSnackBar(errorMessage: 'The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+        errorSnackBar(
+            errorMessage: 'The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> createVendorWithEmailAndPassword(
+      String email, String password, VendorModel user) async {
+    try {
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+      // user.id = FirebaseAuth.instance.currentUser?.uid;
+
+      signUpController.instance
+          .createVendor(user); //Populate database with user Information
+      FirebaseFirestore.instance
+          .collection('vendors')
           .doc(FirebaseAuth.instance.currentUser?.uid)
           .update({'id': FirebaseAuth.instance.currentUser?.uid});
     } on FirebaseAuthException catch (e) {

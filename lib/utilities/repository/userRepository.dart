@@ -2,6 +2,7 @@
 
 import 'package:bizi/utilities/methods/errorSnackBar.dart';
 import 'package:bizi/utilities/models/userModel.dart';
+import 'package:bizi/utilities/models/vendorModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:bizi/utilities/methods/successSnakBar.dart';
@@ -29,6 +30,17 @@ class UserRepository extends GetxController {
       //     .catchError((error, stackTrace) {
       //   errorSnackBar();
       //   print(error.toString());
+    });
+  }
+
+  createVendor(VendorModel user) async {
+    await _db
+        .collection("vendors")
+        .doc(_auth.currentUser?.uid)
+        .set(user.toJson())
+        .whenComplete(() => successSnackBar())
+        .catchError((error, stackTrace) {
+      errorSnackBar();
     });
   }
 

@@ -1,8 +1,8 @@
 import 'package:bizi/configuration/constants.dart';
+import 'package:bizi/utilities/models/vendorModel.dart';
 
 import 'package:bizi/widgets/inputTextBoxPasswordSignUp.dart';
 import 'package:bizi/utilities/controllers/signUpController.dart';
-import 'package:bizi/utilities/models/userModel.dart';
 import 'package:flutter/material.dart';
 import 'package:bizi/widgets/inputTextBoxSignUp.dart';
 
@@ -121,17 +121,28 @@ class lastCardVendor extends StatelessWidget {
                               )),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              final user = UserModel(
+                              final user = VendorModel(
+                                vendorName: controller.vendorName.text.trim(),
+                                businessNumber:
+                                    controller.businessNumber.text.trim(),
                                 email: controller.email.text.trim(),
                                 password: controller.password.text.trim(),
-                                firstName: controller.firstName.text.trim(),
-                                lastName: controller.lastName.text.trim(),
                                 phoneNo: controller.phoneNo.text.trim(),
-                                gender: gender,
-                                age: dateOfBirth,
-                                points: 0,
+                                address: controller.address.text.trim(),
+                                vendorCategory: vendorCategory,
+                                primaryContactEmail:
+                                    controller.primaryContactEmail.text.trim(),
+                                primaryContactFirstName: controller
+                                    .primaryContactFirstName.text
+                                    .trim(),
+                                primaryContactLastName: controller
+                                    .primaryContactLastName.text
+                                    .trim(),
+                                primaryContactPhoneNumber: controller
+                                    .primaryContactPhoneNumber.text
+                                    .trim(),
                               );
-                              signUpController.instance.registerUser(
+                              signUpController.instance.registerVendor(
                                 controller.email.text.trim(),
                                 controller.password.text.trim(),
                                 user,
