@@ -1,7 +1,5 @@
 import 'package:bizi/configuration/constants.dart';
-import 'package:bizi/screens/signInScreen/components/inputTextBox.dart';
 import 'package:bizi/screens/vendorAddOfferScreen/components/createNewRewardWidget.dart';
-import 'package:bizi/utilities/controllers/offerController.dart';
 import 'package:bizi/widgets/actionButton.dart';
 import 'package:bizi/widgets/bottomBar.dart';
 import 'package:flutter/material.dart';
