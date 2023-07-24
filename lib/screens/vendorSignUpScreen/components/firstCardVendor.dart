@@ -3,7 +3,7 @@ import 'package:bizi/screens/signInScreen/signInScreen.dart';
 
 import 'package:bizi/utilities/controllers/signUpController.dart';
 import 'package:flutter/material.dart';
-import 'package:bizi/widgets/inputTextBoxSignUp.dart';
+import 'package:bizi/widgets/inputTextBox.dart';
 import 'package:get/get.dart';
 
 class firstCardVendor extends StatefulWidget {

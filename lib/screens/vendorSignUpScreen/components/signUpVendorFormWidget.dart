@@ -1,6 +1,6 @@
 import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/screens/vendorSignUpScreen/components/firstCardVendor.dart';
-import 'package:bizi/screens/vendorSignUpScreen/components/lastCardVendor..dart';
+import 'package:bizi/screens/vendorSignUpScreen/components/lastCardVendor.dart';
 import 'package:bizi/screens/vendorSignUpScreen/components/middleCardVendor.dart';
 import 'package:bizi/utilities/controllers/signUpController.dart';
 import 'package:flutter/material.dart';

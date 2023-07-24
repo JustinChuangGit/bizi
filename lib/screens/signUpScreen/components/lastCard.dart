@@ -4,7 +4,7 @@ import 'package:bizi/widgets/inputTextBoxPasswordSignUp.dart';
 import 'package:bizi/utilities/controllers/signUpController.dart';
 import 'package:bizi/utilities/models/userModel.dart';
 import 'package:flutter/material.dart';
-import 'package:bizi/widgets/inputTextBoxSignUp.dart';
+import 'package:bizi/widgets/inputTextBox.dart';
 
 class lastCard extends StatelessWidget {
   lastCard({
