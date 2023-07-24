@@ -1,4 +1,5 @@
 class OfferModel {
+  final String id;
   final String offerName;
   final String offerType;
   final String normalPrice;
@@ -8,6 +9,7 @@ class OfferModel {
   //class redeem products
 
   OfferModel({
+    required this.id,
     required this.offerType,
     required this.normalPrice,
     required this.newPrice,
@@ -17,6 +19,7 @@ class OfferModel {
 
   toJson() {
     return {
+      'id': id,
       'offerName': offerName,
       'normalPrice': normalPrice,
       'newPrice': newPrice,
