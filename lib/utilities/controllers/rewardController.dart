@@ -3,8 +3,8 @@ import 'package:bizi/utilities/repository/vendorRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class OfferController extends GetxController {
-  static OfferController get instance => Get.find();
+class RewardController extends GetxController {
+  static RewardController get instance => Get.find();
 
   final offerName = TextEditingController();
   final offerType = TextEditingController();
@@ -13,6 +13,6 @@ class OfferController extends GetxController {
   final offerFilePath = TextEditingController();
 
   void createOffer(OfferModel offer) {
-    VendorRepository.instance.postOffer(offer);
+    VendorRepository.instance.postReward(offer);
   }
 }

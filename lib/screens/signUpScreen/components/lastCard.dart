@@ -54,8 +54,7 @@ class lastCard extends StatelessWidget {
                             ),
                           ),
                           inputTextBox(
-                              controllerSignUp: controller.email,
-                              label: 'Email'),
+                              controller: controller.email, label: 'Email'),
                           Container(
                             padding: const EdgeInsets.only(bottom: 5),
                             width: double.infinity,
@@ -67,7 +66,7 @@ class lastCard extends StatelessWidget {
                             ),
                           ),
                           inputTextBox(
-                              controllerSignUp: controller.phoneNo,
+                              controller: controller.phoneNo,
                               label: 'Phone Number'),
                           Container(
                             padding: const EdgeInsets.only(bottom: 5),

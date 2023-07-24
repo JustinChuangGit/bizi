@@ -67,7 +67,7 @@ class _firstCardState extends State<middleCardVendor> {
                             ),
                           ),
                           inputTextBox(
-                              controllerSignUp:
+                              controller:
                                   widget.controller.primaryContactFirstName,
                               label: 'Primary Contact First Name'),
                           Container(
@@ -81,7 +81,7 @@ class _firstCardState extends State<middleCardVendor> {
                             ),
                           ),
                           inputTextBox(
-                              controllerSignUp:
+                              controller:
                                   widget.controller.primaryContactLastName,
                               label: 'Primary Contact Last Name'),
                           Container(
@@ -95,8 +95,7 @@ class _firstCardState extends State<middleCardVendor> {
                             ),
                           ),
                           inputTextBox(
-                              controllerSignUp:
-                                  widget.controller.primaryContactEmail,
+                              controller: widget.controller.primaryContactEmail,
                               label: 'Primary Contact Email'),
                           Container(
                             padding: const EdgeInsets.only(bottom: 5),
@@ -109,7 +108,7 @@ class _firstCardState extends State<middleCardVendor> {
                             ),
                           ),
                           inputTextBox(
-                              controllerSignUp:
+                              controller:
                                   widget.controller.primaryContactPhoneNumber,
                               label: 'Primary Contact Phone Number'),
                         ],

@@ -1,4 +1,7 @@
 import 'package:bizi/configuration/constants.dart';
+import 'package:bizi/screens/signInScreen/components/inputTextBox.dart';
+import 'package:bizi/screens/vendorAddOfferScreen/components/createNewRewardWidget.dart';
+import 'package:bizi/utilities/controllers/offerController.dart';
 import 'package:bizi/widgets/actionButton.dart';
 import 'package:bizi/widgets/bottomBar.dart';
 import 'package:flutter/material.dart';
@@ -47,15 +50,15 @@ class vendorAddOfferScreen extends StatelessWidget {
                           padding: const EdgeInsets.all(20),
                           width: double.infinity,
                           child: const Text(
-                            'Create New Offer',
+                            'Create New Reward',
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 25,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
-                        createNewOfferWidget(),
+                        createNewRewardWidget(),
                         const SizedBox(
                           height: 500,
                         )
@@ -65,30 +68,5 @@ class vendorAddOfferScreen extends StatelessWidget {
             ],
           )),
     );
-  }
-}
-
-class createNewOfferWidget extends StatelessWidget {
-  createNewOfferWidget({
-    super.key,
-  });
-  final _formKey = GlobalKey<FormState>();
-
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-        key: _formKey,
-        child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // SizedBox(
-              //       height: height * 0.1,
-              //       // child: inputTextBox(
-              //       //     controllerLogin: controllerLogin, label: 'Email')),
-              SizedBox(height: width * 0.1),
-            ],
-          ),
-        ));
   }
 }

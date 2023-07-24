@@ -5,11 +5,11 @@ import 'package:email_validator/email_validator.dart';
 class inputTextBox extends StatelessWidget {
   const inputTextBox({
     super.key,
-    required this.controllerSignUp,
+    required this.controller,
     required this.label,
   });
 
-  final TextEditingController controllerSignUp;
+  final TextEditingController controller;
   final String label;
 
   @override
@@ -18,7 +18,7 @@ class inputTextBox extends StatelessWidget {
       height: height * 0.1,
       child: TextFormField(
         cursorColor: colorConstants.biziDark,
-        controller: controllerSignUp,
+        controller: controller,
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Please enter some text';

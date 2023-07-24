@@ -77,7 +77,7 @@ class _firstCardState extends State<firstCardVendor> {
                             ),
                           ),
                           inputTextBox(
-                              controllerSignUp: widget.controller.vendorName,
+                              controller: widget.controller.vendorName,
                               label: 'Business Name'),
                           Container(
                             padding: const EdgeInsets.only(bottom: 5),
@@ -90,8 +90,7 @@ class _firstCardState extends State<firstCardVendor> {
                             ),
                           ),
                           inputTextBox(
-                              controllerSignUp:
-                                  widget.controller.businessNumber,
+                              controller: widget.controller.businessNumber,
                               label: 'Business Number'),
                           Container(
                             padding: const EdgeInsets.only(bottom: 5),
@@ -104,7 +103,7 @@ class _firstCardState extends State<firstCardVendor> {
                             ),
                           ),
                           inputTextBox(
-                              controllerSignUp: widget.controller.address,
+                              controller: widget.controller.address,
                               label: 'Business Address'),
                           Container(
                             padding: const EdgeInsets.only(bottom: 5),

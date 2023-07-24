@@ -79,7 +79,7 @@ class _firstCardState extends State<firstCard> {
                             ),
                           ),
                           inputTextBox(
-                              controllerSignUp: widget.controller.firstName,
+                              controller: widget.controller.firstName,
                               label: 'First Name'),
                           Container(
                             padding: const EdgeInsets.only(bottom: 5),
@@ -92,7 +92,7 @@ class _firstCardState extends State<firstCard> {
                             ),
                           ),
                           inputTextBox(
-                              controllerSignUp: widget.controller.lastName,
+                              controller: widget.controller.lastName,
                               label: 'Last Name'),
                           Container(
                             padding: const EdgeInsets.only(bottom: 5),
