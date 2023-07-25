@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:get/get.dart';
-
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:uuid/uuid.dart';
 
 class createNewRewardWidget extends StatefulWidget {
@@ -23,7 +23,7 @@ class _createNewRewardWidgetState extends State<createNewRewardWidget> {
   final _formKey = GlobalKey<FormState>();
 
   final rewardController = Get.put(RewardController());
-
+  final storage = FirebaseStorage.instance;
   ImagePicker picker = ImagePicker();
   XFile? image;
 
@@ -74,15 +74,18 @@ class _createNewRewardWidgetState extends State<createNewRewardWidget> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       var uuid = const Uuid();
+                      final File file = File(image!.path);
 
                       final reward = RewardModel(
                         id: '${FirebaseAuth.instance.currentUser!.uid.toString()}${uuid.v4()}',
                         normalPrice: rewardController.normalPrice.text.trim(),
-                        newPrice: rewardController.newPrice.text.trim(),
+
+                        //newPrice: rewardController.newPrice.text.trim(),
+                        newPrice: '0',
                         offerName: rewardController.rewardName.text.trim(),
                         offerFilePath: image!.path.toString(),
                       );
-                      RewardController.instance.createReward(reward);
+                      RewardController.instance.createReward(reward, file);
                     }
                     Get.to(venderHomeScreen());
                   },

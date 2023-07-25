@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bizi/utilities/models/rewardModel.dart';
 import 'package:bizi/utilities/repository/vendorRepository.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +15,7 @@ class RewardController extends GetxController {
   final newPrice = TextEditingController();
   final offerFilePath = TextEditingController();
 
-  void createReward(RewardModel reward) async {
-    await vendorRepo.postReward(reward);
+  void createReward(RewardModel reward, File file) async {
+    await vendorRepo.postReward(reward, file);
   }
 }
