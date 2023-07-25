@@ -1,7 +1,14 @@
-import 'package:bizi/utilities/controllers/offerController.dart';
+import 'package:bizi/screens/vendorHomeScreen/vendorHomeScreen.dart';
+import 'package:bizi/utilities/controllers/rewardController.dart';
+import 'package:bizi/utilities/models/rewardModel.dart';
 import 'package:bizi/widgets/inputTextBox.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:get/get.dart';
+
+import 'package:uuid/uuid.dart';
 
 class createNewRewardWidget extends StatefulWidget {
   createNewRewardWidget({
@@ -15,9 +22,10 @@ class createNewRewardWidget extends StatefulWidget {
 class _createNewRewardWidgetState extends State<createNewRewardWidget> {
   final _formKey = GlobalKey<FormState>();
 
-  final OfferController offerController = OfferController();
+  final rewardController = Get.put(RewardController());
 
   ImagePicker picker = ImagePicker();
+  XFile? image;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +48,7 @@ class _createNewRewardWidgetState extends State<createNewRewardWidget> {
                 ),
               ),
               inputTextBox(
-                  controller: offerController.offerName, label: 'Offer'),
+                  controller: rewardController.rewardName, label: 'Offer'),
               Container(
                 padding: const EdgeInsets.only(bottom: 5, top: 15),
                 width: double.infinity,
@@ -53,14 +61,32 @@ class _createNewRewardWidgetState extends State<createNewRewardWidget> {
                 ),
               ),
               inputTextBox(
-                  controller: offerController.normalPrice, label: 'Item Price'),
+                  controller: rewardController.normalPrice,
+                  label: 'Item Price'),
               ElevatedButton(
                   onPressed: () async {
-                    XFile? image =
-                        await picker.pickImage(source: ImageSource.gallery);
-                    print(image!.path);
+                    image = await picker.pickImage(source: ImageSource.gallery);
+                    setState(() {});
                   },
-                  child: const Text('Pick Image'))
+                  child: const Text('Pick Image')),
+              image == null ? Container() : Image.file(File(image!.path)),
+              ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      var uuid = const Uuid();
+
+                      final reward = RewardModel(
+                        id: '${FirebaseAuth.instance.currentUser!.uid.toString()}${uuid.v4()}',
+                        normalPrice: rewardController.normalPrice.text.trim(),
+                        newPrice: rewardController.newPrice.text.trim(),
+                        offerName: rewardController.rewardName.text.trim(),
+                        offerFilePath: image!.path.toString(),
+                      );
+                      RewardController.instance.createReward(reward);
+                    }
+                    Get.to(venderHomeScreen());
+                  },
+                  child: const Text('Create Reward'))
             ],
           ),
         ));

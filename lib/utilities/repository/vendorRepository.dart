@@ -1,4 +1,5 @@
 import 'package:bizi/utilities/models/offerModel.dart';
+import 'package:bizi/utilities/models/rewardModel.dart';
 import 'package:bizi/utilities/models/vendorModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -37,13 +38,13 @@ class VendorRepository extends GetxController {
     });
   }
 
-  postReward(OfferModel offer) async {
+  postReward(RewardModel reward) async {
     await _db
         .collection('vendors')
         .doc(_auth.currentUser?.uid)
         .collection('currentRewards')
         .doc(_auth.currentUser!.uid + uuid.v4())
-        .set(offer.toJson())
+        .set(reward.toJson())
         .whenComplete(() => successSnackBar())
         .catchError((error, stackTrace) {
       errorSnackBar();

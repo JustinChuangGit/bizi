@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 class OfferController extends GetxController {
   static OfferController get instance => Get.find();
+  final vendorRepo = Get.put(VendorRepository());
 
   final offerName = TextEditingController();
   final offerType = TextEditingController();
@@ -12,7 +13,7 @@ class OfferController extends GetxController {
   final newPrice = TextEditingController();
   final offerFilePath = TextEditingController();
 
-  void createOffer(OfferModel offer) {
-    VendorRepository.instance.postOffer(offer);
+  void createOffer(OfferModel offer) async {
+    await vendorRepo.postOffer(offer);
   }
 }
