@@ -5,6 +5,7 @@ import 'package:bizi/screens/vendorHomeScreen/components/vendorHomeHeader.dart';
 import 'package:bizi/widgets/actionButton.dart';
 import 'package:bizi/widgets/bottomBar.dart';
 import 'package:bizi/widgets/cardList.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -47,7 +48,19 @@ class venderHomeScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         keyStatScroll(),
-                        const cardList(heading: 'Current Offerings'),
+
+                        ////////////////////////////////
+                        cardList(
+                          heading: 'Current Offerings',
+                          collectionRef: FirebaseFirestore.instance
+                              .collection('vendors')
+                              .doc('arGdYqX4XxaUnaQilOEsjuRLn4T2')
+                              .collection('currentRewards'),
+                        ),
+
+                        ////////////////////////////////
+                        ///
+                        ///
                         ElevatedButton(
                           // style: ButtonStyle(
                           //     backgroundColor: MaterialStateProperty.all(

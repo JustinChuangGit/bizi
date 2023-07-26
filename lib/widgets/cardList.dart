@@ -1,17 +1,41 @@
 import 'package:bizi/configuration/constants.dart';
+import 'package:bizi/utilities/models/rewardModel.dart';
 import 'package:bizi/widgets/individualCard.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class cardList extends StatelessWidget {
+class cardList extends StatefulWidget {
   const cardList({
     super.key,
     required this.heading,
+    required this.collectionRef,
   });
 
   final String heading;
+  final CollectionReference collectionRef;
+
+  @override
+  State<cardList> createState() => _cardListState();
+}
+
+class _cardListState extends State<cardList> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Future<List<Object?>> getCollectionData() async {
+    QuerySnapshot querySnapshot = await widget.collectionRef.get();
+    return querySnapshot.docs.map((doc) => doc.data()).toList();
+    // var collectionData = querySnapshot.docs.map((doc) => doc.data()).toList();
+    //allData = collectionData;
+  }
 
   @override
   Widget build(BuildContext context) {
+    // print('all data: ' + allData);
+    var _allData = getCollectionData();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -21,7 +45,7 @@ class cardList extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                heading,
+                widget.heading,
                 style:
                     const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
@@ -36,17 +60,26 @@ class cardList extends StatelessWidget {
         ),
         SizedBox(
           height: height * 0.32,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: <Widget>[
-              individualCard(),
-              individualCard(),
-              individualCard(),
-              individualCard(),
-              individualCard(),
-              individualCard(),
-            ],
-          ),
+          child: FutureBuilder<List<Object?>>(
+              future: _allData,
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<Object?>> snapshot) {
+                if (snapshot.hasError) {
+                } else if (snapshot.hasData) {
+                  var _collectionData = snapshot.data;
+                  return ListView.builder(
+                    itemCount: _collectionData?.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      return individualCard();
+                    },
+                  );
+                }
+
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }),
         ),
       ],
     );
