@@ -46,6 +46,9 @@ class VendorRepository extends GetxController {
 
   postReward(RewardModel reward, File file) async {
     final String rewardId = _auth.currentUser!.uid + uuid.v4();
+
+    reward.id = rewardId;
+
     await _db
         .collection('vendors')
         .doc(_auth.currentUser?.uid)

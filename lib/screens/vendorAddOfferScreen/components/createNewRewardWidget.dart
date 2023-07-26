@@ -73,11 +73,9 @@ class _createNewRewardWidgetState extends State<createNewRewardWidget> {
               ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      var uuid = const Uuid();
                       final File file = File(image!.path);
 
                       final reward = RewardModel(
-                        id: '${FirebaseAuth.instance.currentUser!.uid.toString()}${uuid.v4()}',
                         normalPrice: rewardController.normalPrice.text.trim(),
 
                         //newPrice: rewardController.newPrice.text.trim(),

@@ -1,5 +1,5 @@
 class RewardModel {
-  final String id;
+  String? id;
   final String offerName;
   final String normalPrice;
   final String newPrice;
@@ -9,7 +9,7 @@ class RewardModel {
   //class redeem products
 
   RewardModel({
-    required this.id,
+    this.id,
     required this.normalPrice,
     required this.newPrice,
     required this.offerName,
