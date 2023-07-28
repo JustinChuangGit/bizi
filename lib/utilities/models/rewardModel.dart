@@ -26,4 +26,12 @@ class RewardModel {
       'offerUses': offerUses,
     };
   }
+
+  factory RewardModel.fromJson(Map<String, dynamic> json) => RewardModel(
+        id: json['id'],
+        normalPrice: json['normalPrice'],
+        newPrice: json['newPrice'],
+        offerName: json['offerName'],
+        offerFilePath: json['offerFilePath'],
+      );
 }

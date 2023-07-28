@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:core';
+import 'dart:async';
+
 import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/utilities/models/rewardModel.dart';
 import 'package:bizi/widgets/individualCard.dart';
@@ -24,9 +28,30 @@ class _cardListState extends State<cardList> {
     super.initState();
   }
 
-  Future<List<Object?>> getCollectionData() async {
+  // Future<List<RewardModel>> getCollectionData() async {
+  //   QuerySnapshot querySnapshot = await widget.collectionRef.get();
+
+  //   // var tester =
+  //   //     querySnapshot.docs.map((doc) => doc.data());\
+  //   var tester = querySnapshot.docs
+  //       .map((doc) => RewardModel.fromJson(doc.data() as Map<String, dynamic>))
+  //       .toList();
+  //   print(tester);
+  //   return tester;
+  //   // var collectionData = querySnapshot.docs.map((doc) => doc.data()).toList();
+  //   //allData = collectionData;
+  // }
+
+  Future<List<QueryDocumentSnapshot<Object?>>> getCollectionData() async {
     QuerySnapshot querySnapshot = await widget.collectionRef.get();
-    return querySnapshot.docs.map((doc) => doc.data()).toList();
+    return querySnapshot.docs;
+    // var tester =
+    //     querySnapshot.docs.map((doc) => doc.data());\
+    // var tester = querySnapshot.docs
+    //     .map((doc) => RewardModel.fromJson(doc.data() as Map<String, dynamic>))
+    //     .toList();
+    // print(tester);
+    // return tester;
     // var collectionData = querySnapshot.docs.map((doc) => doc.data()).toList();
     //allData = collectionData;
   }
@@ -60,18 +85,23 @@ class _cardListState extends State<cardList> {
         ),
         SizedBox(
           height: height * 0.32,
-          child: FutureBuilder<List<Object?>>(
+          child: FutureBuilder<List<QueryDocumentSnapshot<Object?>>>(
               future: _allData,
               builder: (BuildContext context,
-                  AsyncSnapshot<List<Object?>> snapshot) {
+                  AsyncSnapshot<List<QueryDocumentSnapshot<Object?>>>
+                      snapshot) {
                 if (snapshot.hasError) {
                 } else if (snapshot.hasData) {
-                  var _collectionData = snapshot.data;
+                  var collectionData = snapshot.data!
+                      .map((doc) => RewardModel.fromJson(
+                          doc.data() as Map<String, dynamic>))
+                      .toList();
+
                   return ListView.builder(
-                    itemCount: _collectionData?.length,
+                    itemCount: collectionData.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
-                      return individualCard();
+                      return individualCard(rewardData: collectionData[index]);
                     },
                   );
                 }
