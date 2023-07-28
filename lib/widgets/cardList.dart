@@ -28,32 +28,10 @@ class _cardListState extends State<cardList> {
     super.initState();
   }
 
-  // Future<List<RewardModel>> getCollectionData() async {
-  //   QuerySnapshot querySnapshot = await widget.collectionRef.get();
-
-  //   // var tester =
-  //   //     querySnapshot.docs.map((doc) => doc.data());\
-  //   var tester = querySnapshot.docs
-  //       .map((doc) => RewardModel.fromJson(doc.data() as Map<String, dynamic>))
-  //       .toList();
-  //   print(tester);
-  //   return tester;
-  //   // var collectionData = querySnapshot.docs.map((doc) => doc.data()).toList();
-  //   //allData = collectionData;
-  // }
-
+//Was having an issue when sending straight as <Future<List<Object>>> accessing fields. Solved by just sending Json data and decoding later.
   Future<List<QueryDocumentSnapshot<Object?>>> getCollectionData() async {
     QuerySnapshot querySnapshot = await widget.collectionRef.get();
     return querySnapshot.docs;
-    // var tester =
-    //     querySnapshot.docs.map((doc) => doc.data());\
-    // var tester = querySnapshot.docs
-    //     .map((doc) => RewardModel.fromJson(doc.data() as Map<String, dynamic>))
-    //     .toList();
-    // print(tester);
-    // return tester;
-    // var collectionData = querySnapshot.docs.map((doc) => doc.data()).toList();
-    //allData = collectionData;
   }
 
   @override
@@ -92,6 +70,7 @@ class _cardListState extends State<cardList> {
                       snapshot) {
                 if (snapshot.hasError) {
                 } else if (snapshot.hasData) {
+                  //This decodes the Json data and creates instances of RewardModel
                   var collectionData = snapshot.data!
                       .map((doc) => RewardModel.fromJson(
                           doc.data() as Map<String, dynamic>))
