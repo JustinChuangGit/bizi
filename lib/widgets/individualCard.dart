@@ -31,11 +31,12 @@ class individualCard extends StatelessWidget {
               width: width * 0.5,
               height: height * 0.29,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 8),
+                    padding: const EdgeInsets.only(top: 20),
                     child: SizedBox(
-                      width: 125,
+                      width: 150,
                       height: 125,
                       child: FutureBuilder(
                         future: _vendorRepo.getRewardImage(rewardData.id),
@@ -53,8 +54,8 @@ class individualCard extends StatelessWidget {
                           }
 
                           if (snapshot.hasData) {
-                            return FittedBox(
-                              fit: BoxFit.fill,
+                            return ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
                               child: Image.network(
                                 snapshot.data.toString(),
                                 fit: BoxFit.fill,
@@ -71,12 +72,44 @@ class individualCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Text(rewardData.offerName),
-                  ElevatedButton(
-                      onPressed: () {},
-                      child: const SizedBox(
-                        child: Text('Redeem'),
-                      ))
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.only(left: 20, top: 7),
+                    child: Text(
+                      rewardData.offerName,
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.only(left: 20, top: 3),
+                    child: const Text(
+                      'From <Business Name>',
+                      style: TextStyle(
+                        fontSize: 10,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 3.0),
+                    child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(cornerRadius),
+                          ),
+                          backgroundColor: colorConstants.biziGreen,
+                        ),
+                        child: const SizedBox(
+                          width: 90,
+                          child: Text(
+                            'Redeem',
+                            textAlign: TextAlign.center,
+                          ),
+                        )),
+                  )
                 ],
               ),
             ),
