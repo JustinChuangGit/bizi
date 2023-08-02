@@ -87,7 +87,9 @@ class _createNewRewardWidgetState extends State<createNewRewardWidget> {
                       );
                       RewardController.instance.createReward(reward, file);
                     }
-                    Get.to(venderHomeScreen());
+                    Future.delayed(const Duration(milliseconds: 500), () {
+                      Get.to(venderHomeScreen()); // Prints after 1 second.
+                    });
                   },
                   child: const Text('Create Reward'))
             ],

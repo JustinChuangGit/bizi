@@ -1,7 +1,5 @@
-import 'dart:convert';
 import 'dart:core';
 import 'dart:async';
-
 import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/utilities/models/rewardModel.dart';
 import 'package:bizi/widgets/individualCard.dart';

@@ -68,7 +68,11 @@ class VendorRepository extends GetxController {
   }
 
   getRewardImage(String rewardId) async {
-    final _storageRef = _storage.ref().child('rewards').child(rewardId);
-    return _storageRef.getDownloadURL();
+    try {
+      final _storageRef = _storage.ref().child('rewards').child(rewardId);
+      return _storageRef.getDownloadURL();
+    } catch (error) {
+      return null;
+    }
   }
 }

@@ -1,7 +1,6 @@
 import 'package:bizi/utilities/methods/errorSnackBar.dart';
 import 'package:bizi/utilities/models/rewardModel.dart';
 import 'package:bizi/utilities/repository/vendorRepository.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:bizi/configuration/constants.dart';
 
