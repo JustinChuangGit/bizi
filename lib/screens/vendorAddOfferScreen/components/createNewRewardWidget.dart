@@ -74,8 +74,10 @@ class _createNewRewardWidgetState extends State<createNewRewardWidget> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       final File file = File(image!.path);
+                      var uuid = const Uuid();
 
                       final reward = RewardModel(
+                        id: FirebaseAuth.instance.currentUser!.uid + uuid.v4(),
                         normalPrice: rewardController.normalPrice.text.trim(),
 
                         //newPrice: rewardController.newPrice.text.trim(),

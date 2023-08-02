@@ -45,15 +45,15 @@ class VendorRepository extends GetxController {
   }
 
   postReward(RewardModel reward, File file) async {
-    final String rewardId = _auth.currentUser!.uid + uuid.v4();
+    // final String rewardId = _auth.currentUser!.uid + uuid.v4();
 
-    reward.id = rewardId;
+    // reward.id = rewardId;
 
     await _db
         .collection('vendors')
         .doc(_auth.currentUser?.uid)
         .collection('currentRewards')
-        .doc(rewardId)
+        .doc(reward.id)
         .set(reward.toJson())
         .whenComplete(() => successSnackBar())
         .catchError((error, stackTrace) {
@@ -61,9 +61,14 @@ class VendorRepository extends GetxController {
     });
 
     //Storage
-    final storageRef = _storage.ref().child('rewards').child(rewardId);
+    final storageRef = _storage.ref().child('rewards').child(reward.id);
     await storageRef.putFile(file).catchError((error, stackTrace) {
       errorSnackBar();
     });
+  }
+
+  getRewardImage(String rewardId) async {
+    final _storageRef = _storage.ref().child('rewards').child(rewardId);
+    return _storageRef.getDownloadURL();
   }
 }
