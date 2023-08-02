@@ -20,7 +20,6 @@ class vendorSignUpScreen extends StatelessWidget {
             ),
           ),
         ),
-
         SizedBox(
           height: height * 0.04,
           child: Padding(
@@ -35,36 +34,7 @@ class vendorSignUpScreen extends StatelessWidget {
             ),
           ),
         ),
-
         const signUpVendorFormWidget(),
-
-        // Expanded(
-        //   child: Container(
-        //     decoration: BoxDecoration(
-        //       borderRadius: const BorderRadius.only(
-        //           topLeft: Radius.circular(cornerRadius),
-        //           topRight: Radius.circular(cornerRadius)),
-        //       color: Colors.white.withOpacity(0.8),
-        //     ),
-        //     child: AnimatedOpacity(
-        //       opacity: 1,
-        //       duration: const Duration(milliseconds: 100),
-        //       child: Container(
-        //         padding: EdgeInsets.all(20),
-        //         child: signUpFormWidget(),
-        //       ),
-        //     ),
-
-        //     // FormHeaderWidget(
-        //     //   image: ,
-        //     //   title: ,
-        //     //   subtitle: ,
-        //     //   imageHeight: ,
-        //     // ),
-        //     //signUpFormWidget(),
-        //     //signUpFooterWidget(),
-        //   ),
-        // ),
       ]),
     );
   }

@@ -18,4 +18,8 @@ class RewardController extends GetxController {
   void createReward(RewardModel reward, File file) async {
     await vendorRepo.postReward(reward, file);
   }
+
+  Future<String?> getRewardImage(String rewardId) async {
+    return await vendorRepo.getRewardImage(rewardId);
+  }
 }

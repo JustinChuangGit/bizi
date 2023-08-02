@@ -25,7 +25,6 @@ class _signUpVendorFormWidgetState extends State<signUpVendorFormWidget> {
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10),
-
       child: SizedBox(
         height: height * 0.661,
         child: ListView(
@@ -56,59 +55,6 @@ class _signUpVendorFormWidgetState extends State<signUpVendorFormWidget> {
           ],
         ),
       ),
-      // child: Form(
-      //     key: _formKey,
-      //     child: Column(
-      //       crossAxisAlignment: CrossAxisAlignment.start,
-      //       children: [
-      //         inputTextBox(controllerSignUp: controller.email, label: 'Email'),
-      //         inputTextBox(
-      //             controllerSignUp: controller.password, label: 'Password'),
-      //         inputTextBox(
-      //             controllerSignUp: controller.firstName, label: 'First Name'),
-      //         inputTextBox(
-      //             controllerSignUp: controller.lastName, label: 'Last Name'),
-      //         inputTextBox(
-      //             controllerSignUp: controller.phoneNo, label: 'Phone Number'),
-      //         inputTextBox(
-      //             controllerSignUp: controller.gender, label: 'Gender'),
-      //         inputTextBox(controllerSignUp: controller.age, label: 'Age'),
-      //         const SizedBox(
-      //           height: 10,
-      //         ),
-      //         SizedBox(
-      //           width: double.infinity,
-      //           child: ElevatedButton(
-      //               onPressed: () {
-      //                 if (_formKey.currentState!.validate()) {
-      //                   final user = UserModel(
-      //                     email: controller.email.text.trim(),
-      //                     password: controller.password.text.trim(),
-      //                     firstName: controller.firstName.text.trim(),
-      //                     lastName: controller.lastName.text.trim(),
-      //                     phoneNo: controller.phoneNo.text.trim(),
-      //                     gender: controller.gender.text.trim(),
-      //                     age: int.parse(controller.age.text.trim()),
-      //                   );
-      //                   signUpController.instance.registerUser(
-      //                     controller.email.text.trim(),
-      //                     controller.password.text.trim(),
-      //                     user,
-      //                   );
-      //                 }
-      //               },
-      //               child: Text('Sign Up')),
-      //         ),
-      //         SizedBox(
-      //           width: double.infinity,
-      //           child: ElevatedButton(
-      //               onPressed: () {
-      //                 Get.to(const signInScreen());
-      //               },
-      //               child: const Text('Sign In')),
-      //         )
-      //       ],
-      //     )),
     );
   }
 }
