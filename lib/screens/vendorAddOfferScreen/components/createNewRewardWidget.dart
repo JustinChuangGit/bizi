@@ -1,7 +1,10 @@
+import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/screens/vendorHomeScreen/vendorHomeScreen.dart';
 import 'package:bizi/utilities/controllers/rewardController.dart';
+import 'package:bizi/utilities/controllers/vendorPofileController.dart';
 import 'package:bizi/utilities/models/rewardModel.dart';
 import 'package:bizi/widgets/inputTextBox.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
@@ -23,12 +26,14 @@ class _createNewRewardWidgetState extends State<createNewRewardWidget> {
   final _formKey = GlobalKey<FormState>();
 
   final rewardController = Get.put(RewardController());
+  final vendorController = Get.put(VendorProfileController());
   final storage = FirebaseStorage.instance;
   ImagePicker picker = ImagePicker();
   XFile? image;
 
   @override
   Widget build(BuildContext context) {
+    vendorController.getVendorData();
     return Form(
         key: _formKey,
         child: Container(
@@ -75,11 +80,13 @@ class _createNewRewardWidgetState extends State<createNewRewardWidget> {
                     if (_formKey.currentState!.validate()) {
                       final File file = File(image!.path);
                       var uuid = const Uuid();
+                      var data = vendorController.getVendorData();
+                      print(data);
 
                       final reward = RewardModel(
                         id: FirebaseAuth.instance.currentUser!.uid + uuid.v4(),
                         normalPrice: rewardController.normalPrice.text.trim(),
-
+                        vendorName: currentVendor,
                         //newPrice: rewardController.newPrice.text.trim(),
                         newPrice: '0',
                         offerName: rewardController.rewardName.text.trim(),
@@ -87,9 +94,6 @@ class _createNewRewardWidgetState extends State<createNewRewardWidget> {
                       );
                       RewardController.instance.createReward(reward, file);
                     }
-                    Future.delayed(const Duration(milliseconds: 500), () {
-                      Get.to(venderHomeScreen()); // Prints after 1 second.
-                    });
                   },
                   child: const Text('Create Reward'))
             ],

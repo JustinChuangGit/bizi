@@ -84,9 +84,9 @@ class individualCard extends StatelessWidget {
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.only(left: 20, top: 3),
-                    child: const Text(
-                      'From <Business Name>',
-                      style: TextStyle(
+                    child: Text(
+                      'From $currentVendor',
+                      style: const TextStyle(
                         fontSize: 10,
                       ),
                       textAlign: TextAlign.left,

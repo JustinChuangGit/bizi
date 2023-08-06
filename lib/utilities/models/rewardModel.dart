@@ -1,5 +1,6 @@
 class RewardModel {
   String id;
+  String vendorName;
   final String offerName;
   final String normalPrice;
   final String newPrice;
@@ -10,6 +11,7 @@ class RewardModel {
 
   RewardModel({
     required this.id,
+    required this.vendorName,
     required this.normalPrice,
     required this.newPrice,
     required this.offerName,
@@ -19,6 +21,7 @@ class RewardModel {
   toJson() {
     return {
       'id': id,
+      'vendorName': vendorName,
       'offerName': offerName,
       'normalPrice': normalPrice,
       'newPrice': newPrice,
@@ -29,6 +32,7 @@ class RewardModel {
 
   factory RewardModel.fromJson(Map<String, dynamic> json) => RewardModel(
         id: json['id'],
+        vendorName: json['vendorName'],
         normalPrice: json['normalPrice'],
         newPrice: json['newPrice'],
         offerName: json['offerName'],

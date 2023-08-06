@@ -1,5 +1,8 @@
+import 'dart:ffi';
 import 'dart:io';
 
+import 'package:bizi/configuration/constants.dart';
+import 'package:bizi/screens/vendorHomeScreen/vendorHomeScreen.dart';
 import 'package:bizi/utilities/models/offerModel.dart';
 import 'package:bizi/utilities/models/rewardModel.dart';
 import 'package:bizi/utilities/models/vendorModel.dart';
@@ -29,6 +32,20 @@ class VendorRepository extends GetxController {
       errorSnackBar();
       print(error.toString());
     });
+  }
+
+  getVendorInfo() async {
+    final vendorDocRef = FirebaseFirestore.instance
+        .collection('vendors')
+        .doc(_auth.currentUser?.uid)
+        .withConverter(
+            fromFirestore: VendorModel.fromFirestore,
+            toFirestore: (VendorModel vendorModel, _) =>
+                vendorModel.toFirestore());
+
+    final docSnap = await vendorDocRef.get();
+    final data = docSnap.data();
+    currentVendor = data!.vendorName!;
   }
 
   postOffer(OfferModel offer) async {
@@ -65,6 +82,8 @@ class VendorRepository extends GetxController {
     await storageRef.putFile(file).catchError((error, stackTrace) {
       errorSnackBar();
     });
+
+    Get.to(venderHomeScreen());
   }
 
   getRewardImage(String rewardId) async {

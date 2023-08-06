@@ -62,9 +62,6 @@ class venderHomeScreen extends StatelessWidget {
                         ///
                         ///
                         ElevatedButton(
-                          // style: ButtonStyle(
-                          //     backgroundColor: MaterialStateProperty.all(
-                          //         colorConstants.biziGreen)),
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(cornerRadius),

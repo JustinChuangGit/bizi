@@ -1,4 +1,5 @@
 import 'package:bizi/utilities/models/offerModel.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class VendorModel {
   final String? id;
@@ -49,4 +50,61 @@ class VendorModel {
       'currentOffers': currentOffers
     };
   }
+
+  factory VendorModel.fromFirestore(
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
+    SnapshotOptions? options,
+  ) {
+    final data = snapshot.data();
+    return VendorModel(
+      id: data?['id'],
+      vendorName: data?['vendorName'],
+      businessNumber: data?['businessNumber'],
+      email: data?['email'],
+      phoneNo: data?['phoneNo'],
+      password: data?['password'],
+      address: data?['address'],
+      vendorCategory: data?['vendorCategory'],
+      primaryContactFirstName: data?['primaryContactFirstName'],
+      primaryContactLastName: data?['primaryContactLastName'],
+      primaryContactEmail: data?['primaryContactEmail'],
+      primaryContactPhoneNumber: data?['primaryContactPhoneNumber'],
+    );
+  }
+
+  Map<String, dynamic> toFirestore() {
+    return {
+      if (id != null) "id": id,
+      if (vendorName != null) "vendorName": vendorName,
+      if (businessNumber != null) "businessNumber": businessNumber,
+      if (email != null) "email": email,
+      if (phoneNo != null) "phoneNo": phoneNo,
+      if (password != null) "password": password,
+      if (address != null) "address": address,
+      if (vendorCategory != null) "vendorCategory": vendorCategory,
+      if (primaryContactFirstName != null)
+        "primaryContactFirstName": primaryContactFirstName,
+      if (primaryContactLastName != null)
+        "primaryContactLastName": primaryContactLastName,
+      if (primaryContactEmail != null)
+        "primaryContactEmail": primaryContactEmail,
+      if (primaryContactPhoneNumber != null)
+        "primaryContactPhoneNumber": primaryContactPhoneNumber,
+    };
+  }
+
+  factory VendorModel.fromJson(Map<String, dynamic> json) => VendorModel(
+        id: json['id'],
+        vendorName: json['vendorName'],
+        businessNumber: json['businessNumber'],
+        email: json['email'],
+        phoneNo: json['phoneNo'],
+        password: json['password'],
+        address: json['address'],
+        vendorCategory: json['vendorCategory'],
+        primaryContactFirstName: json['primaryContactFirstName'],
+        primaryContactLastName: json['primaryContactLastName'],
+        primaryContactEmail: json['primaryContactEmail'],
+        primaryContactPhoneNumber: json['primaryContactPhoneNumber'],
+      );
 }
