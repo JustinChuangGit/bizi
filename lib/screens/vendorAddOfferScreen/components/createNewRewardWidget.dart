@@ -1,10 +1,8 @@
 import 'package:bizi/configuration/constants.dart';
-import 'package:bizi/screens/vendorHomeScreen/vendorHomeScreen.dart';
 import 'package:bizi/utilities/controllers/rewardController.dart';
 import 'package:bizi/utilities/controllers/vendorPofileController.dart';
 import 'package:bizi/utilities/models/rewardModel.dart';
 import 'package:bizi/widgets/inputTextBox.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';

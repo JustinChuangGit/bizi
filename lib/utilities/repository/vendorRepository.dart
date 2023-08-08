@@ -1,6 +1,4 @@
-import 'dart:ffi';
 import 'dart:io';
-
 import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/screens/vendorHomeScreen/vendorHomeScreen.dart';
 import 'package:bizi/utilities/models/offerModel.dart';

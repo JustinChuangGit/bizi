@@ -1,4 +1,3 @@
-import 'package:bizi/utilities/models/vendorModel.dart';
 import 'package:flutter/material.dart';
 
 //Colors
