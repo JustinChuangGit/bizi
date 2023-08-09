@@ -3,8 +3,6 @@ import 'package:bizi/screens/accountSettingsScreen/accountSettingsScreen.dart';
 import 'package:bizi/screens/vendorAddOfferScreen/vendorAddOfferScreen.dart';
 import 'package:bizi/screens/vendorHomeScreen/components/keyStatScroll.dart';
 import 'package:bizi/screens/vendorHomeScreen/components/vendorHomeHeader.dart';
-import 'package:bizi/widgets/actionButton.dart';
-import 'package:bizi/widgets/bottomBar.dart';
 import 'package:bizi/widgets/cardList.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
