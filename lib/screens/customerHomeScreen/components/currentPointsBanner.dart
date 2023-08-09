@@ -58,8 +58,8 @@ class _currentPointsBannerState extends State<currentPointsBanner> {
                             return const Text('Error');
                           }
 ///////Uncomment this
-                          // var user =
-                          //     snapshot.data!.data() as Map<String, dynamic>;
+                          var user =
+                              snapshot.data!.data() as Map<String, dynamic>;
                           //Convert Snapshot data to a map
 
                           if (snapshot.connectionState ==
@@ -74,8 +74,8 @@ class _currentPointsBannerState extends State<currentPointsBanner> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  //user['Points'].toString(),
-                                  'Test',
+                                  user['Points'].toString(),
+                                  // 'Test',
                                   style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,

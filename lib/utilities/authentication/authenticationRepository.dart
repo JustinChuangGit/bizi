@@ -1,5 +1,6 @@
 import 'package:bizi/screens/customerHomeScreen/customerHomeScreen.dart';
 import 'package:bizi/screens/signInScreen/signInScreen.dart';
+import 'package:bizi/screens/vendorHomeScreen/vendorHomeScreen.dart';
 import 'package:bizi/utilities/controllers/signUpController.dart';
 import 'package:bizi/utilities/methods/errorSnackBar.dart';
 import 'package:bizi/utilities/models/userModel.dart';
@@ -13,6 +14,8 @@ class authenticationRepository extends GetxController {
 
   final _auth = FirebaseAuth.instance;
   late final Rx<User?> firebaseUser;
+  final CollectionReference _vendors =
+      FirebaseFirestore.instance.collection('vendors');
 
   @override
   void onReady() {
@@ -25,9 +28,7 @@ class authenticationRepository extends GetxController {
   }
 
   _setInitialScreen(User? user) {
-    user == null
-        ? Get.offAll(() => const signInScreen())
-        : Get.offAll(() => customerHomeScreen());
+    user == null ? Get.offAll(() => const signInScreen()) : vendorCheck();
   } //Checks to see if user is already signed in
 
   Future<void> createUserWithEmailAndPassword(
@@ -92,7 +93,7 @@ class authenticationRepository extends GetxController {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
 
       firebaseUser.value != null
-          ? Get.offAll(() => customerHomeScreen())
+          ? vendorCheck()
           : Get.to(() => const signInScreen());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -105,6 +106,25 @@ class authenticationRepository extends GetxController {
             errorMessage: 'Incorrect password provided for that user');
       }
     } catch (_) {}
+  }
+
+  Future<void> vendorCheck() async {
+    List<String> vendorList = [];
+
+    QuerySnapshot querySnapshot = await _vendors.get();
+
+    for (var docSnapshot in querySnapshot.docs) {
+      vendorList.add(docSnapshot.id.toString());
+    }
+
+    print(_auth.currentUser!.uid);
+
+    print(vendorList);
+    if (vendorList.contains(_auth.currentUser!.uid)) {
+      Get.offAll(venderHomeScreen());
+    } else {
+      Get.offAll(customerHomeScreen());
+    }
   }
 
   Future<void> logout() async {

@@ -26,4 +26,4 @@ late String? vendorCategory;
 // late final String? userUid;
 
 //User Info
-late String currentVendor;
+String currentVendor = '';
