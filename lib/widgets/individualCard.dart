@@ -85,7 +85,7 @@ class individualCard extends StatelessWidget {
                     width: double.infinity,
                     padding: const EdgeInsets.only(left: 20, top: 3),
                     child: Text(
-                      'From $currentVendor',
+                      'From ${rewardData.vendorName}',
                       style: const TextStyle(
                         fontSize: 10,
                       ),
