@@ -1,6 +1,4 @@
-import 'package:bizi/screens/customerHomeScreen/customerHomeScreen.dart';
 import 'package:bizi/screens/signInScreen/signInScreen.dart';
-import 'package:bizi/screens/vendorHomeScreen/vendorHomeScreen.dart';
 import 'package:bizi/utilities/controllers/signUpController.dart';
 import 'package:bizi/utilities/methods/errorSnackBar.dart';
 import 'package:bizi/utilities/models/userModel.dart';
@@ -8,14 +6,13 @@ import 'package:bizi/utilities/models/vendorModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:bizi/utilities/methods/checkVendor.dart';
 
 class authenticationRepository extends GetxController {
   static authenticationRepository get instance => Get.find();
 
   final _auth = FirebaseAuth.instance;
   late final Rx<User?> firebaseUser;
-  final CollectionReference _vendors =
-      FirebaseFirestore.instance.collection('vendors');
 
   @override
   void onReady() {
@@ -106,25 +103,6 @@ class authenticationRepository extends GetxController {
             errorMessage: 'Incorrect password provided for that user');
       }
     } catch (_) {}
-  }
-
-  Future<void> vendorCheck() async {
-    List<String> vendorList = [];
-
-    QuerySnapshot querySnapshot = await _vendors.get();
-
-    for (var docSnapshot in querySnapshot.docs) {
-      vendorList.add(docSnapshot.id.toString());
-    }
-
-    print(_auth.currentUser!.uid);
-
-    print(vendorList);
-    if (vendorList.contains(_auth.currentUser!.uid)) {
-      Get.offAll(venderHomeScreen());
-    } else {
-      Get.offAll(customerHomeScreen());
-    }
   }
 
   Future<void> logout() async {
