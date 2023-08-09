@@ -1,4 +1,5 @@
 import 'package:bizi/configuration/constants.dart';
+import 'package:bizi/screens/accountSettingsScreen/accountSettingsScreen.dart';
 import 'package:bizi/screens/vendorAddOfferScreen/vendorAddOfferScreen.dart';
 import 'package:bizi/screens/vendorHomeScreen/components/keyStatScroll.dart';
 import 'package:bizi/screens/vendorHomeScreen/components/vendorHomeHeader.dart';
@@ -28,8 +29,24 @@ class venderHomeScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: width * 0.2,
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: SizedBox(
+                        height: width * 0.25,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 45),
+                          child: TextButton(
+                            onPressed: () {
+                              Get.to(const accountSettingsScreen());
+                            },
+                            child: const Icon(
+                              size: 40,
+                              Icons.settings,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                     const vendorHomeHeader()
                   ],
@@ -91,10 +108,17 @@ class venderHomeScreen extends StatelessWidget {
                   ))
             ],
           )),
-      bottomNavigationBar: bottomBar(),
-      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: const actionButton(),
+      // bottomNavigationBar: bottomBar(),
+      // floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: Container(
+          child: FloatingActionButton(
+        backgroundColor: colorConstants.biziGreen,
+        onPressed: () {
+          //Temp
+        },
+        child: const Icon(Icons.qr_code_scanner),
+      )),
     );
   }
 }
