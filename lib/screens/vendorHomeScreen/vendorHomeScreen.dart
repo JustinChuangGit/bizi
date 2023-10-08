@@ -1,5 +1,6 @@
 import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/screens/accountSettingsScreen/accountSettingsScreen.dart';
+import 'package:bizi/screens/qrScanScreen/qrScanScreen.dart';
 import 'package:bizi/screens/vendorAddOfferScreen/vendorAddOfferScreen.dart';
 import 'package:bizi/screens/vendorHomeScreen/components/keyStatScroll.dart';
 import 'package:bizi/screens/vendorHomeScreen/components/vendorHomeHeader.dart';
@@ -113,7 +114,7 @@ class venderHomeScreen extends StatelessWidget {
           child: FloatingActionButton(
         backgroundColor: colorConstants.biziGreen,
         onPressed: () {
-          //Temp
+          Get.to(const qrScanScreen());
         },
         child: const Icon(Icons.qr_code_scanner),
       )),
