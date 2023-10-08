@@ -1,257 +1,168 @@
-import 'dart:async';
-import 'dart:io' show Platform;
-import 'package:barcode_scan2/barcode_scan2.dart';
+import 'dart:developer';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class qrScanScreen extends StatefulWidget {
   const qrScanScreen({Key? key}) : super(key: key);
+
   @override
-  State<qrScanScreen> createState() => _AppState();
+  State<StatefulWidget> createState() => _qrScanScreenState();
 }
 
-class _AppState extends State<qrScanScreen> {
-  ScanResult? scanResult;
+class _qrScanScreenState extends State<qrScanScreen> {
+  Barcode? result;
+  QRViewController? controller;
+  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
-  final _flashOnController = TextEditingController(text: 'Flash on');
-  final _flashOffController = TextEditingController(text: 'Flash off');
-  final _cancelController = TextEditingController(text: 'Cancel');
-
-  var _aspectTolerance = 0.00;
-  var _numberOfCameras = 0;
-  var _selectedCamera = -1;
-  var _useAutoFocus = true;
-  var _autoEnableFlash = false;
-
-  static final _possibleFormats = BarcodeFormat.values.toList()
-    ..removeWhere((e) => e == BarcodeFormat.unknown);
-
-  List<BarcodeFormat> selectedFormats = [..._possibleFormats];
-
+  // In order to get hot reload to work we need to pause the camera if the platform
+  // is android, or resume the camera if the platform is iOS.
   @override
-  void initState() {
-    super.initState();
-
-    Future.delayed(Duration.zero, () async {
-      _numberOfCameras = await BarcodeScanner.numberOfCameras;
-      setState(() {});
-    });
+  void reassemble() {
+    super.reassemble();
+    if (Platform.isAndroid) {
+      controller!.pauseCamera();
+    }
+    controller!.resumeCamera();
   }
 
   @override
   Widget build(BuildContext context) {
-    final scanResult = this.scanResult;
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Barcode Scanner Example'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.camera),
-              tooltip: 'Scan',
-              onPressed: _scan,
-            )
-          ],
-        ),
-        body: ListView(
-          shrinkWrap: true,
-          children: <Widget>[
-            if (scanResult != null)
-              Card(
-                child: Column(
-                  children: <Widget>[
-                    ListTile(
-                      title: const Text('Result Type'),
-                      subtitle: Text(scanResult.type.toString()),
-                    ),
-                    ListTile(
-                      title: const Text('Raw Content'),
-                      subtitle: Text(scanResult.rawContent),
-                    ),
-                    ListTile(
-                      title: const Text('Format'),
-                      subtitle: Text(scanResult.format.toString()),
-                    ),
-                    ListTile(
-                      title: const Text('Format note'),
-                      subtitle: Text(scanResult.formatNote),
-                    ),
-                  ],
-                ),
-              ),
-            const ListTile(
-              title: Text('Camera selection'),
-              dense: true,
-              enabled: false,
-            ),
-            RadioListTile(
-              onChanged: (v) => setState(() => _selectedCamera = -1),
-              value: -1,
-              title: const Text('Default camera'),
-              groupValue: _selectedCamera,
-            ),
-            ...List.generate(
-              _numberOfCameras,
-              (i) => RadioListTile(
-                onChanged: (v) => setState(() => _selectedCamera = i),
-                value: i,
-                title: Text('Camera ${i + 1}'),
-                groupValue: _selectedCamera,
-              ),
-            ),
-            const ListTile(
-              title: Text('Button Texts'),
-              dense: true,
-              enabled: false,
-            ),
-            ListTile(
-              title: TextField(
-                decoration: const InputDecoration(
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  labelText: 'Flash On',
-                ),
-                controller: _flashOnController,
-              ),
-            ),
-            ListTile(
-              title: TextField(
-                decoration: const InputDecoration(
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  labelText: 'Flash Off',
-                ),
-                controller: _flashOffController,
-              ),
-            ),
-            ListTile(
-              title: TextField(
-                decoration: const InputDecoration(
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  labelText: 'Cancel',
-                ),
-                controller: _cancelController,
+    return Scaffold(
+      body: Column(
+        children: <Widget>[
+          Expanded(flex: 4, child: _buildQrView(context)),
+          Expanded(
+            flex: 1,
+            child: FittedBox(
+              fit: BoxFit.contain,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  if (result != null)
+                    Text(
+                        'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
+                  else
+                    const Text('Scan a code'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        margin: const EdgeInsets.all(8),
+                        child: ElevatedButton(
+                            onPressed: () async {
+                              await controller?.toggleFlash();
+                              setState(() {});
+                            },
+                            child: FutureBuilder(
+                              future: controller?.getFlashStatus(),
+                              builder: (context, snapshot) {
+                                return Text('Flash: ${snapshot.data}');
+                              },
+                            )),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.all(8),
+                        child: ElevatedButton(
+                            onPressed: () async {
+                              await controller?.flipCamera();
+                              setState(() {});
+                            },
+                            child: FutureBuilder(
+                              future: controller?.getCameraInfo(),
+                              builder: (context, snapshot) {
+                                if (snapshot.data != null) {
+                                  return Text(
+                                      'Camera facing ${describeEnum(snapshot.data!)}');
+                                } else {
+                                  return const Text('loading');
+                                }
+                              },
+                            )),
+                      )
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        margin: const EdgeInsets.all(8),
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            await controller?.pauseCamera();
+                          },
+                          child: const Text('pause',
+                              style: TextStyle(fontSize: 20)),
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.all(8),
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            await controller?.resumeCamera();
+                          },
+                          child: const Text('resume',
+                              style: TextStyle(fontSize: 20)),
+                        ),
+                      )
+                    ],
+                  ),
+                ],
               ),
             ),
-            if (Platform.isAndroid) ...[
-              const ListTile(
-                title: Text('Android specific options'),
-                dense: true,
-                enabled: false,
-              ),
-              ListTile(
-                title: Text(
-                  'Aspect tolerance (${_aspectTolerance.toStringAsFixed(2)})',
-                ),
-                subtitle: Slider(
-                  min: -1,
-                  value: _aspectTolerance,
-                  onChanged: (value) {
-                    setState(() {
-                      _aspectTolerance = value;
-                    });
-                  },
-                ),
-              ),
-              CheckboxListTile(
-                title: const Text('Use autofocus'),
-                value: _useAutoFocus,
-                onChanged: (checked) {
-                  setState(() {
-                    _useAutoFocus = checked!;
-                  });
-                },
-              ),
-            ],
-            const ListTile(
-              title: Text('Other options'),
-              dense: true,
-              enabled: false,
-            ),
-            CheckboxListTile(
-              title: const Text('Start with flash'),
-              value: _autoEnableFlash,
-              onChanged: (checked) {
-                setState(() {
-                  _autoEnableFlash = checked!;
-                });
-              },
-            ),
-            const ListTile(
-              title: Text('Barcode formats'),
-              dense: true,
-              enabled: false,
-            ),
-            ListTile(
-              trailing: Checkbox(
-                tristate: true,
-                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                value: selectedFormats.length == _possibleFormats.length
-                    ? true
-                    : selectedFormats.isEmpty
-                        ? false
-                        : null,
-                onChanged: (checked) {
-                  setState(() {
-                    selectedFormats = [
-                      if (checked ?? false) ..._possibleFormats,
-                    ];
-                  });
-                },
-              ),
-              dense: true,
-              enabled: false,
-              title: const Text('Detect barcode formats'),
-              subtitle: const Text(
-                'If all are unselected, all possible '
-                'platform formats will be used',
-              ),
-            ),
-            ..._possibleFormats.map(
-              (format) => CheckboxListTile(
-                value: selectedFormats.contains(format),
-                onChanged: (i) {
-                  setState(
-                    () => selectedFormats.contains(format)
-                        ? selectedFormats.remove(format)
-                        : selectedFormats.add(format),
-                  );
-                },
-                title: Text(format.toString()),
-              ),
-            ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
 
-  Future<void> _scan() async {
-    try {
-      final result = await BarcodeScanner.scan(
-        options: ScanOptions(
-          strings: {
-            'cancel': _cancelController.text,
-            'flash_on': _flashOnController.text,
-            'flash_off': _flashOffController.text,
-          },
-          restrictFormat: selectedFormats,
-          useCamera: _selectedCamera,
-          autoEnableFlash: _autoEnableFlash,
-          android: AndroidOptions(
-            aspectTolerance: _aspectTolerance,
-            useAutoFocus: _useAutoFocus,
-          ),
-        ),
-      );
-      setState(() => scanResult = result);
-    } on PlatformException catch (e) {
+  Widget _buildQrView(BuildContext context) {
+    // For this example we check how width or tall the device is and change the scanArea and overlay accordingly.
+    var scanArea = (MediaQuery.of(context).size.width < 400 ||
+            MediaQuery.of(context).size.height < 400)
+        ? 150.0
+        : 300.0;
+    // To ensure the Scanner view is properly sizes after rotation
+    // we need to listen for Flutter SizeChanged notification and update controller
+    return QRView(
+      key: qrKey,
+      onQRViewCreated: _onQRViewCreated,
+      overlay: QrScannerOverlayShape(
+          borderColor: Colors.red,
+          borderRadius: 10,
+          borderLength: 30,
+          borderWidth: 10,
+          cutOutSize: scanArea),
+      onPermissionSet: (ctrl, p) => _onPermissionSet(context, ctrl, p),
+    );
+  }
+
+  void _onQRViewCreated(QRViewController controller) {
+    setState(() {
+      this.controller = controller;
+    });
+    controller.scannedDataStream.listen((scanData) {
       setState(() {
-        scanResult = ScanResult(
-          type: ResultType.Error,
-          rawContent: e.code == BarcodeScanner.cameraAccessDenied
-              ? 'The user did not grant the camera permission!'
-              : 'Unknown error: $e',
-        );
+        result = scanData;
       });
+    });
+  }
+
+  void _onPermissionSet(BuildContext context, QRViewController ctrl, bool p) {
+    log('${DateTime.now().toIso8601String()}_onPermissionSet $p');
+    if (!p) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('no Permission')),
+      );
     }
+  }
+
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
   }
 }
