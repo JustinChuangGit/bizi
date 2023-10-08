@@ -49,6 +49,7 @@ dependencies:
   image_picker: ^1.0.1
   uuid: ^3.0.7
   firebase_storage: ^11.2.5
+  mobile_scanner: ^3.4.1
 
 dev_dependencies:
   flutter_test:
