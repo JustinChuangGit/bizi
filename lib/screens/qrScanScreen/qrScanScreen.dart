@@ -51,15 +51,13 @@ class _qrScanScreenState extends State<qrScanScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
-                      height: height * 0.1,
-                      child: IconButton(
-                        icon: const Icon(Icons.arrow_back_ios),
-                        onPressed: () {
-                          Get.to(venderHomeScreen());
-                        },
-                      ),
+                    padding: const EdgeInsets.all(10.0),
+                    child: IconButton(
+                      iconSize: 30,
+                      icon: const Icon(Icons.arrow_back_ios),
+                      onPressed: () {
+                        Get.to(venderHomeScreen());
+                      },
                     ),
                   ),
                   if (result != null)
@@ -78,6 +76,7 @@ class _qrScanScreenState extends State<qrScanScreen> {
                     child: Container(
                       margin: const EdgeInsets.all(8),
                       child: IconButton(
+                        iconSize: 30,
                         icon: const Icon(Icons.flash_on),
                         onPressed: () async {
                           await controller?.toggleFlash();
