@@ -14,6 +14,7 @@ class signInScreen extends StatelessWidget {
     width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false, //new
       backgroundColor: colorConstants.biziDark,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
