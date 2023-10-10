@@ -66,14 +66,43 @@ class _createNewRewardWidgetState extends State<createNewRewardWidget> {
               inputTextBox(
                   controller: rewardController.normalPrice,
                   label: 'Item Price'),
-              ElevatedButton(
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(cornerRadius),
+                    ),
+                    backgroundColor: colorConstants.biziGreen,
+                  ),
                   onPressed: () async {
                     image = await picker.pickImage(source: ImageSource.gallery);
                     setState(() {});
                   },
-                  child: const Text('Pick Image')),
+                  child: SizedBox(
+                    width: width * 0.7,
+                    height: width * 0.15,
+                    child: const Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Pick Image',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               image == null ? Container() : Image.file(File(image!.path)),
-              ElevatedButton(
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(cornerRadius),
+                    ),
+                    backgroundColor: colorConstants.biziGreen,
+                  ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       final File file = File(image!.path);
@@ -93,7 +122,20 @@ class _createNewRewardWidgetState extends State<createNewRewardWidget> {
                       RewardController.instance.createReward(reward, file);
                     }
                   },
-                  child: const Text('Create Reward'))
+                  child: SizedBox(
+                    width: width * 0.7,
+                    height: width * 0.15,
+                    child: const Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Create Reward',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ));
