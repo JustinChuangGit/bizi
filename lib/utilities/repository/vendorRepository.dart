@@ -91,8 +91,32 @@ class VendorRepository extends GetxController {
     }
   }
 
-  Future<void> checkUserStack(String userId) async {
-    final userRewardStack = _userRepo.getRedeemedRewardList(userId);
-    print(userRewardStack);
+  Future<List<String>> getVendorRewardList() async {
+    List<String> rewardList = [];
+    final querySnapshot = await _db
+        .collection('vendors')
+        .doc(_auth.currentUser!.uid)
+        .collection('currentRewards')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        rewardList.add(doc.id.toString());
+      });
+    });
+
+    return rewardList;
+  }
+
+  Future<List<String>> checkUserStack(String userId) async {
+    final userRewardStack = await _userRepo.getRedeemedRewardList(userId);
+    final vendorRewardOfferings = await getVendorRewardList();
+    List<String> matching = [];
+
+    for (int i = 0; i < userRewardStack.length; i++) {
+      if (vendorRewardOfferings.contains(userRewardStack[i])) {
+        matching.add(userRewardStack[i]);
+      }
+    }
+    return matching;
   }
 }
