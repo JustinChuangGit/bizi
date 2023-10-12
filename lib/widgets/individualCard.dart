@@ -96,24 +96,46 @@ class individualCard extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 3.0),
-                    child: ElevatedButton(
-                        onPressed: () {
-                          _userRepo.redeemReward(rewardData.id);
-                          // _userRepo.getRedeemedRewardList();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(cornerRadius),
-                          ),
-                          backgroundColor: colorConstants.biziGreen,
-                        ),
-                        child: const SizedBox(
-                          width: 90,
-                          child: Text(
-                            'Redeem',
-                            textAlign: TextAlign.center,
-                          ),
-                        )),
+                    child: FutureBuilder(
+                      future: _userRepo.getRedeemedRewardList(),
+                      builder: (BuildContext context, snapshot) {
+                        if (snapshot.data!.contains(rewardData.id)) {
+                          return Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(cornerRadius),
+                              color: colorConstants.biziDark,
+                            ),
+                            child: const SizedBox(
+                              width: 90,
+                              child: Text(
+                                'Redeem',
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          );
+                        } else {
+                          return ElevatedButton(
+                            onPressed: () {
+                              _userRepo.redeemReward(rewardData.id);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(cornerRadius),
+                              ),
+                              backgroundColor: colorConstants.biziGreen,
+                            ),
+                            child: const SizedBox(
+                              width: 90,
+                              child: Text(
+                                'Redeem',
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                    ),
                   )
                 ],
               ),
