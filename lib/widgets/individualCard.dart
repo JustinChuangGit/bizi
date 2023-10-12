@@ -79,8 +79,8 @@ class individualCard extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 20, top: 7),
                     child: Text(
                       rewardData.offerName,
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Container(
@@ -98,7 +98,8 @@ class individualCard extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 3.0),
                     child: ElevatedButton(
                         onPressed: () {
-                          _userRepo.redeemReward(rewardData.id);
+                          //_userRepo.redeemReward(rewardData.id);
+                          _userRepo.getRedeemedRewardList();
                         },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(

@@ -59,4 +59,20 @@ class UserRepository extends GetxController {
 
     _userRewardList.doc(rewardId).set({'date': DateTime.now()});
   }
+
+  Future<List<String>> getRedeemedRewardList() async {
+    List<String> rewardList = [];
+    final querySnapshot = await _db
+        .collection('users')
+        .doc(_auth.currentUser!.uid)
+        .collection('currentRewards')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        rewardList.add(doc.id.toString());
+      });
+    });
+
+    return rewardList;
+  }
 }
