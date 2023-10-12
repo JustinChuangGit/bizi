@@ -19,6 +19,7 @@ class _customerHomeScreenState extends State<customerHomeScreen> {
 
   Future<void> _refresh() async {
     setState(() {});
+    await Future.delayed(const Duration(seconds: 1));
   }
 
   @override
@@ -27,7 +28,9 @@ class _customerHomeScreenState extends State<customerHomeScreen> {
     width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: colorConstants.biziDark,
       body: RefreshIndicator(
+        color: colorConstants.biziGreen,
         onRefresh: _refresh,
         child: ListView(controller: scrollController, children: [
           Center(
