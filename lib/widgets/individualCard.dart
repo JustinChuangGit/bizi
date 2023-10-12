@@ -2,6 +2,7 @@ import 'package:bizi/utilities/methods/errorSnackBar.dart';
 import 'package:bizi/utilities/models/rewardModel.dart';
 import 'package:bizi/utilities/repository/userRepository.dart';
 import 'package:bizi/utilities/repository/vendorRepository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bizi/configuration/constants.dart';
 import 'package:get/get.dart';
@@ -20,7 +21,7 @@ class individualCard extends StatefulWidget {
 
 class _individualCardState extends State<individualCard> {
   final _vendorRepo = Get.put(VendorRepository());
-
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final _userRepo = Get.put(UserRepository());
 
   @override
@@ -105,7 +106,8 @@ class _individualCardState extends State<individualCard> {
                   Padding(
                     padding: const EdgeInsets.only(top: 3.0),
                     child: FutureBuilder(
-                      future: _userRepo.getRedeemedRewardList(),
+                      future: _userRepo
+                          .getRedeemedRewardList(_auth.currentUser!.uid),
                       builder: (BuildContext context, snapshot) {
                         if (snapshot.data!.contains(widget.rewardData.id)) {
                           return Container(

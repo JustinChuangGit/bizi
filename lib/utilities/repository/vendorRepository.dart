@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:bizi/utilities/methods/successSnakBar.dart';
 import 'package:bizi/utilities/methods/errorSnackBar.dart';
 import 'package:uuid/uuid.dart';
+import 'package:bizi/utilities/repository/userRepository.dart';
 
 class VendorRepository extends GetxController {
   static VendorRepository get instance => Get.find();
@@ -18,6 +19,7 @@ class VendorRepository extends GetxController {
   final _db = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseStorage _storage = FirebaseStorage.instance;
+  final _userRepo = Get.put(UserRepository());
 
   var uuid = Uuid();
 
@@ -60,10 +62,6 @@ class VendorRepository extends GetxController {
   }
 
   postReward(RewardModel reward, File file) async {
-    // final String rewardId = _auth.currentUser!.uid + uuid.v4();
-
-    // reward.id = rewardId;
-
     await _db
         .collection('vendors')
         .doc(_auth.currentUser?.uid)
@@ -91,5 +89,10 @@ class VendorRepository extends GetxController {
     } catch (error) {
       return null;
     }
+  }
+
+  Future<void> checkUserStack(String userId) async {
+    final userRewardStack = _userRepo.getRedeemedRewardList(userId);
+    print(userRewardStack);
   }
 }
