@@ -1,6 +1,6 @@
 import 'package:bizi/utilities/methods/errorSnackBar.dart';
-import 'package:bizi/utilities/methods/redeemReward.dart';
 import 'package:bizi/utilities/models/rewardModel.dart';
+import 'package:bizi/utilities/repository/userRepository.dart';
 import 'package:bizi/utilities/repository/vendorRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:bizi/configuration/constants.dart';
@@ -14,6 +14,7 @@ class individualCard extends StatelessWidget {
 
   final RewardModel rewardData;
   final _vendorRepo = Get.put(VendorRepository());
+  final _userRepo = Get.put(UserRepository());
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +98,7 @@ class individualCard extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 3.0),
                     child: ElevatedButton(
                         onPressed: () {
-                          redeemReward(rewardData.id);
+                          _userRepo.redeemReward(rewardData.id);
                         },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(

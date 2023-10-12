@@ -50,4 +50,13 @@ class UserRepository extends GetxController {
         snapshot.docs.map((e) => UserModel.fromSnapshot(e)).toList();
     return userData;
   }
+
+  void redeemReward(String rewardId) {
+    final CollectionReference _userRewardList = _db
+        .collection('users')
+        .doc(_auth.currentUser!.uid)
+        .collection('currentRewards');
+
+    _userRewardList.doc(rewardId).set({'date': DateTime.now()});
+  }
 }
