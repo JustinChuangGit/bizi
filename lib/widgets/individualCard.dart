@@ -6,14 +6,21 @@ import 'package:flutter/material.dart';
 import 'package:bizi/configuration/constants.dart';
 import 'package:get/get.dart';
 
-class individualCard extends StatelessWidget {
+class individualCard extends StatefulWidget {
   individualCard({
     super.key,
     required this.rewardData,
   });
 
   final RewardModel rewardData;
+
+  @override
+  State<individualCard> createState() => _individualCardState();
+}
+
+class _individualCardState extends State<individualCard> {
   final _vendorRepo = Get.put(VendorRepository());
+
   final _userRepo = Get.put(UserRepository());
 
   @override
@@ -41,7 +48,8 @@ class individualCard extends StatelessWidget {
                       width: 150,
                       height: 125,
                       child: FutureBuilder(
-                        future: _vendorRepo.getRewardImage(rewardData.id),
+                        future:
+                            _vendorRepo.getRewardImage(widget.rewardData.id),
                         builder: (BuildContext context, snapshot) {
                           if (snapshot.hasError) {
                             errorSnackBar(errorMessage: 'Image failed to load');
@@ -78,7 +86,7 @@ class individualCard extends StatelessWidget {
                     width: double.infinity,
                     padding: const EdgeInsets.only(left: 20, top: 7),
                     child: Text(
-                      rewardData.offerName,
+                      widget.rewardData.offerName,
                       style: const TextStyle(
                           fontSize: 16, fontWeight: FontWeight.bold),
                     ),
@@ -87,7 +95,7 @@ class individualCard extends StatelessWidget {
                     width: double.infinity,
                     padding: const EdgeInsets.only(left: 20, top: 3),
                     child: Text(
-                      'From ${rewardData.vendorName}',
+                      'From ${widget.rewardData.vendorName}',
                       style: const TextStyle(
                         fontSize: 10,
                       ),
@@ -99,24 +107,26 @@ class individualCard extends StatelessWidget {
                     child: FutureBuilder(
                       future: _userRepo.getRedeemedRewardList(),
                       builder: (BuildContext context, snapshot) {
-                        if (snapshot.data!.contains(rewardData.id)) {
+                        if (snapshot.data!.contains(widget.rewardData.id)) {
                           return Container(
+                            padding: const EdgeInsets.only(top: 5),
+                            margin: const EdgeInsets.only(top: 7),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(cornerRadius),
-                              color: colorConstants.biziDark,
+                              color: const Color.fromARGB(110, 68, 201, 139),
                             ),
-                            child: const SizedBox(
-                              width: 90,
-                              child: Text(
-                                'Redeem',
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
+                            child: SizedBox(
+                                width: width * 0.32,
+                                height: width * 0.08,
+                                child: const Align(
+                                  child: Icon(Icons.check),
+                                )),
                           );
                         } else {
                           return ElevatedButton(
                             onPressed: () {
-                              _userRepo.redeemReward(rewardData.id);
+                              _userRepo.redeemReward(widget.rewardData.id);
+                              setState(() {});
                             },
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
