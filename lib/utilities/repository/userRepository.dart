@@ -57,7 +57,13 @@ class UserRepository extends GetxController {
         .doc(_auth.currentUser!.uid)
         .collection('currentRewards');
 
-    _userRewardList.doc(rewardId).set({'date': DateTime.now()});
+    _userRewardList
+        .doc(rewardId)
+        .set({'date': DateTime.now()})
+        .whenComplete(() => successSnackBar())
+        .catchError((error, stackTrace) {
+          errorSnackBar();
+        });
   }
 
   Future<List<String>> getRedeemedRewardList() async {

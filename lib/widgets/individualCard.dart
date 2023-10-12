@@ -98,8 +98,8 @@ class individualCard extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 3.0),
                     child: ElevatedButton(
                         onPressed: () {
-                          //_userRepo.redeemReward(rewardData.id);
-                          _userRepo.getRedeemedRewardList();
+                          _userRepo.redeemReward(rewardData.id);
+                          // _userRepo.getRedeemedRewardList();
                         },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
