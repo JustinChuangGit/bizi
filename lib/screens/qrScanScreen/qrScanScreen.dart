@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/screens/vendorCalculatorScreen/vendorCalculatorScreen.dart';
-import 'package:bizi/utilities/repository/vendorRepository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -20,7 +19,6 @@ class _qrScanScreenState extends State<qrScanScreen> {
   Barcode? result;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  final _vendorRepo = Get.put(VendorRepository());
 
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.

@@ -117,6 +117,7 @@ class VendorRepository extends GetxController {
         matching.add(userRewardStack[i]);
       }
     }
+
     return matching;
   }
 }

@@ -2,25 +2,32 @@ import 'dart:core';
 import 'dart:async';
 import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/utilities/models/rewardModel.dart';
+import 'package:bizi/utilities/repository/vendorRepository.dart';
 import 'package:bizi/widgets/individualCard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class cardList extends StatefulWidget {
-  const cardList({
+class cardListCheckout extends StatefulWidget {
+  const cardListCheckout({
     super.key,
     required this.heading,
-    required this.collectionRef,
+    required this.scannedUserId,
   });
 
   final String heading;
-  final CollectionReference collectionRef;
+  final scannedUserId;
 
   @override
-  State<cardList> createState() => _cardListState();
+  State<cardListCheckout> createState() => _cardListCheckoutState();
 }
 
-class _cardListState extends State<cardList> {
+class _cardListCheckoutState extends State<cardListCheckout> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final _db = FirebaseFirestore.instance;
+  final _vendorRepo = Get.put(VendorRepository());
+
   @override
   void initState() {
     super.initState();
@@ -28,7 +35,26 @@ class _cardListState extends State<cardList> {
 
 //Was having an issue when sending straight as <Future<List<Object>>> accessing fields. Solved by just sending Json data and decoding later.
   Future<List<QueryDocumentSnapshot<Object?>>> getCollectionData() async {
-    QuerySnapshot querySnapshot = await widget.collectionRef.get();
+    final userRewardStack =
+        await _vendorRepo.checkUserStack(widget.scannedUserId);
+
+    CollectionReference collectionRef = _db
+        .collection('vendors')
+        .doc(_auth.currentUser!.uid)
+        .collection('currentRewards');
+
+    QuerySnapshot querySnapshot = await collectionRef.get();
+    var rewardList = querySnapshot.docs
+        .map((doc) => RewardModel.fromJson(doc.data() as Map<String, dynamic>))
+        .toList();
+
+    List<RewardModel> applicableRewards = [];
+    for (int i = 0; i < rewardList.length; i++) {
+      if (userRewardStack.contains(rewardList[i].id)) {
+        applicableRewards.add(rewardList[i]);
+      }
+    }
+    print(applicableRewards.length);
     return querySnapshot.docs;
   }
 
