@@ -34,7 +34,7 @@ class _cardListCheckoutState extends State<cardListCheckout> {
   }
 
 //Was having an issue when sending straight as <Future<List<Object>>> accessing fields. Solved by just sending Json data and decoding later.
-  Future<List<QueryDocumentSnapshot<Object?>>> getCollectionData() async {
+  Future<List<RewardModel>> _getApplicableRewards() async {
     final userRewardStack =
         await _vendorRepo.checkUserStack(widget.scannedUserId);
 
@@ -54,14 +54,11 @@ class _cardListCheckoutState extends State<cardListCheckout> {
         applicableRewards.add(rewardList[i]);
       }
     }
-    print(applicableRewards.length);
-    return querySnapshot.docs;
+    return applicableRewards;
   }
 
   @override
   Widget build(BuildContext context) {
-    var _allData = getCollectionData();
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -86,24 +83,19 @@ class _cardListCheckoutState extends State<cardListCheckout> {
         ),
         SizedBox(
           height: height * 0.32,
-          child: FutureBuilder<List<QueryDocumentSnapshot<Object?>>>(
-              future: _allData,
+          child: FutureBuilder<List<RewardModel>>(
+              future: _getApplicableRewards(),
               builder: (BuildContext context,
-                  AsyncSnapshot<List<QueryDocumentSnapshot<Object?>>>
-                      snapshot) {
+                  AsyncSnapshot<List<RewardModel>> snapshot) {
                 if (snapshot.hasError) {
                 } else if (snapshot.hasData) {
                   //This decodes the Json data and creates instances of RewardModel
-                  var collectionData = snapshot.data!
-                      .map((doc) => RewardModel.fromJson(
-                          doc.data() as Map<String, dynamic>))
-                      .toList();
 
                   return ListView.builder(
-                    itemCount: collectionData.length,
+                    itemCount: snapshot.data!.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
-                      return individualCard(rewardData: collectionData[index]);
+                      return individualCard(rewardData: snapshot.data![index]);
                     },
                   );
                 }
