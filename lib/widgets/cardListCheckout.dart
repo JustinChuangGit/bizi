@@ -57,6 +57,23 @@ class _cardListCheckoutState extends State<cardListCheckout> {
     return applicableRewards;
   }
 
+  List<RewardModel> appliedRewardList = [];
+
+  void _refresh(RewardModel appliedReward) {
+    setState(() {
+      if (appliedRewardList
+          .map((reward) => reward.id)
+          .contains(appliedReward.id)) {
+        appliedRewardList
+            .removeWhere((element) => element.id == appliedReward.id);
+      } else {
+        appliedRewardList.add(appliedReward);
+      }
+    });
+
+    print(appliedRewardList);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -96,7 +113,9 @@ class _cardListCheckoutState extends State<cardListCheckout> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return individualCardCheckout(
-                          rewardData: snapshot.data![index]);
+                        rewardData: snapshot.data![index],
+                        refresh: _refresh,
+                      );
                     },
                   );
                 }

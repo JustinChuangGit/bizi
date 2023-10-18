@@ -8,9 +8,11 @@ import 'package:bizi/configuration/constants.dart';
 import 'package:get/get.dart';
 
 class individualCardCheckout extends StatefulWidget {
+  final Function refresh;
   individualCardCheckout({
     super.key,
     required this.rewardData,
+    required this.refresh,
   });
 
   final RewardModel rewardData;
@@ -28,6 +30,7 @@ class _individualCardCheckoutState extends State<individualCardCheckout> {
 
   void _applyReward() {
     _isApplied = !_isApplied;
+    widget.refresh(widget.rewardData);
   }
 
   @override
