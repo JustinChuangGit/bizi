@@ -24,6 +24,12 @@ class _individualCardCheckoutState extends State<individualCardCheckout> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _userRepo = Get.put(UserRepository());
 
+  var _isApplied = false;
+
+  void _applyReward() {
+    _isApplied = !_isApplied;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -105,47 +111,31 @@ class _individualCardCheckoutState extends State<individualCardCheckout> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 3.0),
-                    child: FutureBuilder(
-                      future: _userRepo
-                          .getRedeemedRewardList(_auth.currentUser!.uid),
-                      builder: (BuildContext context, snapshot) {
-                        if (snapshot.data!.contains(widget.rewardData.id)) {
-                          return Container(
-                            padding: const EdgeInsets.only(top: 5),
-                            margin: const EdgeInsets.only(top: 7),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(cornerRadius),
-                              color: const Color.fromARGB(110, 68, 201, 139),
-                            ),
-                            child: SizedBox(
-                                width: width * 0.32,
-                                height: width * 0.08,
-                                child: const Align(
-                                  child: Icon(Icons.check),
-                                )),
-                          );
-                        } else {
-                          return ElevatedButton(
-                            onPressed: () {
-                              _userRepo.redeemReward(widget.rewardData.id);
-                              setState(() {});
-                            },
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(cornerRadius),
-                              ),
-                              backgroundColor: colorConstants.biziGreen,
-                            ),
-                            child: const SizedBox(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(cornerRadius),
+                        ),
+                        backgroundColor: _isApplied
+                            ? const Color.fromARGB(110, 68, 201, 139)
+                            : colorConstants.biziGreen,
+                      ),
+                      child: _isApplied
+                          ? const SizedBox(
+                              width: 90,
+                              child: Align(
+                                child: Icon(Icons.check),
+                              ))
+                          : const SizedBox(
                               width: 90,
                               child: Text(
                                 'Apply',
                                 textAlign: TextAlign.center,
-                              ),
-                            ),
-                          );
-                        }
+                              )),
+                      onPressed: () {
+                        setState(() {
+                          _applyReward();
+                        });
                       },
                     ),
                   )

@@ -21,7 +21,7 @@ class VendorRepository extends GetxController {
   final FirebaseStorage _storage = FirebaseStorage.instance;
   final _userRepo = Get.put(UserRepository());
 
-  var uuid = Uuid();
+  var uuid = const Uuid();
 
   createVendor(VendorModel vendor) async {
     await _db

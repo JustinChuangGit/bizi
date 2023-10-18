@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/utilities/models/rewardModel.dart';
 import 'package:bizi/utilities/repository/vendorRepository.dart';
-import 'package:bizi/widgets/individualCard.dart';
+import 'package:bizi/widgets/individualCardCheckout.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +95,8 @@ class _cardListCheckoutState extends State<cardListCheckout> {
                     itemCount: snapshot.data!.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
-                      return individualCard(rewardData: snapshot.data![index]);
+                      return individualCardCheckout(
+                          rewardData: snapshot.data![index]);
                     },
                   );
                 }

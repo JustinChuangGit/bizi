@@ -1,6 +1,6 @@
-import 'package:bizi/utilities/repository/vendorRepository.dart';
-import 'package:bizi/widgets/actionButton.dart';
-import 'package:bizi/widgets/bottomBar.dart';
+import 'package:bizi/configuration/constants.dart';
+import 'package:bizi/screens/qrScanScreen/qrScanScreen.dart';
+
 import 'package:bizi/widgets/cardListCheckout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,10 +12,17 @@ class vendorCalculatorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: bottomBar(),
+      backgroundColor: colorConstants.biziGreen,
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: const actionButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButton: Container(
+          child: FloatingActionButton(
+        backgroundColor: colorConstants.biziGreen,
+        onPressed: () {
+          Get.to(const qrScanScreen());
+        },
+        child: const Icon(Icons.qr_code_scanner),
+      )),
       body: Column(
         children: [
           cardListCheckout(
