@@ -1,15 +1,38 @@
 import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/screens/qrScanScreen/qrScanScreen.dart';
+import 'package:bizi/utilities/models/rewardModel.dart';
 
 import 'package:bizi/widgets/cardListCheckout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class vendorCalculatorScreen extends StatelessWidget {
+class vendorCalculatorScreen extends StatefulWidget {
   vendorCalculatorScreen({super.key, required this.scannedUserId});
   final scannedUserId;
 
   @override
+  State<vendorCalculatorScreen> createState() => _vendorCalculatorScreenState();
+}
+
+class _vendorCalculatorScreenState extends State<vendorCalculatorScreen> {
+  @override
+  List<RewardModel> appliedRewardList = [];
+
+  void _getRewardList(RewardModel appliedReward) {
+    setState(
+      () {
+        if (appliedRewardList
+            .map((reward) => reward.id)
+            .contains(appliedReward.id)) {
+          appliedRewardList
+              .removeWhere((element) => element.id == appliedReward.id);
+        } else {
+          appliedRewardList.add(appliedReward);
+        }
+      },
+    );
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: colorConstants.biziGreen,
@@ -27,12 +50,12 @@ class vendorCalculatorScreen extends StatelessWidget {
         children: [
           cardListCheckout(
             heading: 'Users Rewards',
-            scannedUserId: scannedUserId,
+            scannedUserId: widget.scannedUserId,
+            getRewardList: _getRewardList,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 100),
-            child: Text('Vendor Calculator Screen UserId = ' +
-                scannedUserId.toString()),
+            child: Text(appliedRewardList.map((e) => e.offerName).toString()),
           ),
         ],
       ),

@@ -14,8 +14,10 @@ class cardListCheckout extends StatefulWidget {
     super.key,
     required this.heading,
     required this.scannedUserId,
+    required this.getRewardList,
   });
 
+  final Function getRewardList;
   final String heading;
   final scannedUserId;
 
@@ -55,23 +57,6 @@ class _cardListCheckoutState extends State<cardListCheckout> {
       }
     }
     return applicableRewards;
-  }
-
-  List<RewardModel> appliedRewardList = [];
-
-  void _refresh(RewardModel appliedReward) {
-    setState(() {
-      if (appliedRewardList
-          .map((reward) => reward.id)
-          .contains(appliedReward.id)) {
-        appliedRewardList
-            .removeWhere((element) => element.id == appliedReward.id);
-      } else {
-        appliedRewardList.add(appliedReward);
-      }
-    });
-
-    print(appliedRewardList);
   }
 
   @override
@@ -114,7 +99,7 @@ class _cardListCheckoutState extends State<cardListCheckout> {
                     itemBuilder: (BuildContext context, int index) {
                       return individualCardCheckout(
                         rewardData: snapshot.data![index],
-                        refresh: _refresh,
+                        refresh: widget.getRewardList,
                       );
                     },
                   );
