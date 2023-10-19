@@ -22,7 +22,7 @@ class inputTextBox extends StatelessWidget {
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please enter some text';
-        } else if (value != null) {
+        } else {
           final bool isValid = EmailValidator.validate(value);
           if (isValid == true) {
             return null;
@@ -30,7 +30,6 @@ class inputTextBox extends StatelessWidget {
             return 'Please enter a valid email';
           }
         }
-        return null;
       },
       decoration: InputDecoration(
           labelText: label,
