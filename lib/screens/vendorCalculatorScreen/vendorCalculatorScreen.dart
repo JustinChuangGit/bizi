@@ -53,12 +53,47 @@ class _vendorCalculatorScreenState extends State<vendorCalculatorScreen> {
             scannedUserId: widget.scannedUserId,
             getRewardList: _getRewardList,
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 100),
-            child: Text(appliedRewardList.map((e) => e.offerName).toString()),
-          ),
+          calculatorWidget()
         ],
       ),
+    );
+  }
+}
+
+class calculatorWidget extends StatefulWidget {
+  calculatorWidget({
+    super.key,
+  });
+
+  @override
+  State<calculatorWidget> createState() => _calculatorWidgetState();
+}
+
+class _calculatorWidgetState extends State<calculatorWidget> {
+  final totalCostController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    totalCostController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        TextField(
+          controller: totalCostController,
+          keyboardType: const TextInputType.numberWithOptions(decimal: true),
+          textInputAction: TextInputAction.done,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: 'Enter Total',
+          ),
+        ),
+        Text(totalCostController.text)
+      ],
     );
   }
 }
