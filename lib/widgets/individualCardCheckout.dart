@@ -1,8 +1,6 @@
 import 'package:bizi/utilities/methods/errorSnackBar.dart';
 import 'package:bizi/utilities/models/rewardModel.dart';
-import 'package:bizi/utilities/repository/userRepository.dart';
 import 'package:bizi/utilities/repository/vendorRepository.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bizi/configuration/constants.dart';
 import 'package:get/get.dart';
@@ -23,8 +21,6 @@ class individualCardCheckout extends StatefulWidget {
 
 class _individualCardCheckoutState extends State<individualCardCheckout> {
   final _vendorRepo = Get.put(VendorRepository());
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final _userRepo = Get.put(UserRepository());
 
   var _isApplied = false;
 

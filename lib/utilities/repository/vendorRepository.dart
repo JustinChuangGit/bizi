@@ -29,8 +29,8 @@ class VendorRepository extends GetxController {
         .add(vendor.toJson())
         .whenComplete(() => successSnackBar())
         .catchError((error, stackTrace) {
-      errorSnackBar();
       print(error.toString());
+      errorSnackBar();
     });
   }
 
@@ -76,7 +76,7 @@ class VendorRepository extends GetxController {
     //Storage
     final storageRef = _storage.ref().child('rewards').child(reward.id);
     await storageRef.putFile(file).catchError((error, stackTrace) {
-      errorSnackBar();
+      return errorSnackBar();
     });
 
     Get.to(venderHomeScreen());
@@ -93,7 +93,7 @@ class VendorRepository extends GetxController {
 
   Future<List<String>> getVendorRewardList() async {
     List<String> rewardList = [];
-    final querySnapshot = await _db
+    await _db
         .collection('vendors')
         .doc(_auth.currentUser!.uid)
         .collection('currentRewards')

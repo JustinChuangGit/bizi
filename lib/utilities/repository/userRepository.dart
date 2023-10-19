@@ -68,7 +68,7 @@ class UserRepository extends GetxController {
 
   Future<List<String>> getRedeemedRewardList(String userId) async {
     List<String> rewardList = [];
-    final querySnapshot = await _db
+    await _db
         .collection('users')
         .doc(userId)
         .collection('currentRewards')

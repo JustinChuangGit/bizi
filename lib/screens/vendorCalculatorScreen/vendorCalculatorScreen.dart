@@ -15,7 +15,6 @@ class vendorCalculatorScreen extends StatefulWidget {
 }
 
 class _vendorCalculatorScreenState extends State<vendorCalculatorScreen> {
-  @override
   List<RewardModel> appliedRewardList = [];
 
   void _getRewardList(RewardModel appliedReward) {
@@ -33,6 +32,7 @@ class _vendorCalculatorScreenState extends State<vendorCalculatorScreen> {
     );
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: colorConstants.biziGreen,
