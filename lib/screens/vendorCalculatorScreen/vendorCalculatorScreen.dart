@@ -1,7 +1,6 @@
 import 'package:bizi/configuration/constants.dart';
 import 'package:bizi/screens/qrScanScreen/qrScanScreen.dart';
 import 'package:bizi/utilities/models/rewardModel.dart';
-
 import 'package:bizi/widgets/cardListCheckout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,27 +33,32 @@ class _vendorCalculatorScreenState extends State<vendorCalculatorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: colorConstants.biziGreen,
-      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      floatingActionButton: Container(
-          child: FloatingActionButton(
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Scaffold(
         backgroundColor: colorConstants.biziGreen,
-        onPressed: () {
-          Get.to(const qrScanScreen());
-        },
-        child: const Icon(Icons.qr_code_scanner),
-      )),
-      body: Column(
-        children: [
-          cardListCheckout(
-            heading: 'Users Rewards',
-            scannedUserId: widget.scannedUserId,
-            getRewardList: _getRewardList,
-          ),
-          calculatorWidget()
-        ],
+        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        floatingActionButton: Container(
+            child: FloatingActionButton(
+          backgroundColor: colorConstants.biziGreen,
+          onPressed: () {
+            Get.to(const qrScanScreen());
+          },
+          child: const Icon(Icons.qr_code_scanner),
+        )),
+        body: Column(
+          children: [
+            cardListCheckout(
+              heading: 'Users Rewards',
+              scannedUserId: widget.scannedUserId,
+              getRewardList: _getRewardList,
+            ),
+            calculatorWidget()
+          ],
+        ),
       ),
     );
   }
@@ -71,6 +75,7 @@ class calculatorWidget extends StatefulWidget {
 
 class _calculatorWidgetState extends State<calculatorWidget> {
   final totalCostController = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
 
   @override
   void dispose() {
@@ -86,6 +91,7 @@ class _calculatorWidgetState extends State<calculatorWidget> {
         TextField(
           controller: totalCostController,
           keyboardType: const TextInputType.numberWithOptions(decimal: true),
+          focusNode: _focusNode,
           textInputAction: TextInputAction.done,
           decoration: InputDecoration(
             border: OutlineInputBorder(),
