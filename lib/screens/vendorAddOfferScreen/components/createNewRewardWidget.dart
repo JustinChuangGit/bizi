@@ -78,9 +78,7 @@ class _createNewRewardWidgetState extends State<createNewRewardWidget> {
                 ),
               ),
               inputTextBox(
-                controller: rewardController.newPrice,
-                label: 'New Price',
-              ),
+                  controller: rewardController.newPrice, label: 'New Price'),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(

@@ -30,7 +30,7 @@ class RewardModel {
       'offerFilePath': offerFilePath,
       'offerUses': offerUses,
       'savings': (double.tryParse(normalPrice)! - double.tryParse(newPrice)!)
-          .toString()
+          .toString(),
     };
   }
 
