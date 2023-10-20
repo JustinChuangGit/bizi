@@ -66,6 +66,21 @@ class _createNewRewardWidgetState extends State<createNewRewardWidget> {
               inputTextBox(
                   controller: rewardController.normalPrice,
                   label: 'Item Price'),
+              Container(
+                padding: const EdgeInsets.only(bottom: 5, top: 15),
+                width: double.infinity,
+                child: const Text(
+                  'New Price:',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              inputTextBox(
+                controller: rewardController.newPrice,
+                label: 'New Price',
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
@@ -114,8 +129,8 @@ class _createNewRewardWidgetState extends State<createNewRewardWidget> {
                         id: FirebaseAuth.instance.currentUser!.uid + uuid.v4(),
                         normalPrice: rewardController.normalPrice.text.trim(),
                         vendorName: currentVendor,
-                        //newPrice: rewardController.newPrice.text.trim(),
-                        newPrice: '0',
+                        newPrice: rewardController.newPrice.text.trim(),
+                        // newPrice: '0',
                         offerName: rewardController.rewardName.text.trim(),
                         offerFilePath: image!.path.toString(),
                       );
